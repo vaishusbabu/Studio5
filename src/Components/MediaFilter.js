@@ -7,6 +7,7 @@ function MediaFilter() {
     const { id } = useParams();
     const baseURL = "https://studio5drupaldev.applab.qa/";
 
+
     useEffect(() => {
         fetch(`https://studio5drupaldev.applab.qa/api/filter/en?_format=json`)
             .then((res) => res.json())
