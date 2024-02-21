@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from "react-router-dom";
 
 
 function Activity() {
@@ -234,7 +235,6 @@ function Activity() {
 
 
                         <ul className="activities-list" aria-label="activities">
-
                             {
                                 activity && activity.results
 
@@ -246,20 +246,18 @@ function Activity() {
                                                         src={item.field_activity_thumbnail}
                                                         alt="images of icon"
                                                     />
-
-
                                                 </div>
                                                 <div className="textHolderNA">
                                                     <div className="topTextHolderNA Creativity Zone">
-                                                        <a
+                                                        <Link
                                                             aria-label="Hackathon- Passive Cooking Activity mixed 19-24 Years Old Start date 26 Jan, 2024 03:00 pm and End date 27 Jan, 2024 07:00 pm"
-                                                            href="/en/activity/57640"
+                                                            to={`/event_details/${item.nid}`}
                                                         >
                                                             <h4>
                                                                 <i className="topHeadNA" />
                                                                 {item.title}
                                                             </h4>
-                                                        </a>
+                                                        </Link>
                                                         <div className="topTextInsideNA">
                                                             <span className="blackText">
                                                                 <i className="topBoyIconNA" /> {item.field_gender}

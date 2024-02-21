@@ -1,7 +1,9 @@
 import React from 'react'
-import NavLink from 'react-bootstrap/esm/NavLink';
+// import NavLink from 'react-bootstrap/esm/NavLink';
 import logoMCIT from '../assets/images/logoMCIT.png';
 import logoSTUDIO5 from '../assets/images/logoSTUDIO5.svg';
+
+import { NavLink } from 'react-router-dom';
 
 
 function Header() {
@@ -26,18 +28,18 @@ function Header() {
                         <div className="row">
                             <div className="col">
                                 <ul>
-                                    <li><a className="active" href="/en/" aria-current="page">HomeNavbar</a></li>
-                                    <li><a className="" href="/en/activities">Activities</a></li>
-                                    <li><a className="" href="/en/media-center">Media Center</a></li>
-                                    <li><a className="" href="/en/contact">Contact us</a></li>
+                                    <li><a className="active" href="/" aria-current="page">HomeNavbar</a></li>
+                                    <li><a className="" href="/activities">Activities</a></li>
+                                    <li><a className="" href="/media_center">Media Center</a></li>
+                                    <li><a className="" href="/contact_us">Contact us</a></li>
                                     <li><a className="" href="/en/subscribe">Subscribe</a></li>
                                 </ul>
                             </div>
                             <div className="col">
                                 <ul className="menuStyle2">
-                                    <li><a className="" href="/en/about">About us</a></li>
-                                    <li><a className="" href="/en/machines">Machines</a></li>
-                                    <li><a className="" href="/en/registration">Registration</a></li>
+                                    <li><a className="" href="/about">About us</a></li>
+                                    <li><a className="" href="/machines">Machines</a></li>
+                                    <li><a className="" href="/register_home">Registration</a></li>
                                 </ul>
                             </div>
                             <div className="col">
@@ -47,6 +49,7 @@ function Header() {
                                 </ul>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -74,80 +77,51 @@ function Header() {
                 <ul id="main-nav" className="sidenav sidenav-fixed align-center"
                     style={{ direction: "ltr" }}>
                     <li>
-                        <NavLink aria-label="HomeNavbar" className="sidenav-close active"
-
-                            to="/">Home</NavLink>
-                        {/* <a aria-label="Home" activeclassname="active" classNamelass="sidenav-close active" href="/en/"
-                    aria-current="page">
-                    Home
-                </a> */}
+                        <NavLink aria-label="Home" activeclassname="active" classNamelass="sidenav-close active" to="/"
+                            aria-current="page">
+                            Home
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink aria-label="About us"
-                            activeclassname="active"
-                            className="sidenav-close"
-                            to="/about">
-                            About us</NavLink>
-                        {/* <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/en/about">
-                    About us
-                </a> */}
+                        <NavLink aria-label="About us" activeclassname="active" className="sidenav-close" to="/about">
+                            About us
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink
-                            aria-label="Activities"
-                            activeclassname="active"
-                            className="sidenav-close"
+                        <NavLink aria-label="Activities" activeclassname="active" className="sidenav-close"
                             to="/activities">
-                            Activities</NavLink>
-                        {/* <a aria-label="Activities" activeclassname="active" className="sidenav-close"
-                    href="/en/activities">
-                    Activities
-                </a> */}
+                            Activities
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink aria-label="Media Center"
-                            activeclassname="active"
-                            className="sidenav-close"
+                        <NavLink aria-label="Media Center" activeclassname="active" className="sidenav-close"
                             to="/media_center">
-                            Media Centers</NavLink>
-                        {/* <a aria-label="Media Center" activeclassname="active" className="sidenav-close"
-                    href="/en/media-center">
-                    Media Center
-                </a> */}
+                            Media Center
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink aria-label=" Machines"
-                            activeclassname="active"
-                            className="sidenav-close"
-                            to="/machines">
-                            Machines</NavLink>
-                        {/* <a aria-label="Machines" activeclassname="active" className="sidenav-close"
-                    href="/en/machines">
-                    Machines
-                </a> */}
-                    </li>
-                    <li>
-                        <NavLink aria-label="Equipment"
-                            activeclassname="active"
-                            className="sidenav-close"
-                            to="/equipment">
-                            Equipment</NavLink>
 
-                        {/* <a aria-label="Equipment" activeclassname="active" className="sidenav-close"
-                    href="/en/equipment-used">
-                    Equipment
-                </a> */}
+                        <NavLink aria-label="Machines" activeclassname="active" className="sidenav-close"
+                            to="/machines">
+                            Machines
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink aria-label="Equipment" activeclassname="active" className="sidenav-close"
+                            to="/equipment">
+                            Equipment
+                        </NavLink>
                     </li>
                     <li className="contactPopover">
-                        <NavLink aria-label="E  Contact us"
+                        {/* <NavLink aria-label="E  Contact us"
                             activeclassname="active"
                             className="sidenav-close"
                             to="/contact_us">
-                            Contact us</NavLink>
-                        {/* <a aria-label="Contact us" activeclassname="active" className="sidenav-close"
-                    href="/en/contact">
-                    Contact us
-                </a> */}
+                            Contact us</NavLink> */}
+                        <NavLink aria-label="Contact us" activeclassname="active" className="sidenav-close"
+                            to="/contact_us">
+                            Contact us
+                        </NavLink>
                     </li>
                     <li className="dropdown">
                         <NavLink to="/login"
@@ -162,22 +136,22 @@ function Header() {
                         </NavLink>
                     </li>
                     <li className="lang languageFocus">
-                        <a activeclassname=""
+                        <NavLink activeclassname=""
                             aria-label="language button to arabic"
                             className="sidenav-close nav-lang active"
-                            href="/english"
+                            to="/english"
                             style={{ fontFamily: "politicaextrabold" }}
                             aria-current="page">
                             ع
-                        </a>
+                        </NavLink>
                     </li>
                 </ul>
-                <a href="#"
+                <NavLink to="#"
                     data-target="main-nav"
                     className="sidenav-trigger sasi">
                     <i className="material-icons">
                         menu
-                    </i></a>
+                    </i></NavLink>
             </div>
         </header ></div>
     )
