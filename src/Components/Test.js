@@ -1,5 +1,12 @@
 import React from 'react'
 
+
+// {`/event_details/${item.nid}`} 
+
+// src={`${baseURL}${item.field_equipment_image}`}
+// src={`${baseURL}${item.field_equipment_image}`}
+
+    // const baseURL = "api/get_equipment_used?page=0"
 function Test() {
     return (
         <div><div id="main-content">

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function News() {
   const [food, setFood] = useState("");
   const [video, setVideo] = useState("");
   const [gallery, setGallery] = useState("");
-
+  const { id } = useParams();
   useEffect(() => {
     fetch(
       `https://studio5drupaldev.applab.qa/api/featured-news-article?_format=json`
@@ -52,8 +52,7 @@ function News() {
                     <Link
                       className="item homeNewsText1"
                       aria-label='Test news 2023 News Published <time datetime="2023-12-19T13:13:52+00:00" class="datetime">19 December 2023</time>'
-                      to="/news"
-                    >
+                      to={`/media_view/56624}`}>
                       <h3>{food[0].title}</h3>
                     </Link>
 
@@ -78,79 +77,79 @@ function News() {
             </div>
             <div className="item gal-item en">
               <div className="flex-row col-2">
-                  {video && (
-                    <div className="item">
-                      <div className="">
-                        <div className="videowrapper ">
-                          <object data={video[0].video} tabIndex={-1}>
-                            <param name="movie" value={video[0].video} />
-                            <param
-                              name="allowFullScreen"
-                              mozallowfullscreen="mozallowfullscreen"
-                              msallowfullscreen="msallowfullscreen"
-                              oallowfullscreen="oallowfullscreen"
-                              webkitallowfullscreen="webkitallowfullscreen"
-                              value="true"
-                            />
-                            <span>Video</span>
-                          </object>
-                        </div>
-                        <div className="category-wrap Video">
-                          {video[0].category}
-                        </div>
-                        <Link to="/testVideo">
-                          {" "}
-                          <div className="desc">{video[0].title}</div>
-                        </Link>
-                        <p
-                          className="date-wrap"
-                          aria-label='Published <time datetime="2023-12-17T08:56:58+00:00" class="datetime">17 December 2023</time>'
-                          dangerouslySetInnerHTML={{ __html: video[0].date }}
-                        ></p>
+                {video && (
+                  <div className="item">
+                    <div className="">
+                      <div className="videowrapper ">
+                        <object data={video[0].video} tabIndex={-1}>
+                          <param name="movie" value={video[0].video} />
+                          <param
+                            name="allowFullScreen"
+                            mozallowfullscreen="mozallowfullscreen"
+                            msallowfullscreen="msallowfullscreen"
+                            oallowfullscreen="oallowfullscreen"
+                            webkitallowfullscreen="webkitallowfullscreen"
+                            value="true"
+                          />
+                          <span>Video</span>
+                        </object>
                       </div>
+                      <div className="category-wrap Video">
+                        {video[0].category}
+                      </div>
+                      <Link to="/testVideo">
+                        {" "}
+                        <div className="desc">{video[0].title}</div>
+                      </Link>
+                      <p
+                        className="date-wrap"
+                        aria-label='Published <time datetime="2023-12-17T08:56:58+00:00" class="datetime">17 December 2023</time>'
+                        dangerouslySetInnerHTML={{ __html: video[0].date }}
+                      ></p>
                     </div>
-                  )}
-         
+                  </div>
+                )}
 
-                  {gallery && (
-                    <div className="item">
-                      <div className="">
-                        <div className="img-wrap">
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: gallery[0].image,
-                            }}
-                          ></div>
-                        </div>
-                        <div className="category-wrap Gallery">
-                          {gallery[0].category}
-                        </div>
-                        <Link
-                          to="/gallery"
-                          aria-label='3D Print a Mini-City Gallery Published <time datetime="2019-10-24T10:26:52+00:00" class="datetime">24 October 2019</time>'
-                        >
-                          <div className="desc">{gallery[0].title}</div>
-                        </Link>
-                        <p
-                          className="date-wrap"
-                          aria-label='Published <time datetime="2019-10-24T10:26:52+00:00" class="datetime">24 October 2019</time>'
-                          dangerouslySetInnerHTML={{ __html: gallery[0].date }}
-                        ></p>
+
+                {gallery && (
+                  <div className="item">
+                    <div className="">
+                      <div className="img-wrap">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: gallery[0].image,
+                          }}
+                        ></div>
                       </div>
+                      <div className="category-wrap Gallery">
+                        {gallery[0].category}
+                      </div>
+                      <Link
+                        to="/gallery"
+                        aria-label='3D Print a Mini-City Gallery Published <time datetime="2019-10-24T10:26:52+00:00" class="datetime">24 October 2019</time>'
+                      >
+                        <div className="desc">{gallery[0].title}</div>
+                      </Link>
+                      <p
+                        className="date-wrap"
+                        aria-label='Published <time datetime="2019-10-24T10:26:52+00:00" class="datetime">24 October 2019</time>'
+                        dangerouslySetInnerHTML={{ __html: gallery[0].date }}
+                      ></p>
                     </div>
-                  )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
           <div className="view-more home">
-            <a
+            <Link
               aria-label="Button for view more news and media"
-              href="/en/media-center"
+              to="/media_center"
             >
               View More
               <i className="material-icons en" />
-            </a>
+            </Link>
           </div>
           <div className="multi-square">
             <b>
@@ -181,14 +180,14 @@ function News() {
           </div>
           <p>Our latest insights, delivered straight to your inbox</p>
           <p>
-            <a
+            <Link
               className="red-btn btn btn-signup"
               aria-label="subscribe button for newsletter"
-              href="/en/subscribe"
+              to="/subscribe"
             >
               Subscribe
               <i className="material-icons en"></i>
-            </a>
+            </Link>
           </p>
         </div>
       </div>

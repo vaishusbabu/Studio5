@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-function Media_Center() {
+function MediaFilter() {
     const [filter, setFilter] = useState([]);
     const [news, setNews] = useState([]);
+    const { id } = useParams();
     const baseURL = "https://studio5drupaldev.applab.qa/";
+
 
     useEffect(() => {
         fetch(`https://studio5drupaldev.applab.qa/api/filter/en?_format=json`)
@@ -18,7 +20,8 @@ function Media_Center() {
 
 
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/media-centre?_format=json`)
+        fetch(`https://studio5drupaldev.applab.qa/api/filtermedia-centre/${id}?_format=json`)
+
             .then((res) => res.json())
             .then((data) => {
                 setNews(data);
@@ -103,6 +106,7 @@ function Media_Center() {
                                                     <Link
                                                         aria-label="News section contains 58 items"
                                                         to={`/media_filter/${item.tid}`}
+
                                                     >
                                                         {item.filter}<span>{item.count}</span>
                                                     </Link>
@@ -239,4 +243,4 @@ function Media_Center() {
     )
 }
 
-export default Media_Center
+export default MediaFilter
