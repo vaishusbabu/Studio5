@@ -78,18 +78,20 @@ function Volunteer() {
                                     Guardian{" "}
                                 </a>
                             </button>
-                            <button aria-label="Are you Student" className="btn">
-                                <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
-                                    {" "}
-                                    School{" "}
-                                </a>
-                            </button>
                             <button aria-label="Are you School" className="btn">
                                 <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
                                     {" "}
                                     Student{" "}
                                 </a>
                             </button>
+
+                            <button aria-label="Are you Student" className="btn">
+                                <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
+                                    {" "}
+                                    School{" "}
+                                </a>
+                            </button>
+
                             <button aria-label="Are you Volunteer" className="btn active">
                                 <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/volunteer">
                                     {" "}

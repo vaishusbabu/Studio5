@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
 
 function ContactUs() {
 
   const [address, setAddress] = useState([]);
-  const [policy, setPolicy] = useState([]);
+  // const [policy, setPolicy] = useState([]);
   useEffect(() => {
     fetch(`https://studio5drupaldev.applab.qa/api/contact_us_page`)
       .then((res) => res.json())

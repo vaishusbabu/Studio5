@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 function Guardian() {
@@ -75,28 +76,30 @@ function Guardian() {
                                     role="button"
                                     className="btn active"
                                 >
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/guardian">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" href="/guardian">
                                         {" "}
                                         Guardian{" "}
-                                    </a>
+                                    </Link>
+
                                 </button>
                                 <button aria-label="Are you Student" className="btn">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
                                         {" "}
                                         Student{" "}
-                                    </a>
+                                    </Link>
                                 </button>
+
                                 <button aria-label="Are you School" className="btn">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
                                         {" "}
                                         School{" "}
-                                    </a>
+                                    </Link>
                                 </button>
                                 <button aria-label="Are you Volunteer" className="btn">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/volunteer">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/volunteer">
                                         {" "}
                                         Volunteer{" "}
-                                    </a>
+                                    </Link>
                                 </button>
                             </div>
                         </div>
@@ -141,7 +144,7 @@ function Guardian() {
                                             id="parentId"
                                             className=""
                                             maxLength={11}
-                                            type="text"
+                                            type="number"
                                             autoComplete="no"
                                             defaultValue=""
                                             style={{ textAlign: "left" }}
@@ -183,7 +186,7 @@ function Guardian() {
                                                     placeholder="+974"
                                                     className=""
                                                     id="mobileNumber_country_code"
-                                                    type="text"
+                                                    type="number"
                                                     minLength={3}
                                                     maxLength={3}
                                                     disabled=""

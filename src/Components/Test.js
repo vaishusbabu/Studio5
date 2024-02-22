@@ -7,6 +7,7 @@ import React from 'react'
 // src={`${baseURL}${item.field_equipment_image}`}
 
     // const baseURL = "api/get_equipment_used?page=0"
+    
 function Test() {
     return (
         <div><div id="main-content">

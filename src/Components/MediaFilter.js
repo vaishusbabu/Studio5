@@ -71,7 +71,6 @@ function MediaFilter() {
                         </div>
                     </div>
                 </div>
-
                 <div className="container">
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
@@ -98,21 +97,22 @@ function MediaFilter() {
                                     <div className="filter-wrap">
 
                                         <h3 id="filter-title">Filter Media</h3>
-                                        {filter && filter.map((item, index) => (
+                                        {
+                                            filter && filter.map((item, index) => (
 
-                                            <ul aria-label="aside navigation">
-                                                <li className="media-item en">
-                                                    <Link
-                                                        aria-label="News section contains 58 items"
-                                                        to={`/media_filter/${item.tid}`}
+                                                <ul aria-label="aside navigation">
+                                                    <li className="media-item en">
+                                                        <Link
+                                                            aria-label="News section contains 58 items"
+                                                            to={`/media_filter/${item.tid}`}
 
-                                                    >
-                                                        {item.filter}<span>{item.count}</span>
-                                                    </Link>
-                                                </li>
-                                            </ul>
-                                        )
-                                        )
+                                                        >
+                                                            {item.filter}<span>{item.count}</span>
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                            )
+                                            )
                                         }
                                         <span className="grey-square-rotate" />
                                         <span className="multi-square">

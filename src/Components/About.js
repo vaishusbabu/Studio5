@@ -46,7 +46,7 @@ function About() {
                             </div>
                             <h2
                                 id="pageHeading"
-                                role="heading"
+
                                 tabIndex={0}
                                 aria-label="page heading About us"
                             >

@@ -85,23 +85,23 @@ function Student() {
                                 {" "}
                                 Guardian{" "}
                             </a>
+
                         </button>
-                        <button aria-label="Are you Student" className="btn active">
-                            <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
-                                {" "}
-                                School{" "}
-                            </a>
-                        </button>
-                        <button aria-label="Are you School" className="btn">
+                        <button aria-label="Are you Student" className="btn">
                             <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
                                 {" "}
                                 Student{" "}
                             </a>
                         </button>
+                        <button aria-label="Are you School" className="btn">
+                            <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
+
+                                School
+                            </a>
+                        </button>
                         <button aria-label="Are you Volunteer" className="btn">
                             <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/volunteer">
-                                {" "}
-                                Volunteer{" "}
+                                Volunteer
                             </a>
                         </button>
                     </div>
@@ -212,6 +212,7 @@ function Student() {
                                         <option value={5}>American Samoa</option>
                                         <option value={6}>Andorra</option>
                                         <option value={7}>Angola</option>
+                                        
                                         <option value={189}>Anguilla</option>
                                         <option value={3}>Antarctica</option>
                                         <option value={8}>Antigua and Barbuda</option>

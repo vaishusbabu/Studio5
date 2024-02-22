@@ -1,11 +1,11 @@
 
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 function School() {
-    const [startDate, setStartDate] = useState(new Date());
+    // const [startDate, setStartDate] = useState(new Date());
     return (
         <div>
             <div id="main-container">
@@ -80,18 +80,19 @@ function School() {
                                         Guardian{" "}
                                     </a>
                                 </button>
-                                <button aria-label="Are you Student" className="btn">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
-                                        {" "}
-                                        School{" "}
-                                    </a>
-                                </button>
                                 <button aria-label="Are you School" className="btn active">
                                     <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
                                         {" "}
                                         Student{" "}
                                     </a>
                                 </button>
+                                <button aria-label="Are you Student" className="btn">
+                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
+                                        {" "}
+                                        School{" "}
+                                    </a>
+                                </button>
+
                                 <button aria-label="Are you Volunteer" className="btn">
                                     <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/volunteer">
                                         {" "}

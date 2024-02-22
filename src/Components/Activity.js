@@ -13,6 +13,7 @@ function Activity() {
     const [startDate, setStartDate] = useState(new Date());
     const [title, setTitle] = useState([]);
     const [select, setSelect] = useState('');
+    const [selectedActivity, setSelectedActivity] = useState("All");
 
 
     const handleSubmit = (e) => {
@@ -91,12 +92,12 @@ function Activity() {
                 <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                     <ul>
                         <li className="breadcrumb-item">
-                            <a href="/en/">Home</a>{" "}
+                            <Link to="/">Home</Link>{" "}
                         </li>
                         <li className="breadcrumb-item">
-                            <a tabIndex={0} aria-current="page" href="/en/activities">
+                            <Link tabIndex={0} aria-current="page" to="/activities">
                                 <span>Activities</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -220,7 +221,9 @@ function Activity() {
                             <div className="col s5 result-type">
                                 <div className="input-field col s12 mobileSelect filter-select en">
                                     <label htmlFor="result-type">Select Activity</label>
-                                    <select id="result-type" className="browser-default" tabIndex={0}>
+                                    <select id="result-type" className="browser-default" tabIndex={0} value={selectedActivity} onChange={(e) => {
+                                        setSelectedActivity(e.target.value)
+                                    }}>
                                         <option value="All">All</option>
                                         <option value="competition">Competitions</option>
                                         <option value="session">Workshops</option>
@@ -237,7 +240,7 @@ function Activity() {
                         <ul className="activities-list" aria-label="activities">
                             {
                                 activity && activity.results
-
+                                    .filter(activity => selectedActivity === "All" || activity.field_event_type === selectedActivity)
                                     .map((item, index) => (
                                         <div listItem={item} key={index} >
                                             <li className="newactivities test3">
@@ -297,8 +300,6 @@ function Activity() {
                             }
 
                         </ul>
-
-
                         <nav className="pagination-wrapper" aria-label="pagination">
                             <ul className="pagination">
                                 <li className="active">

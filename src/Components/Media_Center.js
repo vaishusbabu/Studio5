@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
+import Pagenation from './Pagenation';
+
+
 function Media_Center() {
     const [filter, setFilter] = useState([]);
     const [news, setNews] = useState([]);
@@ -169,10 +172,14 @@ function Media_Center() {
 
 
                                 <nav className="pagination-wrapper" aria-label="pagination">
+                                    {/* {news(<Pagenation pager={news.pager} />)} */}
+                                    {/* {news && news.pager && news.pager.map((item, key) => ( */}
+
+
                                     <ul className="pagination">
                                         <li className="active">
                                             <a className="undefined" href="#" aria-label="Go to page number 1">
-                                                1
+
                                             </a>
                                         </li>
                                         <li className="">
@@ -201,6 +208,7 @@ function Media_Center() {
                                             </a>
                                         </li>
                                     </ul>
+
                                 </nav>
                             </div>
 
