@@ -3,69 +3,75 @@ import React from 'react';
 export const guardian = [
     {
         name: "parentName",
+        label: "Guardian name in English",
         placeholder: "Type guardian name in English",
         id: "parentName",
         className: "",
         type: "text",
         autoComplete: "no",
-        defaultValue: ""
+        defaultValue: "",
+        htmlFor: "parentName",
+        className: "asterisk",
+        label: "Guardian name in English",
+
     },
     {
         name: "parentId",
+        label: " Guardian QID",
         placeholder: "Type your ID",
         id: "parentId",
         className: "",
         maxLength: 11,
-        type: "number",
+        type: "text",
         autoComplete: "no",
-        defaultValue: ""
+        defaultValue: "",
+        htmlFor: "parentId",
+        className: "asterisk"
     },
     {
         name: "email",
+        label: "Type your email",
+        Guardian: "Email Address ",
         placeholder: "Type your email",
         id: "email",
         className: "fontEnglish",
         type: "email",
         autoComplete: "no",
-        defaultValue: ""
+        defaultValue: "",
+        type: "email",
+        htmlFor: "email",
+        className: "asterisk"
     },
     {
-        name: "mobileNumber_country_code",
-        placeholder: "Country Code",
-        className: "",
-        id: "mobileNumber_country_code",
-        type: "number",
-        disabled: "",
-        minLength: 3,
-        maxLength: 3
-    },
-    {
+        label: "Mobile number",
         name: "mobileNumber",
         placeholder: "Type your mobile number",
         id: "mobileNumber",
         className: "",
-        type: "text",
+        type: "number",
         maxLength: 8,
         autoComplete: "no",
         defaultValue: ""
     },
     {
         name: "agree",
-        switchkey: "checkbox",
+        type: "checkbox",
         id: "agree",
         type: "checkbox",
         label: "I agree to the studio 5",
         ariaLabel: "Read terms and condition",
-        className: "modal-trigger underline-text"
+        className: "modal-trigger underline-text",
+        htmlFor: "agree"
     }
 ];
 
 function Jsonguardian() {
     return (
         <div>
-            {guardian.map((item) => {
+            {/* {guardian.map((item) => {
                 switch (item.type) {
                     case "text":
+                    case "email":
                         return (
                             <input
                                 key={item.id}
@@ -73,7 +79,7 @@ function Jsonguardian() {
                                 placeholder={item.placeholder}
                                 id={item.id}
                                 className={item.className}
-                                type="text"
+                                type={item.type === "text" ? "text" : "email"}
                                 autoComplete={item.autoComplete}
                                 defaultValue={item.defaultValue}
                                 style={{ textAlign: "left" }}
@@ -87,28 +93,13 @@ function Jsonguardian() {
                                 placeholder={item.placeholder}
                                 id={item.id}
                                 className={item.className}
-                                type="number"
+                                type={item.type}
                                 maxLength={item.maxLength}
                                 autoComplete={item.autoComplete}
                                 defaultValue={item.defaultValue}
                                 style={{ textAlign: "left" }}
                             />
                         );
-                    case "number":
-                        return (
-                            <input
-                                key={item.id}
-                                name={item.name}
-                                placeholder={item.placeholder}
-                                id={item.id}
-                                className={item.className}
-                                type="text"
-                                autoComplete={item.autoComplete}
-                                defaultValue={item.defaultValue}
-                                style={{ textAlign: "left" }}
-                            />
-                        );
-
                     case "checkbox":
                         return (
                             <input
@@ -122,7 +113,8 @@ function Jsonguardian() {
                     default:
                         return null;
                 }
-            })}
+            })} */}
+
         </div>
     );
 }

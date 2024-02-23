@@ -8,6 +8,14 @@ import React from 'react'
 
     // const baseURL = "api/get_equipment_used?page=0"
     
+
+    // {item.options.map((optionItem, index) => (
+                                                                
+    //     <option value={optionItem.value} key={index}>
+    //         {optionItem.text}
+    //     </option>
+
+    // ))}
 function Test() {
     return (
         <div><div id="main-content">

@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-
+import { volunteer } from "./JsonVolunteer";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Volunteer() {
@@ -112,213 +112,188 @@ function Volunteer() {
                             <p>
                                 Required fields are followed by <span className="asterisk">*</span>
                             </p>
-                            <form autoComplete="off">
-                                <div className="input-field item">
-                                    <input
-                                        name="name"
-                                        placeholder="Type name in English"
-                                        id="name"
-                                        className=""
-                                        type="text"
-                                        autoComplete="no"
-                                        defaultValue=""
-                                    />
-                                    <label htmlFor="name" style={{ left: 0, right: "auto" }}>
-                                        Name in English <span className="asterisk">*</span>
-                                    </label>
-                                    <span className="helper-text" data-error="Required field." />
-                                </div>
-                                <div className="input-field item">
-                                    <input
-                                        name="nameArabic"
-                                        placeholder="Type name in Arabic"
-                                        id="nameArabic"
-                                        className=""
-                                        type="text"
-                                        autoComplete="no"
-                                        defaultValue=""
-                                    />
-                                    <label htmlFor="nameArabic" style={{ left: 0, right: "auto" }}>
-                                        Name in Arabic{" "}
-                                    </label>
-                                    <span className="helper-text" data-error="Required field." />
-                                </div>
-                                <div className="input-field item">
-                                    <input
-                                        name="qid"
-                                        placeholder="Type your QID"
-                                        id="qid"
-                                        className=""
-                                        maxLength={11}
-                                        type="text"
-                                        autoComplete="no"
-                                        defaultValue=""
-                                    />
-                                    <label htmlFor="qid" style={{ left: 0, right: "auto" }}>
-                                        QID <span className="asterisk">*</span>
-                                    </label>
-                                    <span className="helper-text" data-error="Required field." />
-                                </div>
-                                <div className="input-field item">
-                                    <div
-                                        className="input-radio valign-wrapper"
-                                        role="radiogroup"
-                                        aria-labelledby="gender"
-                                    >
-                                        <div className="Male">
-                                            <input
-                                                aria-checked="false"
-                                                name="gender"
-                                                id="Male"
-                                                aria-labelledby="gender Male"
-                                                type="radio"
-                                                readOnly=""
-                                                className="radio-btn"
-                                            />
-                                            <label id="_Male" htmlFor="Male" className="custom-radio-style">
-                                                <span className="custom-radio-style">Male</span>
-                                            </label>
-                                        </div>
-                                        <div className="Female">
-                                            <input
-                                                aria-checked="false"
-                                                name="gender"
-                                                id="Female"
-                                                aria-labelledby="gender Female"
-                                                type="radio"
-                                                readOnly=""
-                                                className="radio-btn"
-                                            />
-                                            <label
-                                                id="_Female"
-                                                htmlFor="Female"
-                                                className="custom-radio-style"
-                                            >
-                                                <span className="custom-radio-style">Female</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <label
-                                        htmlFor="gender"
-                                        id="gender"
-                                        style={{ left: 0, right: "auto" }}
-                                    >
-                                        Gender <span className="asterisk">*</span>
-                                    </label>
-                                    <span className="helper-text" data-error="Required field." />
-                                </div>
-                                <div className=" date-popup">
-                                    <div className="input-field item">
-                                        <div className="react-datepicker-wrapper">
-                                            <div className="react-datepicker__input-container">
-                                                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                                                <button
-                                                    aria-label="choose date of birth button"
-                                                    type="button"
-                                                    className="example-custom-input"
-                                                >
-                                                    <span aria-hidden="true" className="material-icons">
-                                                        date_range
-                                                    </span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <label htmlFor="dob" style={{ left: 0, right: "auto" }}>
-                                            Date of Birth <span className="asterisk">*</span>
-                                        </label>
-                                        <span
-                                            className="helper-text"
-                                            data-error="Required field."
-                                            style={{ textAlign: "left" }}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="input-field item">
-                                    <input
-                                        name="email"
-                                        placeholder="Type your email"
-                                        id="email"
-                                        className="fontEnglish"
-                                        type="email"
-                                        autoComplete="no"
-                                        defaultValue=""
-                                    />
-                                    <label htmlFor="email" style={{ left: 0, right: "auto" }}>
-                                        Email <span className="asterisk">*</span>
-                                    </label>
-                                    <span className="helper-text" data-error="Required field." />
-                                </div>
-                                <div className="row mobile">
-                                    <div className="col s4">
-                                        <div className="input-field item">
-                                            <input
-                                                name="mobile_country_code"
-                                                placeholder="+974"
-                                                id="mobile_country_code"
-                                                type="text"
-                                                className=""
-                                                minLength={3}
-                                                maxLength={3}
-                                                disabled=""
-                                            // defaultValue={+974}
-                                            />
-                                            <label
-                                                htmlFor="mobile_country_code"
-                                                style={{ left: 0, right: "auto" }}
-                                            >
-                                                Country Code
-                                            </label>
-                                            <span
-                                                className="helper-text"
-                                                data-error="Enter a valid code."
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col s8">
-                                        <div className="input-field item">
-                                            <input
-                                                name="mobile"
-                                                placeholder="Type your mobile number"
-                                                id="mobile"
-                                                className=""
-                                                maxLength={8}
-                                                type="text"
-                                                aria-label="Mobile number starting with country code +974"
-                                                autoComplete="no"
-                                                defaultValue=""
-                                            />
-                                            <label htmlFor="mobile" style={{ left: 0, right: "auto" }}>
-                                                Mobile Number <span className="asterisk">*</span>
-                                            </label>
-                                            <span className="helper-text" data-error="Required field." />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="item subscribe-items">
-                                    <p>
-                                        <input
-                                            type="checkbox"
-                                            name="agree"
-                                            id="agree"
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="agree">
-                                            <span className="en">
-                                                I agree to the studio 5
-                                                <button
-                                                    type="button"
-                                                    aria-label="Read terms and condition"
-                                                    tabIndex={0}
-                                                    className="modal-trigger underline-text"
-                                                    style={{ border: 0, background: "none" }}
-                                                >
-                                                    {" "}
-                                                    Terms and conditions
-                                                </button>
-                                            </span>
-                                        </label>
-                                    </p>
-                                </div>
+
+                            <form autoComplete="no">
+                                {volunteer.map((item) => {
+                                    switch (item.type) {
+                                        case "text":
+                                        case "email":
+                                            return (
+                                                <div className="input-field item">
+                                                    <input
+                                                        key={item.id}
+                                                        name={item.name}
+                                                        placeholder={item.placeholder}
+                                                        id={item.id}
+                                                        className={item.className}
+                                                        type={item.type === "text" ? "text" : "email"}
+                                                        autoComplete={item.autoComplete}
+                                                        defaultValue={item.defaultValue}
+                                                        style={{ textAlign: "left" }}
+                                                    />
+
+                                                    <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>
+                                                        {item.label}
+                                                    </label>
+                                                    <span
+                                                        className="helper-text"
+                                                        data-error="Required field."
+                                                        style={{ textAlign: "left" }}
+                                                    />
+                                                </div>
+
+                                            );
+
+                                        case "radio":
+                                            return (
+                                                <div className="input-field item">
+                                                    <div
+                                                        className="input-radio valign-wrapper"
+                                                        role="radiogroup"
+                                                        aria-labelledby="gender"
+                                                    >
+                                                        {item.details.map((item, index) => (
+                                                            <div className={item.className} key={index}>
+                                                                <input
+                                                                    aria-checked="false"
+                                                                    name="gender"
+                                                                    id={item.id}
+                                                                    aria-labelledby={item.arialabelledby}
+                                                                    type={item.type}
+                                                                    readOnly=""
+                                                                    className="radio-btn"
+                                                                />
+                                                                <label id={item.labelid} htmlFor={item.htmlFor} className="custom-radio-style">
+                                                                    <span className="custom-radio-style">{item.label}</span>
+                                                                </label>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                    <label
+                                                        htmlFor={item.htmlFor}
+                                                        id={item.id}
+                                                        style={{ left: 0, right: "auto" }}
+                                                    >
+                                                        {item.label} <span className="asterisk">*</span>
+                                                    </label>
+                                                    <span className="helper-text" data-error="Required field." />
+                                                </div>
+                                            );
+                                        case 'date':
+                                            return (
+                                                <div className="date-popup">
+                                                    <div className="input-field item">
+                                                        <div className="react-datepicker-wrapper">
+                                                            <div className="react-datepicker__input-container">
+                                                                <DatePicker
+                                                                    className="example-custom-input"
+                                                                    placeholderText="dd/mm/yyyy"
+                                                                    selected={startDate}
+
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <label htmlFor="dob" style={{ left: 0, right: "auto" }}>
+                                                            Date of Birth <span className="asterisk">*</span>
+                                                        </label>
+                                                        <span
+                                                            className="helper-text"
+                                                            data-error="Required field."
+                                                            style={{ textAlign: "left" }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            );
+
+                                        case "number":
+                                            return (
+                                                <div className="row mobile">
+                                                    <div className="col s4">
+                                                        <div className="input-field item">
+                                                            <input
+                                                                name="mobileNumber_country_code"
+                                                                placeholder="Country Code"
+                                                                className=""
+                                                                id="mobileNumber_country_code"
+                                                                type="text"
+                                                                minLength={3}
+                                                                maxLength={3}
+                                                                disabled
+                                                                value="+974"
+                                                                style={{ textAlign: "left" }}
+
+                                                            />
+                                                            <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
+                                                                Country Code *
+                                                            </label>
+                                                            <span className="helper-text" data-error="Enter a valid code."></span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col s8">
+                                                        <div className="input-field item">
+
+                                                            <input
+                                                                name={item.name}
+                                                                placeholder={item.placeholder}
+                                                                id={item.id}
+                                                                className={item.className}
+                                                                maxLength={item.maxLength}
+                                                                type={item.type}
+                                                                aria-label={item.ariaLabel}
+                                                                autoComplete="no"
+                                                                defaultValue={item.defaultValue}
+                                                                style={{ textAlign: "left" }}
+                                                            />
+                                                            <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
+                                                                {item.label} <span className="asterisk">  </span>
+                                                            </label>
+                                                            <span
+                                                                className="helper-text"
+                                                                data-error="Required field."
+                                                                style={{ textAlign: "left" }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+
+
+                                        case "checkbox":
+                                            return (
+                                                <div className="item subscribe-items">
+                                                    <p>
+                                                        <input
+                                                            key={item.id}
+                                                            name={item.name}
+                                                            id={item.id}
+                                                            type="checkbox"
+                                                            className={item.className}
+
+
+                                                        />
+                                                        <label htmlFor="agree">
+                                                            <span className="en">
+                                                                I agree to the studio 5
+                                                                <button
+                                                                    type="button"
+                                                                    aria-label="Read terms and condition"
+                                                                    tabIndex={0}
+                                                                    className="modal-trigger underline-text"
+                                                                    style={{ border: 0, background: "none" }}
+                                                                >
+                                                                    {" "}
+                                                                    Terms and conditions
+                                                                </button>
+                                                            </span>
+                                                        </label>
+                                                    </p>
+                                                </div>
+
+                                            );
+                                        default:
+                                            return null;
+                                    }
+                                })}
                                 <div className="btn-wrap">
                                     <button className="btn blue">Register</button>
                                 </div>
@@ -360,6 +335,7 @@ function Volunteer() {
                             Agree
                         </button>
                     </div>
+
                 </div>
                 <div className="top-line ng-scope">
                     <img

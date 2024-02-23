@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { guardian } from './JsonGuardian.js';
+
 
 
 function Guardian() {
@@ -76,21 +78,21 @@ function Guardian() {
                                     role="button"
                                     className="btn active"
                                 >
-                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" href="/guardian">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/guardian">
                                         {" "}
                                         Guardian{" "}
                                     </Link>
 
                                 </button>
                                 <button aria-label="Are you Student" className="btn">
-                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/student">
                                         {" "}
                                         Student{" "}
                                     </Link>
                                 </button>
 
                                 <button aria-label="Are you School" className="btn">
-                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/school">
                                         {" "}
                                         School{" "}
                                     </Link>
@@ -117,151 +119,128 @@ function Guardian() {
                                     Required fields are followed by <span className="asterisk">*</span>
                                 </p>
                                 <form autoComplete="no">
-                                    <div className="input-field item">
-                                        <input
-                                            name="parentName"
-                                            placeholder="Type guardian name in English"
-                                            id="parentName"
-                                            className=""
-                                            type="text"
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="parentName" style={{ left: 0, right: "auto" }}>
-                                            Guardian name in English <span className="asterisk">*</span>
-                                        </label>
-                                        <span
-                                            className="helper-text"
-                                            data-error="Required field."
-                                            style={{ textAlign: "left" }}
-                                        />
-                                    </div>
-                                    <div className="input-field item">
-                                        <input
-                                            name="parentId"
-                                            placeholder="Type your ID"
-                                            id="parentId"
-                                            className=""
-                                            maxLength={11}
-                                            type="number"
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>
-                                            Guardian QID <span className="asterisk">*</span>
-                                        </label>
-                                        <span
-                                            className="helper-text"
-                                            data-error="Required field."
-                                            style={{ textAlign: "left" }}
-                                        />
-                                    </div>
-                                    <div className="input-field item">
-                                        <input
-                                            name="email"
-                                            placeholder="Type your email"
-                                            id="email"
-                                            className="fontEnglish"
-                                            type="email"
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="email" style={{ left: 0, right: "auto" }}>
-                                            Guardian Email Address <span className="asterisk">*</span>
-                                        </label>
-                                        <span
-                                            className="helper-text"
-                                            data-error="Required field."
-                                            style={{ textAlign: "left" }}
-                                        />
-                                    </div>
-                                    <div className="row mobile">
-                                        <div className="col s4">
-                                            <div className="input-field item">
-                                                <input
-                                                    name="mobileNumber_country_code"
-                                                    placeholder="+974"
-                                                    className=""
-                                                    id="mobileNumber_country_code"
-                                                    type="number"
-                                                    minLength={3}
-                                                    maxLength={3}
-                                                    disabled=""
-                                                    // defaultValue={+974}
-                                                    style={{ textAlign: "left" }}
-                                                />
-                                                <label
-                                                    htmlFor="mobileNumber_country_code"
-                                                    style={{ left: 0, right: "auto" }}
-                                                >
-                                                    Country Code
-                                                </label>
-                                                <span
-                                                    className="helper-text"
-                                                    data-error="Enter a valid code."
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col s8">
-                                            <div className="input-field item">
-                                                <input
-                                                    name="mobileNumber"
-                                                    placeholder="Type your mobile number"
-                                                    id="mobileNumber"
-                                                    className=""
-                                                    maxLength={8}
-                                                    type="text"
-                                                    aria-label="Mobile number starting with country code +974"
-                                                    autoComplete="no"
-                                                    defaultValue=""
-                                                    style={{ textAlign: "left" }}
-                                                />
-                                                <label
-                                                    htmlFor="mobileNumber"
-                                                    style={{ left: 0, right: "auto" }}
-                                                >
-                                                    Guardian Mobile <span className="asterisk">*</span>
-                                                </label>
-                                                <span
-                                                    className="helper-text"
-                                                    data-error="Required field."
-                                                    style={{ textAlign: "left" }}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="item subscribe-items">
-                                        <p>
-                                            <input
-                                                type="checkbox"
-                                                name="agree"
-                                                id="agree"
-                                                style={{ textAlign: "left" }}
-                                            />
-                                            <label htmlFor="agree">
-                                                <span className="en">
-                                                    I agree to the studio 5
-                                                    <button
-                                                        type="button"
-                                                        aria-label="Read terms and condition"
-                                                        tabIndex={0}
-                                                        className="modal-trigger underline-text"
-                                                        style={{ border: 0, background: "none" }}
-                                                    >
-                                                        {" "}
-                                                        Terms and conditions
-                                                    </button>
-                                                </span>
-                                            </label>
-                                        </p>
-                                    </div>
+                                    {guardian.map((item) => {
+                                        switch (item.type) {
+                                            case "text":
+                                            case "email":
+                                                return (
+                                                    <div className="input-field item">
+                                                        <input
+                                                            key={item.id}
+                                                            name={item.name}
+                                                            placeholder={item.placeholder}
+                                                            id={item.id}
+                                                            className={item.className}
+                                                            type={item.type === "text" ? "text" : "email"}
+                                                            autoComplete={item.autoComplete}
+                                                            defaultValue={item.defaultValue}
+                                                            style={{ textAlign: "left" }}
+                                                        />
+
+                                                        <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>{item.label}
+                                                        </label>
+                                                        <span
+                                                            className="helper-text"
+                                                            data-error="Required field."
+                                                            style={{ textAlign: "left" }}
+                                                        />
+                                                    </div>
+
+                                                );
+                                            case "number":
+                                                return (
+                                                    <div className="row mobile">
+                                                        <div className="col s4">
+                                                            <div className="input-field item">
+                                                                <input
+                                                                    name="mobileNumber_country_code"
+                                                                    placeholder="Country Code"
+                                                                    className=""
+                                                                    id="mobileNumber_country_code"
+                                                                    type="text"
+                                                                    minLength={3}
+                                                                    maxLength={3}
+                                                                    disabled
+                                                                    value="+974"
+                                                                    style={{ textAlign: "left" }}
+
+                                                                />
+                                                                <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
+                                                                    Country Code *
+                                                                </label>
+                                                                <span className="helper-text" data-error="Enter a valid code."></span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col s8">
+                                                            <div className="input-field item">
+
+                                                                <input
+                                                                    name={item.name}
+                                                                    placeholder={item.placeholder}
+                                                                    id={item.id}
+                                                                    className={item.className}
+                                                                    maxLength={item.maxLength}
+                                                                    type={item.type}
+                                                                    aria-label={item.ariaLabel}
+                                                                    autoComplete="no"
+                                                                    defaultValue={item.defaultValue}
+                                                                    style={{ textAlign: "left" }}
+                                                                />
+                                                                <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
+                                                                    {item.label} <span className="asterisk"> </span>
+                                                                </label>
+                                                                <span
+                                                                    className="helper-text"
+                                                                    data-error="Required field."
+                                                                    style={{ textAlign: "left" }}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+
+                                            case "checkbox":
+                                                return (
+                                                    <div className="item subscribe-items">
+                                                        <p>
+                                                            <input
+                                                                key={item.id}
+                                                                name={item.name}
+                                                                id={item.id}
+                                                                type="checkbox"
+                                                                className={item.className}
+
+
+                                                            />
+                                                            <label htmlFor="agree">
+                                                                <span className="en">
+                                                                    I agree to the studio 5
+                                                                    <button
+                                                                        type="button"
+                                                                        aria-label="Read terms and condition"
+                                                                        tabIndex={0}
+                                                                        className="modal-trigger underline-text"
+                                                                        style={{ border: 0, background: "none" }}
+                                                                    >
+                                                                        {" "}
+                                                                        Terms and conditions
+                                                                    </button>
+                                                                </span>
+                                                            </label>
+                                                        </p>
+                                                    </div>
+                                                );
+                                            default:
+                                                return null;
+                                        }
+                                    })}
                                     <div className="btn-wrap">
                                         <button className="btn blue">Register</button>
                                     </div>
+
                                 </form>
+
+
                             </div>
                             <div className="col s6" />
                             <div />
@@ -321,8 +300,8 @@ function Guardian() {
                         alt=""
                     />
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

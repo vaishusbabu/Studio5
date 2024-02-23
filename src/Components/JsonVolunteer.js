@@ -7,6 +7,7 @@ export const volunteer = [
         type: "text",
         autoComplete: "no",
         defaultValue: "",
+        label: "Name in English"
     },
     {
         name: "nameArabic",
@@ -16,6 +17,7 @@ export const volunteer = [
         type: "text",
         autoComplete: "no",
         defaultValue: "",
+        label: "Name in Arabic"
     },
     {
         name: "qid",
@@ -26,6 +28,7 @@ export const volunteer = [
         type: "text",
         autoComplete: "no",
         defaultValue: "",
+        label: "QID"
     },
     {
         type: "radio",
@@ -54,7 +57,19 @@ export const volunteer = [
         }]
     },
     {
+        placeholder: "dd-mm-yyyy",
+        label: "Date of Birth",
+        arialabel: "choose date of birth button",
+        type: "date",
+        className: "example-custom-input",
+        ariahidden: "true",
+        htmlFor: "dob",
+
+        defaultValue: "dd-mm-yyyy",
+    },
+    {
         name: "email",
+        label: "Email",
         placeholder: "Type your email",
         id: "email",
         className: "fontEnglish",
@@ -62,30 +77,23 @@ export const volunteer = [
         autoComplete: "no",
         defaultValue: "",
     },
-    {
-        name: "mobile_country_code",
-        placeholder: "+974",
-        id: "mobile_country_code",
-        type: "text",
-        className: "",
-        minLength: 3,
-        maxLength: 3,
-        disabled: "",
-    },
+
     {
         name: "mobile",
+        type: "mobile",
         placeholder: "Type your mobile number",
         id: "mobile",
         className: "",
-        maxLength: 8,
-        type: "text",
-        arialabel: "Mobile number starting with country code +974",
-        autoComplete: "no",
+        type: "number",
         defaultValue: "",
+        label: "Mobile Number",
+        ariaLabel: "Mobile number",
+        maxLength: 8,
+        htmlFor: "mobile",
     },
     {
         name: "agree",
-        switchkey: "checkbox",
+        type: "checkbox",
         id: "agree",
         type: "checkbox",
         label: "I agree to the studio 5",

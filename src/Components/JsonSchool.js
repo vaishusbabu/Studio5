@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const schoolData = [
     {
         className: "browser-default",
@@ -8,13 +6,144 @@ export const schoolData = [
         input: "[object Object]",
         tabIndex: 0,
         options: [
+            { value: "", label: "Select school name" },
             { value: 253, label: "-" },
             { value: 163, label: "A bayan p2" },
             { value: 241, label: "ACS Doha International School" },
             { value: 165, label: "Al Hammad International School" },
+            { value: 166, label: "Al Hammad International School" },
+            { value: 9, label: "Al Hekma International School" },
+            { value: 10, label: "Al Hekma International School (Al Maamoura)" },
+            { value: 11, label: "Al Jazeera Academy" },
+            { value: 12, label: "Al Maha English Private ( Girls )" },
+            { value: 13, label: "Al Maha English Private School ( Male )" },
             { value: 312, label: "Al Rayyan private school" },
-            { value: 16, label: "Al-Khor International School (Indian Stream)" }
-        ]
+            { value: 14, label: "Al Wataniya International School" },
+            { value: 15, label: "Al-Khor International School (British Stream)" },
+            { value: 16, label: "Al-Khor International School (Indian Stream)" },
+            { value: 247, label: "alsashbal" },
+            { value: 111, label: "Alwakrah" },
+            { value: 17, label: "American School of doha" },
+            { value: 303, label: "Applab" },
+            { value: 19, label: "Aspire Academy for Sports Excellence" },
+            { value: 301, label: "Belgravia High School" },
+            { value: 291, label: "Beverly Hills International School" },
+            { value: 127, label: "Birla Public School" },
+            { value: 128, label: "Birla Public School" },
+            { value: 233, label: "Bonaparte French School" },
+            { value: 225, label: "Bright Future International School" },
+            { value: 231, label: "Bright Future International School" },
+            { value: 21, label: "Cambridge International School" },
+            { value: 22, label: "Cambridge School ( Mixed )" },
+            { value: 23, label: "Cardiff International Private School" },
+            { value: 275, label: "Charlemagne international.school" },
+            { value: 24, label: "Compass International (Al Gharrafa)" },
+            { value: 25, label: "Compass International (Al Khor)" },
+            { value: 26, label: "Compass International (Madinat Khalifa)" },
+            { value: 129, label: "Doha Academy" },
+            { value: 130, label: "Doha Academy" },
+            { value: 136, label: "Doha Academy" },
+            { value: 27, label: "Doha Academy ( Female )" },
+            { value: 28, label: "Doha Academy ( Male )" },
+            { value: 29, label: "Doha Academy (Al Waab)" },
+            { value: 30, label: "Doha Academy (Salwa Road)" },
+            { value: 134, label: "Doha Academy Al Waab" },
+            { value: 133, label: "Doha Academy International" },
+            { value: 131, label: "Doha Academy International School" },
+            { value: 132, label: "Doha Academy International School" },
+            { value: 135, label: "Doha Academy School" },
+            { value: 31, label: "Doha British School" },
+            { value: 32, label: "Doha College (Dafna)" },
+            { value: 33, label: "Doha English Speaking Private School" },
+            { value: 34, label: "Doha Montessori Private School" },
+            { value: 137, label: "DPS MODERN INDIAN SCHOOL" },
+            { value: 138, label: "DPS MODERN INDIAN SCHOOL" },
+            { value: 240, label: "DPS-MIS" },
+            { value: 117, label: "Dps-mis Doha Qatar" },
+            { value: 114, label: "DPS-Modern Indian School" },
+            { value: 35, label: "Dukhan School" },
+            { value: 176, label: "Durham school for girls Doha Qatar" },
+            { value: 36, label: "Edison International Academy (Al Markhiya)" },
+            { value: 37, label: "Edison International Academy (Dahal Hamam)" },
+            { value: 177, label: "Educare international academy" },
+            { value: 141, label: "Egyptian school" },
+            { value: 142, label: "Egyptian school" },
+            { value: 38, label: "English Modern School (Al khor)" },
+            { value: 39, label: "English Modern School (AL Wakra)" },
+            { value: 40, label: "English Modern School (Mesila)" },
+            { value: 299, label: "Fourth assalam" },
+            { value: 164, label: "Galileo International School" },
+            { value: 42, label: "German School" },
+            { value: 43, label: "Global International private academy" },
+            { value: 170, label: "golabl academy" },
+            { value: 169, label: "golbal academy" },
+            { value: 280, label: "golbal academy" },
+            { value: 281, label: "golbal academy" },
+            { value: 95, label: "Good Shephered School, Qatar" },
+            { value: 44, label: "Gulf English School" },
+            { value: 234, label: "Harvard American school" },
+            { value: 45, label: "Hayat Universal School Private" },
+            { value: 265, label: "home school" },
+            { value: 317, label: "Homeschool" },
+            { value: 255, label: "IBS" },
+            { value: 256, label: "IBS" },
+            { value: 222, label: "Ideal Indian school" },
+            { value: 108, label: "International school" },
+            { value: 46, label: "International School of Choueifat ( AlWaab )" },
+            { value: 110, label: "iqra english kindergarten and primary mixed" },
+            { value: 47, label: "Iqra English Private School -Kindergarten Primary - Mixed" },
+            { value: 48, label: "Iqraa English School" },
+            { value: 227, label: "Jassim bin hamad" },
+            { value: 274, label: "King’s college doha" },
+            { value: 139, label: "Lebanese School" },
+            { value: 140, label: "Lebanese School" },
+            { value: 207, label: "lebanese school" },
+            { value: 283, label: "Loyola international school" },
+            { value: 49, label: "Lycée Franco - Qatarien Voltaire" },
+            { value: 50, label: "Lycée Franco - Qatarien Voltaire ( Al Dafna )" },
+            { value: 242, label: "M.E.S. INDIAN SCHOOL" },
+            { value: 96, label: "MBA" },
+            { value: 286, label: "MES Indian school" },
+            { value: 51, label: "Mesaieed International Private School ( Primary )" },
+            { value: 52, label: "Mesaieed International Private School ( Secondary )" },
+            { value: 126, label: "Mesaieed international school" },
+            { value: 151, label: "Mesaieed International School" },
+            { value: 150, label: "Mesaieed International School (MIS-QP)" },
+            { value: 53, label: "Michael E. DeBakey High School for Health Professions at Qatar" },
+            { value: 54, label: "Middle East International Private School" },
+            { value: 178, label: "Mozah bint mohammed" },
+            { value: 270, label: "Newton British Academy (barwa) -subject to change-" },
+            { value: 57, label: "Newton British Private School" },
+            { value: 143, label: "Newton British School" },
+            { value: 144, label: "Newton British School" },
+            { value: 228, label: "newton international (smash)" },
+            { value: 58, label: "Newton International Academy (Barwa)" },
+            { value: 59, label: "Newton International School (Hilal)" },
+            { value: 60, label: "Newton International School (Lagoon)" },
+            { value: 262, label: "Newton international school D ring" },
+            { value: 61, label: "Newton International School West bay Private" },
+            { value: 310, label: "Noor alkhalij int." },
+            { value: 311, label: "Noor alkhalij int'" },
+            { value: 290, label: "Olive International School" },
+            { value: 173, label: "Omar in alkhattab preparatory school" },
+            { value: 221, label: "Oryx international school" },
+            { value: 63, label: "Oscar Academy Ain Khalid" },
+            { value: 64, label: "Pak Shamaa School" },
+            { value: 309, label: "Pakistan International School" },
+            { value: 257, label: "Park House English School" },
+            { value: 162, label: "Pearl school" },
+            { value: 236, label: "Pearling season international school alghrrafa" },
+            { value: 308, label: "Philippine School Doha" },
+            { value: 316, label: "Philippine School Doha" },
+            { value: 248, label: "phoneix" },
+            { value: 66, label: "Qatar Academy ( Al-Khur branch)" },
+            { value: 67, label: "Qatar Academy ( al-wajba )" },
+            { value: 68, label: "Qatar Academy (Al-Wakra)" },
+            { values: 333, label: "Others" },
+        ],
+        type: "select",
+        label: "Select School Name",
+        schoolKey: "333"
     },
     {
         name: "repName",
@@ -24,6 +153,8 @@ export const schoolData = [
         type: "text",
         autoComplete: "no",
         defaultValue: "",
+        label: "Name in English",
+        schoolKey: "333"
 
     },
     {
@@ -34,6 +165,8 @@ export const schoolData = [
         type: "text",
         autoComplete: "no",
         defaultValue: "",
+        label: "Name in Arabic",
+        schoolKey: "333"
     },
     {
         name: "qid",
@@ -44,6 +177,8 @@ export const schoolData = [
         maxLength: 11,
         autoComplete: "no",
         defaultValue: "",
+        label: "QID ",
+        schoolKey: "333"
     },
     {
         name: "repPosition",
@@ -53,6 +188,8 @@ export const schoolData = [
         type: "text",
         autoComplete: "no",
         defaultValue: "",
+        schoolKey: "333"
+
     },
     {
         name: "repMobile_country_code",
@@ -62,6 +199,7 @@ export const schoolData = [
         type: "number",
         minLength: 3,
         maxLength: 3,
+        schoolKey: "333"
     },
     {
         name: "repMobile",
@@ -69,10 +207,11 @@ export const schoolData = [
         className: "",
         id: "repMobile",
         maxLength: 8,
-        label: "Mobile number starting with country code +974",
+        label: "Mobile number",
         type: "number",
         autoComplete: "no",
         defaultValue: "",
+        schoolKey: "333"
     },
     {
         name: "repEmail",
@@ -82,6 +221,7 @@ export const schoolData = [
         type: "email",
         autoComplete: "no",
         defaultValue: "",
+        schoolKey: "333"
     },
     {
         name: "agree",
@@ -90,50 +230,49 @@ export const schoolData = [
         type: "checkbox",
         label: "I agree to the studio 5",
         ariaLabel: "Read terms and condition",
-        className: "modal-trigger underline-text"
-    }
+        className: "modal-trigger underline-text",
+        schoolKey: "333"
+    },
+    {
+        label: "School Name",
+        type: "text",
+        refKey: "",
+        refValues: "333"
+    },
+    {
+        label: "Mobile number",
+        type: "number",
+        refKey: "",
+        refValues: "333"
+    },
+    {
+        label: "School Email",
+        type: "text",
+        refKey: "",
+        refValues: "333"
+    },
 ]
 
-function jsonSchool() {
-    return (
-        <div>
-            {
-                schoolData.map((item) => {
-                    switch (item.type) {
-                        case "text":
-                            return (
-                                <input
-                                    name="repName"
-                                    placeholder="Type name in English"
-                                    id="repName"
-                                    className=""
-                                    type="text"
-                                    autoComplete="no"
-                                    defaultValue=""
-                                    style={{ textAlign: "left" }}
-                                />
+const formData = [
+    {
+        label: "School Name",
+        type: "text",
+        refKey: "",
+        refValues: "333"
+    },
+    {
+        label: "Mobile number",
+        type: "number",
+        refKey: "",
+        refValues: "333"
+    },
+    {
+        label: "School Email",
+        type: "text",
+        refKey: "",
+        refValues: "333"
+    },
 
 
-                            );
-                        case "number":
-                            return (
-                                <input
-                                    name="qid"
-                                    placeholder="Type your QID"
-                                    id="qid"
-                                    className=""
-                                    type="text"
-                                    maxLength={11}
-                                    autoComplete="no"
-                                    defaultValue=""
-                                    style={{ textAlign: "left" }}
-                                />
-                            );
-                    }
-                })
-            }
-        </div>
-    )
-}
+]
 
-export default jsonSchool

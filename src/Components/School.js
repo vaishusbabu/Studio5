@@ -1,11 +1,13 @@
 
 import React, { useState } from "react";
-// import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { Link } from "react-router-dom";
+import { schoolData } from "./JsonSchool";
 
 function School() {
-    // const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date());
     return (
         <div>
             <div id="main-container">
@@ -75,29 +77,28 @@ function School() {
                             </h2>
                             <div className="btn-wrap type-selection" id="skipContent">
                                 <button aria-label="Are you Guardian" role="button" className="btn">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/guardian">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/guardian">
                                         {" "}
                                         Guardian{" "}
-                                    </a>
-                                </button>
-                                <button aria-label="Are you School" className="btn active">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
-                                        {" "}
-                                        Student{" "}
-                                    </a>
+                                    </Link>
+
                                 </button>
                                 <button aria-label="Are you Student" className="btn">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/student">
                                         {" "}
-                                        School{" "}
-                                    </a>
+                                        Student{" "}
+                                    </Link>
                                 </button>
+                                <button aria-label="Are you School" className="btn">
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/school">
 
+                                        School
+                                    </Link>
+                                </button>
                                 <button aria-label="Are you Volunteer" className="btn">
-                                    <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/volunteer">
-                                        {" "}
-                                        Volunteer{" "}
-                                    </a>
+                                    <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/volunteer">
+                                        Volunteer
+                                    </Link>
                                 </button>
                             </div>
                         </div>
@@ -115,532 +116,225 @@ function School() {
                                     Required fields are followed by <span className="asterisk">*</span>
                                 </p>
                                 <form autoComplete="no">
-                                    <div className="result-type">
-                                        <div className="input-field mobileSelect">
-                                            <label htmlFor="schoolName" style={{ left: 0, right: "auto" }}>
-                                                School Name <span className="asterisk">*</span>
-                                            </label>
-                                            <select
-                                                className="browser-default"
-                                                name="schoolName"
-                                                id="schoolName"
-                                                input="[object Object]"
-                                                tabIndex={0}
-                                                style={{ textAlign: "left" }}
-                                            >
-                                                <option value="" disabled="">
-                                                    {" "}
-                                                    Select school name{" "}
-                                                </option>
-                                                <option value={253}>-</option>
-                                                <option value={163}>A bayan p2</option>
-                                                <option value={241}>ACS Doha International School</option>
-                                                <option value={165}>Al Hammad International School</option>
-                                                <option value={166}>Al Hammad International School</option>
-                                                <option value={9}>Al Hekma International School</option>
-                                                <option value={10}>
-                                                    Al Hekma International School (Al Maamoura)
-                                                </option>
-                                                <option value={11}>Al Jazeera Academy</option>
-                                                <option value={12}>Al Maha English Private ( Girls )</option>
-                                                <option value={13}>
-                                                    Al Maha English Private School ( Male )
-                                                </option>
-                                                <option value={312}>Al Rayyan private school</option>
-                                                <option value={14}>Al Wataniya International School</option>
-                                                <option value={15}>
-                                                    Al-Khor International School (British Stream)
-                                                </option>
-                                                <option value={16}>
-                                                    Al-Khor International School (Indian Stream)
-                                                </option>
-                                                <option value={247}>alsashbal</option>
-                                                <option value={111}>Alwakrah</option>
-                                                <option value={17}>American School of doha</option>
-                                                <option value={303}>Applab</option>
-                                                <option value={19}>
-                                                    Aspire Academy for Sports Excellence
-                                                </option>
-                                                <option value={301}>Belgravia High School</option>
-                                                <option value={291}>
-                                                    Beverly Hills International School
-                                                </option>
-                                                <option value={127}>Birla Public School</option>
-                                                <option value={128}>Birla Public School</option>
-                                                <option value={233}>Bonaparte French School</option>
-                                                <option value={225}>
-                                                    Bright Future International School
-                                                </option>
-                                                <option value={231}>
-                                                    Bright Future International School
-                                                </option>
-                                                <option value={21}>Cambridge International School</option>
-                                                <option value={22}>Cambridge School ( Mixed )</option>
-                                                <option value={23}>
-                                                    Cardiff International Private School
-                                                </option>
-                                                <option value={275}>Charlemagne international.school</option>
-                                                <option value={24}>
-                                                    Compass International (Al Gharrafa)
-                                                </option>
-                                                <option value={25}>Compass International (Al Khor)</option>
-                                                <option value={26}>
-                                                    Compass International (Madinat Khalifa)
-                                                </option>
-                                                <option value={129}>Doha Academy</option>
-                                                <option value={130}>Doha Academy</option>
-                                                <option value={136}>Doha Academy</option>
-                                                <option value={27}>Doha Academy ( Female )</option>
-                                                <option value={28}>Doha Academy ( Male )</option>
-                                                <option value={29}>Doha Academy (Al Waab)</option>
-                                                <option value={30}>Doha Academy (Salwa Road)</option>
-                                                <option value={134}>Doha Academy Al Waab</option>
-                                                <option value={133}>Doha Academy International</option>
-                                                <option value={131}>Doha Academy International School</option>
-                                                <option value={132}>Doha Academy International School</option>
-                                                <option value={135}>Doha Academy School</option>
-                                                <option value={31}>Doha British School</option>
-                                                <option value={32}>Doha College (Dafna)</option>
-                                                <option value={33}>
-                                                    Doha English Speaking Private School
-                                                </option>
-                                                <option value={34}>Doha Montessori Private School</option>
-                                                <option value={137}>DPS MODERN INDIAN SCHOOL</option>
-                                                <option value={138}>DPS MODERN INDIAN SCHOOL</option>
-                                                <option value={240}>DPS-MIS</option>
-                                                <option value={117}>Dps-mis Doha Qatar</option>
-                                                <option value={114}>DPS-Modern Indian School</option>
-                                                <option value={35}>Dukhan School</option>
-                                                <option value={176}>
-                                                    Durham school for girls Doha Qatar
-                                                </option>
-                                                <option value={36}>
-                                                    Edison International Academy (Al Markhiya)
-                                                </option>
-                                                <option value={37}>
-                                                    Edison International Academy (Dahal Hamam)
-                                                </option>
-                                                <option value={177}>Educare international academy</option>
-                                                <option value={141}>Egyptian school</option>
-                                                <option value={142}>Egyptian school</option>
-                                                <option value={38}>English Modern School (Al khor)</option>
-                                                <option value={39}>English Modern School (AL Wakra)</option>
-                                                <option value={40}>English Modern School (Mesila)</option>
-                                                <option value={299}>Fourth assalam</option>
-                                                <option value={164}>Galileo International School</option>
-                                                <option value={42}>German School</option>
-                                                <option value={43}>
-                                                    Global International private academy
-                                                </option>
-                                                <option value={170}>golabl academy</option>
-                                                <option value={169}>golbal academy</option>
-                                                <option value={280}>golbal academy</option>
-                                                <option value={281}>golbal academy</option>
-                                                <option value={95}>Good Shephered School, Qatar</option>
-                                                <option value={44}>Gulf English School</option>
-                                                <option value={234}>Harvard American school</option>
-                                                <option value={45}>Hayat Universal School Private</option>
-                                                <option value={265}>home school</option>
-                                                <option value={317}>Homeschool</option>
-                                                <option value={255}>IBS</option>
-                                                <option value={256}>IBS</option>
-                                                <option value={222}>Ideal Indian school</option>
-                                                <option value={108}>International school</option>
-                                                <option value={46}>
-                                                    International School of Choueifat ( AlWaab )
-                                                </option>
-                                                <option value={110}>
-                                                    iqra english kindergarten and primary mixed
-                                                </option>
-                                                <option value={47}>
-                                                    Iqra English Private School -Kindergarten Primary - Mixed
-                                                </option>
-                                                <option value={48}>Iqraa English School</option>
-                                                <option value={227}>Jassim bin hamad</option>
-                                                <option value={274}>King’s college doha</option>
-                                                <option value={139}>Lebanese School</option>
-                                                <option value={140}>Lebanese School</option>
-                                                <option value={207}>lebanese school</option>
-                                                <option value={283}>Loyola international school</option>
-                                                <option value={49}>Lycée Franco - Qatarien Voltaire</option>
-                                                <option value={50}>
-                                                    Lycée Franco - Qatarien Voltaire ( Al Dafna )
-                                                </option>
-                                                <option value={242}>M.E.S. INDIAN SCHOOL</option>
-                                                <option value={96}>MBA</option>
-                                                <option value={286}>MES Indian school</option>
-                                                <option value={51}>
-                                                    Mesaieed International Private School ( Primary )
-                                                </option>
-                                                <option value={52}>
-                                                    Mesaieed International Private School ( Secondary )
-                                                </option>
-                                                <option value={126}>Mesaieed international school</option>
-                                                <option value={151}>Mesaieed International School</option>
-                                                <option value={150}>
-                                                    Mesaieed International School (MIS-QP)
-                                                </option>
-                                                <option value={53}>
-                                                    Michael E. DeBakey High School for Health Professions at
-                                                    Qatar
-                                                </option>
-                                                <option value={54}>
-                                                    Middle East International Private School
-                                                </option>
-                                                <option value={178}>Mozah bint mohammed</option>
-                                                <option value={270}>
-                                                    Newton British Academy (barwa) -subject to change-
-                                                </option>
-                                                <option value={57}>Newton British Private School</option>
-                                                <option value={143}>Newton British School</option>
-                                                <option value={144}>Newton British School</option>
-                                                <option value={228}>newton international (smash)</option>
-                                                <option value={58}>
-                                                    Newton International Academy (Barwa)
-                                                </option>
-                                                <option value={59}>
-                                                    Newton International School (Hilal)
-                                                </option>
-                                                <option value={60}>
-                                                    Newton International School (Lagoon)
-                                                </option>
-                                                <option value={262}>
-                                                    Newton international school D ring
-                                                </option>
-                                                <option value={61}>
-                                                    Newton International School West bay Private
-                                                </option>
-                                                <option value={310}>Noor alkhalij int.</option>
-                                                <option value={311}>Noor alkhalij int'</option>
-                                                <option value={290}>Olive International School</option>
-                                                <option value={173}>
-                                                    Omar in alkhattab preparatory school
-                                                </option>
-                                                <option value={221}>Oryx international school</option>
-                                                <option value={63}>Oscar Academy Ain Khalid</option>
-                                                <option value={64}>Pak Shamaa School</option>
-                                                <option value={309}>Pakistan International School</option>
-                                                <option value={257}>Park House English School</option>
-                                                <option value={162}>Pearl school</option>
-                                                <option value={236}>
-                                                    Pearling season international school alghrrafa
-                                                </option>
-                                                <option value={308}>Philippine School Doha</option>
-                                                <option value={316}>Philippine School Doha</option>
-                                                <option value={248}>phoneix</option>
-                                                <option value={66}>Qatar Academy ( Al-Khur branch)</option>
-                                                <option value={67}>Qatar Academy ( al-wajba )</option>
-                                                <option value={68}>Qatar Academy (Al-Wakra)</option>
-                                                <option value={69}>Qatar Academy (Sidra)</option>
-                                                <option value={220}>Qatar academy doha</option>
-                                                <option value={214}>
-                                                    Qatar Academy for Science and Technology
-                                                </option>
-                                                <option value={125}>Qatar Academy Sidra</option>
-                                                <option value={106}>
-                                                    Qatar Independent Secondary school
-                                                </option>
-                                                <option value={70}>Qatar International Private School</option>
-                                                <option value={72}>Qatar Leadership Academy</option>
-                                                <option value={199}>
-                                                    Qatar Science and Technology Secondary School
-                                                </option>
-                                                <option value={287}>Qatar university</option>
-                                                <option value={288}>Qatar University</option>
-                                                <option value={313}>Qatar University</option>
-                                                <option value={73}>
-                                                    Qatar-Finland International School (Q.F.I. School)
-                                                </option>
-                                                <option value={191}>Rajigiri public school</option>
-                                                <option value={148}>Respond Media Training School</option>
-                                                <option value={149}>Respond Media Training School</option>
-                                                <option value={74}>SEK International School Qatar</option>
-                                                <option value={161}>Shantinektan school</option>
-                                                <option value={75}>Sherborne’s Sherborne Qatar</option>
-                                                <option value={119}>Somaya Primary School for Girls</option>
-                                                <option value={258}>
-                                                    Southville International School and Colleges
-                                                </option>
-                                                <option value={168}>SSLSD</option>
-                                                <option value={245}>Stafford Sri-Lankan School</option>
-                                                <option value={277}>Summit Academy</option>
-                                                <option value={278}>Summit Academy</option>
-                                                <option value={267}>Swiss International School Qatar</option>
-                                                <option value={276}>Swiss International School Qatar</option>
-                                                <option value={101}>test</option>
-                                                <option value={102}>test</option>
-                                                <option value={103}>test</option>
-                                                <option value={147}>test</option>
-                                                <option value={302}>Test School</option>
-                                                <option value={300}>The Fourth Assalam School</option>
-                                                <option value={305}>The Fourth Assalam School</option>
-                                                <option value={306}>The Fourth Assalam School</option>
-                                                <option value={318}>The Fourth Assalam School</option>
-                                                <option value={76}>
-                                                    The International School of London in Qatar (ISL-Q)
-                                                </option>
-                                                <option value={155}>The Next Generation School</option>
-                                                <option value={298}>The phoenix privet school</option>
-                                                <option value={314}>The springfield school</option>
-                                                <option value={315}>The third assalam school</option>
-                                                <option value={154}>TNG</option>
-                                                <option value={152}>TNG Al Wakrah Camp</option>
-                                                <option value={153}>TNG Al Wakrah Camp</option>
-                                                <option value={86}>umm hakeem</option>
-                                                <option value={94}>umm hakeem</option>
-                                                <option value={109}>umm hakeem</option>
-                                                <option value={268}>zenith academy</option>
-                                                <option value={269}>zenith academy</option>
-                                                <option value={272}>أم العمد النموذجية</option>
-                                                <option value={217}>اكاديمية الارقم للبنات</option>
-                                                <option value={279}>اكاديميتي</option>
-                                                <option value={307}>الأكاديمية العربية الدولية</option>
-                                                <option value={229}>الايمان الثانويه</option>
-                                                <option value={180}>البيان الابتدائية</option>
-                                                <option value={285}>البيان الابتدائية الأولى</option>
-                                                <option value={259}>البيان الاعدادية</option>
-                                                <option value={181}>البيان الاعداديه</option>
-                                                <option value={194}>التيجان</option>
-                                                <option value={203}>التيجان</option>
-                                                <option value={204}>التيجان</option>
-                                                <option value={208}>التيجان</option>
-                                                <option value={209}>التيجان</option>
-                                                <option value={210}>التيجان</option>
-                                                <option value={211}>التيجان</option>
-                                                <option value={232}>التيجان</option>
-                                                <option value={246}>التيجان</option>
-                                                <option value={192}>الرائدات الثانوية</option>
-                                                <option value={193}>الرائدات الثانوية</option>
-                                                <option value={205}>الرائدات الثانوية</option>
-                                                <option value={212}>الرائدات الثانوية</option>
-                                                <option value={213}>الرائدات الثانوية</option>
-                                                <option value={216}>الرائدات الثانوية</option>
-                                                <option value={195}>الشفاء بنت عبد الرحمن الانصارية</option>
-                                                <option value={197}>الشفاء بنت عبد الرحمن الانصارية</option>
-                                                <option value={200}>الشيماء الثانوية للبنات</option>
-                                                <option value={252}>الفرقان الخاصة</option>
-                                                <option value={263}>القادسية النموذجية</option>
-                                                <option value={264}>القادسية النموذجية</option>
-                                                <option value={261}>القاهره</option>
-                                                <option value={224}>المدرسة التونسية بالدوحة قطر</option>
-                                                <option value={282}>المدرسة الجالية السورية</option>
-                                                <option value={121}>المدرسة الفلسطينية</option>
-                                                <option value={237}>اليرموك الاعدادية</option>
-                                                <option value={260}>ام صلال محمد الابتدائية</option>
-                                                <option value={201}>امنة الثانوية للبنات</option>
-                                                <option value={179}>اوفاز العالمية</option>
-                                                <option value={223}>تعليم منزلي</option>
-                                                <option value={289}>جابر بن حيان الابتدائية</option>
-                                                <option value={273}>جويريه بنت الحارث</option>
-                                                <option value={124}>
-                                                    حمزة بن عبد المطلب الاعداديه للبنين
-                                                </option>
-                                                <option value={238}>خليفة الابتدائي النموذجية</option>
-                                                <option value={235}>خولة بنت الأزور</option>
-                                                <option value={230}>رقية الاعدادية للبنات</option>
-                                                <option value={254}>روضة بنت جاسم الثانوية للبنات</option>
-                                                <option value={284}>روضه بنت محمد الثانوية للبنات</option>
-                                                <option value={244}>زبيدة الثانوية للبنات</option>
-                                                <option value={266}>عبد الله بن تركي</option>
-                                                <option value={243}>عمر بن الخطاب الثانوية للبنين</option>
-                                                <option value={251}>غراس</option>
-                                                <option value={202}>غرناطة الإعدادية للبنات</option>
-                                                <option value={145}>فاطمة الزهراء الاعدادية بنات</option>
-                                                <option value={249}>
-                                                    فاطمة بنت الخطاب الابتدائية للبنات
-                                                </option>
-                                                <option value={226}>مدرسة الخنساء الابتدئية للبنات</option>
-                                                <option value={156}>مدرسة الخوارزمي الابتدائية للبنات</option>
-                                                <option value={146}>مدرسة الخور الثانوية للبنات</option>
-                                                <option value={215}>مدرسة السلم التانية</option>
-                                                <option value={304}>مدرسة الشقب الإبتدائية للبنات</option>
-                                                <option value={196}>مدرسة العين</option>
-                                                <option value={219}>مدرسة سعود بن عبدالرحمن النموذجية</option>
-                                                <option value={271}>
-                                                    مدرسة سعيد بن زيد الاعدادية للبنين
-                                                </option>
-                                                <option value={167}>مدرسة طيبة الابتدائية للبنات</option>
-                                                <option value={175}>
-                                                    مدرسة عبدالله المسند الإعدادية للبنين
-                                                </option>
-                                                <option value={218}>
-                                                    مدرسة مسيعيد الاعداديه الثانويه للبنين
-                                                </option>
-                                                <option value={250}>مدرسة مسيعيد للبنات</option>
-                                                <option value={239}>
-                                                    مدرسة ناصر بن عبدالله العطية الثانوية
-                                                </option>
-                                                <option value={174}>مدرسه الوكرة الثانوية للبنين</option>
-                                                <option value={198}>مصعب بن عمير الثانويع</option>
-                                                <option value={206}>موزه بنت محمد الاعدادية المستقلة</option>
-                                                <option value={0}>Other</option>
-                                            </select>
-                                            <span
-                                                className="helper-text"
-                                                data-error="Required field."
-                                                style={{ textAlign: "left" }}
-                                            />
-                                        </div>
-                                    </div>
-                                    <p>
-                                        <br />
-                                        School representative{" "}
-                                    </p>
-                                    <div className="input-field item">
-                                        <input
-                                            name="repName"
-                                            placeholder="Type name in English"
-                                            id="repName"
-                                            className=""
-                                            type="text"
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="repName" style={{ left: 0, right: "auto" }}>
-                                            Name in English <span className="asterisk">*</span>
-                                        </label>
-                                        <span className="helper-text" data-error="Required field." />
-                                    </div>
-                                    <div className="input-field item">
-                                        <input
-                                            name="repNameArabic"
-                                            placeholder="Type name in Arabic"
-                                            id="repNameArabic"
-                                            className=""
-                                            type="text"
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="repNameArabic" style={{ left: 0, right: "auto" }}>
-                                            Name in Arabic{" "}
-                                        </label>
-                                        <span className="helper-text" data-error="Required field." />
-                                    </div>
-                                    <div className="input-field item">
-                                        <input
-                                            name="qid"
-                                            placeholder="Type your QID"
-                                            id="qid"
-                                            className=""
-                                            type="text"
-                                            maxLength={11}
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="qid" style={{ left: 0, right: "auto" }}>
-                                            QID <span className="asterisk">*</span>
-                                        </label>
-                                        <span className="helper-text" data-error="Required field." />
-                                    </div>
-                                    <div className="input-field item">
-                                        <input
-                                            name="repPosition"
-                                            placeholder="Type your position"
-                                            id="repPosition"
-                                            className=""
-                                            type="text"
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="repPosition" style={{ left: 0, right: "auto" }}>
-                                            Position <span className="asterisk">*</span>
-                                        </label>
-                                        <span className="helper-text" data-error="Required field." />
-                                    </div>
-                                    <div className="row mobile">
-                                        <div className="col s4">
-                                            <div className="input-field item">
-                                                <input
-                                                    name="repMobile_country_code"
-                                                    placeholder="Country Code"
-                                                    className=""
-                                                    id="repMobile_country_code"
-                                                    type="text"
-                                                    minLength={3}
-                                                    maxLength={3}
-                                                    disabled=""
-                                                    // defaultValue={+974}
-                                                    style={{ textAlign: "left" }}
-                                                />
-                                                <label
-                                                    htmlFor="repMobile_country_code"
-                                                    style={{ left: 0, right: "auto" }}
-                                                >
-                                                    Country Code
-                                                </label>
-                                                <span
-                                                    className="helper-text"
-                                                    data-error="Enter a valid code."
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col s8">
-                                            <div className="input-field item">
-                                                <input
-                                                    name="repMobile"
-                                                    placeholder="Type your mobile number"
-                                                    className=""
-                                                    id="repMobile"
-                                                    maxLength={8}
-                                                    aria-label="Mobile number starting with country code +974"
-                                                    type="text"
-                                                    autoComplete="no"
-                                                    defaultValue=""
-                                                    style={{ textAlign: "left" }}
-                                                />
-                                                <label htmlFor="repMobile" style={{ left: 0, right: "auto" }}>
-                                                    Mobile Number <span className="asterisk">*</span>
-                                                </label>
-                                                <span className="helper-text" data-error="Required field." />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="input-field item">
-                                        <input
-                                            name="repEmail"
-                                            placeholder="Type your email"
-                                            id="repEmail"
-                                            className="fontEnglish"
-                                            type="email"
-                                            autoComplete="no"
-                                            defaultValue=""
-                                            style={{ textAlign: "left" }}
-                                        />
-                                        <label htmlFor="repEmail" style={{ left: 0, right: "auto" }}>
-                                            Email <span className="asterisk">*</span>
-                                        </label>
-                                        <span className="helper-text" data-error="Required field." />
-                                    </div>
-                                    <div className="item subscribe-items">
-                                        <p>
-                                            <input
-                                                type="checkbox"
-                                                name="agree"
-                                                id="agree"
-                                                tabIndex={0}
-                                                style={{ textAlign: "left" }}
-                                            />
-                                            <label htmlFor="agree">
-                                                <span className="en">
-                                                    I agree to the studio 5
-                                                    <button
-                                                        type="button"
-                                                        aria-label="Read terms and condition"
-                                                        tabIndex={0}
-                                                        className="modal-trigger underline-text"
-                                                        style={{ border: 0, background: "none" }}
-                                                    >
-                                                        {" "}
-                                                        Terms and conditions
-                                                    </button>
-                                                </span>
-                                            </label>
-                                        </p>
-                                    </div>
+                                    {schoolData.map((item) => {
+                                        switch (item.type) {
+                                            case "text":
+                                            case "email":
+                                                return (
+                                                    <div className="input-field item">
+                                                        <input
+                                                            key={item.id}
+                                                            name={item.name}
+                                                            placeholder={item.placeholder}
+                                                            id={item.id}
+                                                            className={item.className}
+                                                            type={item.type === "text" ? "text" : "email"}
+                                                            autoComplete={item.autoComplete}
+                                                            defaultValue={item.defaultValue}
+                                                            style={{ textAlign: "left" }}
+                                                        />
+
+                                                        <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>
+                                                            {item.label}
+                                                        </label>
+                                                        <span
+                                                            className="helper-text"
+                                                            data-error="Required field."
+                                                            style={{ textAlign: "left" }}
+                                                        />
+                                                    </div>
+
+                                                );
+
+                                            case "radio":
+                                                return (
+                                                    <div className="input-field item">
+                                                        <div
+                                                            className="input-radio valign-wrapper"
+                                                            role="radiogroup"
+                                                            aria-labelledby="gender"
+                                                        >
+                                                            {item.details.map((item, index) => (
+                                                                <div className={item.className} key={index}>
+                                                                    <input
+                                                                        aria-checked="false"
+                                                                        name="gender"
+                                                                        id={item.id}
+                                                                        aria-labelledby={item.arialabelledby}
+                                                                        type={item.type}
+                                                                        readOnly=""
+                                                                        className="radio-btn"
+                                                                    />
+                                                                    <label id={item.labelid} htmlFor={item.htmlFor} className="custom-radio-style">
+                                                                        <span className="custom-radio-style">{item.label}</span>
+                                                                    </label>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                        <label
+                                                            htmlFor={item.htmlFor}
+                                                            id={item.id}
+                                                            style={{ left: 0, right: "auto" }}
+                                                        >
+                                                            {item.label} <span className="asterisk">*</span>
+                                                        </label>
+                                                        <span className="helper-text" data-error="Required field." />
+                                                    </div>
+                                                );
+                                            case 'date':
+                                                return (
+                                                    <div className="date-popup">
+                                                        <div className="input-field item">
+                                                            <div className="react-datepicker-wrapper">
+                                                                <div className="react-datepicker__input-container">
+                                                                    <DatePicker
+                                                                        className="example-custom-input"
+                                                                        placeholderText="dd/mm/yyyy"
+                                                                        selected={startDate}
+
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <label htmlFor="dob" style={{ left: 0, right: "auto" }}>
+                                                                Date of Birth <span className="asterisk">*</span>
+                                                            </label>
+                                                            <span
+                                                                className="helper-text"
+                                                                data-error="Required field."
+                                                                style={{ textAlign: "left" }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                );
+
+                                            case "number":
+                                                return (
+                                                    <div className="row mobile">
+                                                        <div className="col s4">
+                                                            <div className="input-field item">
+                                                                <input
+                                                                    name="mobileNumber_country_code"
+                                                                    placeholder="Country Code"
+                                                                    className=""
+                                                                    id="mobileNumber_country_code"
+                                                                    type="text"
+                                                                    minLength={3}
+                                                                    maxLength={3}
+                                                                    disabled
+                                                                    value="+974"
+                                                                    style={{ textAlign: "left" }}
+
+                                                                />
+                                                                <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
+                                                                    Country Code *
+                                                                </label>
+                                                                <span className="helper-text" data-error="Enter a valid code."></span>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col s8">
+                                                            <div className="input-field item">
+
+                                                                <input
+                                                                    name={item.name}
+                                                                    placeholder={item.placeholder}
+                                                                    id={item.id}
+                                                                    className={item.className}
+                                                                    maxLength={item.maxLength}
+                                                                    type={item.type}
+                                                                    aria-label={item.ariaLabel}
+                                                                    autoComplete="no"
+                                                                    defaultValue={item.defaultValue}
+                                                                    style={{ textAlign: "left" }}
+                                                                />
+                                                                <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
+                                                                    {item.label} <span className="asterisk">  </span>
+                                                                </label>
+                                                                <span
+                                                                    className="helper-text"
+                                                                    data-error="Required field."
+                                                                    style={{ textAlign: "left" }}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            case "select":
+                                                return (
+                                                    <div>
+                                                        <div className="result-type1">
+                                                            <div className="input-field mobileSelect">
+                                                                <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
+                                                                    {item.label} <span className="asterisk">*</span>
+                                                                </label>
+
+
+                                                                <select
+                                                                    className="browser-default"
+                                                                    name={item.name}
+                                                                    id={item.id}
+                                                                    tabIndex={0}
+                                                                    style={{ textAlign: "left" }}
+                                                                >
+                                                                    <option value="" disabled>
+                                                                        {item.defaultSelectText}
+                                                                    </option>
+                                                                    {item.options.map((option, index) => (
+                                                                        <option key={index} value={option.value}>
+                                                                            {option.label}
+                                                                            {option.text}
+                                                                        </option>
+
+                                                                        
+                                                                    ))}
+                                                                </select>
+
+
+                                                                <span
+                                                                    className="helper-text"
+                                                                    data-error="Required field."
+                                                                    style={{ textAlign: "left" }}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+
+                                            case "checkbox":
+                                                return (
+                                                    <div className="item subscribe-items">
+                                                        <p>
+                                                            <input
+                                                                key={item.id}
+                                                                name={item.name}
+                                                                id={item.id}
+                                                                type="checkbox"
+                                                                className={item.className}
+
+
+                                                            />
+                                                            <label htmlFor="agree">
+                                                                <span className="en">
+                                                                    I agree to the studio 5
+                                                                    <button
+                                                                        type="button"
+                                                                        aria-label="Read terms and condition"
+                                                                        tabIndex={0}
+                                                                        className="modal-trigger underline-text"
+                                                                        style={{ border: 0, background: "none" }}
+                                                                    >
+                                                                        {" "}
+                                                                        Terms and conditions
+                                                                    </button>
+                                                                </span>
+                                                            </label>
+                                                        </p>
+                                                    </div>
+
+                                                );
+                                            default:
+                                                return null;
+                                        }
+                                    })}
                                     <div className="btn-wrap">
                                         <button className="btn blue">Register</button>
                                     </div>
@@ -692,6 +386,10 @@ function School() {
                                     Agree
                                 </button>
                             </div>
+                            <div className="btn-wrap">
+                                <button className="btn blue">Register</button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
