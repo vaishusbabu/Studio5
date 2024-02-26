@@ -6,6 +6,24 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Volunteer() {
     const [startDate, setStartDate] = useState(new Date());
+    const [formData, setFormData] = useState({
+        name: "",
+        nameArabic: "",
+        qid: "",
+        gender: "",
+
+        email: "",
+        mobile: "",
+        agree: ""
+
+    })
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("data", formData);
+    }
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
     return (
         <div>
             <div id="main-container">
@@ -113,7 +131,7 @@ function Volunteer() {
                                 Required fields are followed by <span className="asterisk">*</span>
                             </p>
 
-                            <form autoComplete="no">
+                            <form autoComplete="no" onSubmit={handleSubmit}>
                                 {volunteer.map((item) => {
                                     switch (item.type) {
                                         case "text":
@@ -130,6 +148,7 @@ function Volunteer() {
                                                         autoComplete={item.autoComplete}
                                                         defaultValue={item.defaultValue}
                                                         style={{ textAlign: "left" }}
+                                                        onChange={handleInputChange}
                                                     />
 
                                                     <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>
@@ -162,6 +181,7 @@ function Volunteer() {
                                                                     type={item.type}
                                                                     readOnly=""
                                                                     className="radio-btn"
+                                                                    onChange={handleInputChange}
                                                                 />
                                                                 <label id={item.labelid} htmlFor={item.htmlFor} className="custom-radio-style">
                                                                     <span className="custom-radio-style">{item.label}</span>
@@ -185,12 +205,7 @@ function Volunteer() {
                                                     <div className="input-field item">
                                                         <div className="react-datepicker-wrapper">
                                                             <div className="react-datepicker__input-container">
-                                                                <DatePicker
-                                                                    className="example-custom-input"
-                                                                    placeholderText="dd/mm/yyyy"
-                                                                    selected={startDate}
-
-                                                                />
+                                                                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                                                             </div>
                                                         </div>
                                                         <label htmlFor="dob" style={{ left: 0, right: "auto" }}>
@@ -218,6 +233,7 @@ function Volunteer() {
                                                                 type="text"
                                                                 minLength={3}
                                                                 maxLength={3}
+                                                                onChange={handleInputChange}
                                                                 disabled
                                                                 value="+974"
                                                                 style={{ textAlign: "left" }}
@@ -241,6 +257,7 @@ function Volunteer() {
                                                                 type={item.type}
                                                                 aria-label={item.ariaLabel}
                                                                 autoComplete="no"
+                                                                onChange={handleInputChange}
                                                                 defaultValue={item.defaultValue}
                                                                 style={{ textAlign: "left" }}
                                                             />
@@ -268,6 +285,7 @@ function Volunteer() {
                                                             id={item.id}
                                                             type="checkbox"
                                                             className={item.className}
+                                                            onChange={handleInputChange}
 
 
                                                         />

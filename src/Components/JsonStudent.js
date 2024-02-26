@@ -10,7 +10,7 @@ export const Studentdata = [
         htmlFor: "name",
         className: "asterisk",
         label: "Student name in English ",
-        schoolKey: "333"
+
 
     },
     {
@@ -23,19 +23,21 @@ export const Studentdata = [
         autoComplete: "no",
         defaultValue: "",
         htmlFor: "nameArabic",
-        schoolKey: "333"
+
 
     },
     {
-        label: "Date of Birth",
-        arialabel: "choose date of birth button",
+        // name: "date",
+        // label: "Date of Birth",
+        // arialabel: "choose date of birth button",
         type: "date",
-        className: "example-custom-input",
-        ariahidden: "true",
-        htmlFor: "dob",
-        schoolKey: "333"
+        // className: "example-custom-input",
+        // ariahidden: "true",
+        // htmlFor: "dob",
+
     },
     {
+        name: "nationality",
         label: "Nationality ",
         type: "select",
         className: "browser-default",
@@ -146,9 +148,10 @@ export const Studentdata = [
             { value: '112', label: 'Kazakhstan' },
             { value: '114', label: 'Kenya' },
             { value: '87', label: 'Kiribati' },
-            { value: '115', label: 'Korea, Democratic Peoples Republic' }
+            { value: '115', label: 'Korea, Democratic Peoples Republic' },
+            { value: " 333", label: "Other" }
         ],
-        schoolKey: "333"
+
     },
     {
         label: "School Name ",
@@ -157,9 +160,47 @@ export const Studentdata = [
         type: "select",
         options: [
             { value: "", label: "Select school name" },
-            { value: '0', label: 'Other' },
+            { value: 163, text: "A bayan p2" },
+            { value: 241, text: "ACS Doha International School" },
+            { value: 165, text: "Al Hammad International School" },
+            { value: 166, text: "Al Hammad International School" },
+            { value: 9, text: "Al Hekma International School" },
+            { value: 10, text: "Al Hekma International School (Al Maamoura)" },
+            { value: 11, text: "Al Jazeera Academy" },
+            { value: 12, text: "Al Maha English Private ( Girls )" },
+            { value: 13, text: "Al Maha English Private School ( Male )" },
+            { value: 312, text: "Al Rayyan private school" },
+            { value: 14, text: "Al Wataniya International School" },
+            { value: 15, text: "Al-Khor International School (British Stream)" },
+            { value: 16, text: "Al-Khor International School (Indian Stream)" },
+            { value: 247, text: "alsashbal" },
+            { value: 111, text: "Alwakrah" },
+            { value: 17, text: "American School of doha" },
+            { value: 303, text: "Applab" },
+            { value: 19, text: "Aspire Academy for Sports Excellence" },
+            { value: 301, text: "Belgravia High School" },
+            { value: 291, text: "Beverly Hills International School" },
+            { value: 127, text: "Birla Public School" },
+            { value: 128, text: "Birla Public School" },
+            { value: 233, text: "Bonaparte French School" },
+            { value: 225, text: "Bright Future International School" },
+            { value: 231, text: "Bright Future International School" },
+            { value: 21, text: "Cambridge International School" },
+            { value: 22, text: "Cambridge School ( Mixed )" },
+            { value: 23, text: "Cardiff International Private School" },
+            { value: 275, text: "Charlemagne international.school" },
+            { value: 24, text: "Compass International (Al Gharrafa)" },
+            { value: 25, text: "Compass International (Al Khor)" },
+            { value: 26, text: "Compass International (Madinat Khalifa)" },
+            { value: 129, text: "Doha Academy" },
+            { value: 130, text: "Doha Academy" },
+            { value: 136, text: "Doha Academy" },
+            { value: 333, label: 'Others' },
         ],
-        schoolKey: "333"
+        schoolKey: "333",
+        label: "Select School Name",
+        type: "select"
+
     },
     ,
     {
@@ -173,7 +214,7 @@ export const Studentdata = [
         defaultValue: "",
         htmlFor: "qid",
         label: "QID",
-        schoolKey: "333"
+
     },
     {
         type: "radio",
@@ -189,7 +230,7 @@ export const Studentdata = [
             labelid: "_Male",
             label: "Male",
             htmlFor: "Male",
-            schoolKey: "333"
+
         },
         {
             className: "Female",
@@ -200,7 +241,7 @@ export const Studentdata = [
             labelid: "_Female",
             label: "Female",
             htmlFor: "Female",
-            schoolKey: "333"
+
         }]
     },
     {
@@ -225,7 +266,7 @@ export const Studentdata = [
             { text: "Grade 11" },
             { text: "Grade 12" }
         ],
-        schoolKey: "333"
+
     },
     {
         name: "email",
@@ -236,7 +277,7 @@ export const Studentdata = [
         type: "email",
         defaultValue: "",
         label: "Email",
-        schoolKey: "333"
+
     },
     {
         name: "mobile",
@@ -250,7 +291,7 @@ export const Studentdata = [
         ariaLabel: "Mobile number starting with country code +974",
         maxLength: 8,
         htmlFor: "mobile",
-        schoolKey: "333"
+
     },
     {
         name: "parentQid",
@@ -263,7 +304,7 @@ export const Studentdata = [
         defaultValue: "",
         htmlFor: "parentQid",
         label: "Guardian QID",
-        schoolKey: "333"
+
     },
     {
         name: "parentName",
@@ -275,7 +316,7 @@ export const Studentdata = [
         defaultValue: "",
         htmlFor: "parentName",
         label: "Guardian Name",
-        schoolKey: "333"
+
     },
     {
         name: "relation",
@@ -294,7 +335,8 @@ export const Studentdata = [
             { text: "Grandfather" },
             { text: "Guardian" }
         ],
-        schoolKey: "333"
+
+
     },
     {
         name: "parentMobile",
@@ -308,7 +350,7 @@ export const Studentdata = [
         ariaLabel: "Mobile number starting with country code +974",
         maxLength: 8,
         htmlFor: "parentMobile",
-        schoolKey: "333"
+
     },
     {
         name: "parentMobile2",
@@ -322,7 +364,7 @@ export const Studentdata = [
         ariaLabel: "Mobile number starting with country code +974",
         maxLength: 8,
         htmlFor: "parentMobile2",
-        schoolKey: "333"
+
     },
     {
         name: "parentEmail",
@@ -333,7 +375,7 @@ export const Studentdata = [
         type: "email",
         defaultValue: "",
         label: "Guardian Email Address",
-        schoolKey: "333"
+
     },
     {
         name: "agree",
@@ -343,7 +385,20 @@ export const Studentdata = [
         label: "I agree to the studio 5",
         ariaLabel: "Read terms and condition",
         className: "modal-trigger underline-text",
-        schoolKey: "333"
+
     },
 
+]
+export const showStudent = [
+    {
+        name: "schoolNameOther",
+        placeholder: "Other School Name",
+        id: "schoolNameOther",
+        className: "",
+        type: "text",
+        autoComplete: "no",
+        defaultValue: "",
+        label: "School Name",
+        schoolKey: "333"
+    },
 ]

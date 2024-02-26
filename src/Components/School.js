@@ -5,9 +5,56 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import { schoolData } from "./JsonSchool";
+import { showMore } from "./JsonSchool";
 
 function School() {
     const [startDate, setStartDate] = useState(new Date());
+    const [formData, setFormData] = useState({
+        SchoolName: "",
+        repName: "",
+        repNameArabic: "",
+        qid: "",
+        repPosition: "",
+        repMobile: "",
+        repEmail: "",
+        agree: null,
+        schoolNameOther: "",
+        schoolPhoneNumber: "",
+        schoolEmail: "",
+    });
+
+    const [showOtherFields, setShowOtherFields] = useState(false);
+
+    const handleSchoolNameChange = (e) => {
+        const selectedValue = e.target.value;
+        if (selectedValue === "333") {
+            setShowOtherFields(true);
+        } else {
+            setShowOtherFields(false);
+        }
+        setFormData({
+            ...formData,
+            SchoolName: selectedValue,
+        });
+        console.log("showOtherFields:", showOtherFields);
+    };
+
+
+
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(formData);
+    };
     return (
         <div>
             <div id="main-container">
@@ -115,7 +162,7 @@ function School() {
                                 <p style={{ textAlign: "left" }}>
                                     Required fields are followed by <span className="asterisk">*</span>
                                 </p>
-                                <form autoComplete="no">
+                                <form autoComplete="no" onSubmit={handleSubmit}>
                                     {schoolData.map((item) => {
                                         switch (item.type) {
                                             case "text":
@@ -132,6 +179,7 @@ function School() {
                                                             autoComplete={item.autoComplete}
                                                             defaultValue={item.defaultValue}
                                                             style={{ textAlign: "left" }}
+                                                            onChange={handleInputChange}
                                                         />
 
                                                         <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>
@@ -223,6 +271,7 @@ function School() {
                                                                     disabled
                                                                     value="+974"
                                                                     style={{ textAlign: "left" }}
+                                                                    onChange={handleInputChange}
 
                                                                 />
                                                                 <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
@@ -245,6 +294,7 @@ function School() {
                                                                     autoComplete="no"
                                                                     defaultValue={item.defaultValue}
                                                                     style={{ textAlign: "left" }}
+                                                                    onChange={handleInputChange}
                                                                 />
                                                                 <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
                                                                     {item.label} <span className="asterisk">  </span>
@@ -260,20 +310,20 @@ function School() {
                                                 );
                                             case "select":
                                                 return (
-                                                    <div>
+                                                    <div key={item.id}>
                                                         <div className="result-type1">
                                                             <div className="input-field mobileSelect">
                                                                 <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
                                                                     {item.label} <span className="asterisk">*</span>
                                                                 </label>
-
-
                                                                 <select
                                                                     className="browser-default"
                                                                     name={item.name}
                                                                     id={item.id}
                                                                     tabIndex={0}
                                                                     style={{ textAlign: "left" }}
+                                                                    onChange={handleSchoolNameChange}
+                                                                    value={formData.SchoolName}
                                                                 >
                                                                     <option value="" disabled>
                                                                         {item.defaultSelectText}
@@ -281,24 +331,96 @@ function School() {
                                                                     {item.options.map((option, index) => (
                                                                         <option key={index} value={option.value}>
                                                                             {option.label}
-                                                                            {option.text}
                                                                         </option>
-
-                                                                        
                                                                     ))}
                                                                 </select>
+                                                                {showOtherFields && (
+                                                                    <div>
+                                                                        {showOtherFields && (
+                                                                            <div>
+                                                                                {showMore
+                                                                                    .filter((field) => field.schoolKey === "333")
+                                                                                    .map((field) => {
+                                                                                        if (field.type === "text" || field.type === "email") {
+                                                                                            return (
 
+                                                                                                <div>
+                                                                                                    <label>{field.label}</label>
+                                                                                                    <input
+                                                                                                        key={field.id}
+                                                                                                        name={field.name}
+                                                                                                        placeholder={field.placeholder}
+                                                                                                        id={field.id}
+                                                                                                        className={field.className}
+                                                                                                        type={field.type}
+                                                                                                        autoComplete={field.autoComplete}
+                                                                                                        defaultValue={field.defaultValue}
+                                                                                                        onChange={handleInputChange}
+                                                                                                    />
+                                                                                                </div>
+                                                                                            );
+                                                                                        } else {
+                                                                                            return (
+                                                                                                <div className="row mobile" key={field.id}>
+                                                                                                    <div className="col s4">
+                                                                                                        <div className="input-field item">
+                                                                                                            <input
+                                                                                                                name="mobileNumber_country_code"
+                                                                                                                placeholder="Country Code"
+                                                                                                                className=""
+                                                                                                                id="mobileNumber_country_code"
+                                                                                                                type="text"
+                                                                                                                minLength={3}
+                                                                                                                maxLength={3}
+                                                                                                                disabled
+                                                                                                                value="+974"
+                                                                                                                style={{ textAlign: "left" }}
+                                                                                                            />
+                                                                                                            <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
+                                                                                                                Country Code *
+                                                                                                            </label>
+                                                                                                            <span className="helper-text" data-error="Enter a valid code."></span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div className="col s8">
+                                                                                                        <div className="input-field item">
+                                                                                                            <input
+                                                                                                                name={field.name}
+                                                                                                                placeholder={field.placeholder}
+                                                                                                                id={field.id}
+                                                                                                                className={field.className}
+                                                                                                                maxLength={field.maxLength}
+                                                                                                                type={field.type}
+                                                                                                                aria-label={field.ariaLabel}
+                                                                                                                autoComplete="no"
+                                                                                                                defaultValue={field.defaultValue}
+                                                                                                                style={{ textAlign: "left" }}
+                                                                                                            />
+                                                                                                            <label htmlFor={field.htmlFor} style={{ left: 0, right: "auto" }}>
+                                                                                                                {field.label} <span className="asterisk">  </span>
+                                                                                                            </label>
+                                                                                                            <span
+                                                                                                                className="helper-text"
+                                                                                                                data-error="Required field."
+                                                                                                                style={{ textAlign: "left" }}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            );
+                                                                                        }
+                                                                                    })}
+                                                                            </div>
+                                                                        )
+                                                                        }
 
-                                                                <span
-                                                                    className="helper-text"
-                                                                    data-error="Required field."
-                                                                    style={{ textAlign: "left" }}
-                                                                />
+                                                                    </div>
+                                                                )}
+
                                                             </div>
                                                         </div>
                                                     </div>
-                                                )
-
+                                                );
                                             case "checkbox":
                                                 return (
                                                     <div className="item subscribe-items">
@@ -309,6 +431,7 @@ function School() {
                                                                 id={item.id}
                                                                 type="checkbox"
                                                                 className={item.className}
+                                                                onChange={handleInputChange}
 
 
                                                             />
@@ -407,3 +530,33 @@ function School() {
 }
 
 export default School
+
+
+// {showOtherFields && (
+//     <div>
+//         {showMore
+//             .filter((field) => field.schoolKey === "333")
+//             .map((field) => (
+
+//                 <div>
+//                     {field.label}
+//                     < input
+//                         key={field.id}
+//                         name={field.name}
+//                         placeholder={field.placeholder}
+//                         id={field.id}
+//                         className={field.className}
+//                         type={field.type}
+//                         autoComplete={field.autoComplete}
+//                         defaultValue={field.defaultValue}
+//                         onChange={handleInputChange} />
+//                 </div>
+
+//             )
+//             )}
+//     </div>
+// )}
+// </div>
+// </div>
+// </div>
+// );

@@ -57,15 +57,15 @@ export const volunteer = [
         }]
     },
     {
-        placeholder: "dd-mm-yyyy",
-        label: "Date of Birth",
-        arialabel: "choose date of birth button",
+        // placeholder: "dd-mm-yyyy",
+        // label: "Date of Birth",
+        // arialabel: "choose date of birth button",
         type: "date",
-        className: "example-custom-input",
-        ariahidden: "true",
-        htmlFor: "dob",
+        // className: "example-custom-input",
+        // ariahidden: "true",
+        // htmlFor: "dob",
 
-        defaultValue: "dd-mm-yyyy",
+        // defaultValue: "dd-mm-yyyy",
     },
     {
         name: "email",
@@ -94,7 +94,7 @@ export const volunteer = [
     {
         name: "agree",
         type: "checkbox",
-        id: "agree",
+        id: "s",
         type: "checkbox",
         label: "I agree to the studio 5",
         ariaLabel: "Read terms and condition",

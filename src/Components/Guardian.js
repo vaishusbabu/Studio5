@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { guardian } from './JsonGuardian.js';
 
 
 
 function Guardian() {
-
+    const [formData, setFormData] = useState({
+        parentName: "",
+        parentId: "",
+        email: "",
+        mobileNumber: "",
+        agree: ""
+    })
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData)
+    }
+    const handleOnChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
     return (
         <div>
             <div id="main-container">
@@ -118,7 +131,7 @@ function Guardian() {
                                 <p style={{ textAlign: "left" }}>
                                     Required fields are followed by <span className="asterisk">*</span>
                                 </p>
-                                <form autoComplete="no">
+                                <form autoComplete="no" onSubmit={handleSubmit}>
                                     {guardian.map((item) => {
                                         switch (item.type) {
                                             case "text":
@@ -135,6 +148,7 @@ function Guardian() {
                                                             autoComplete={item.autoComplete}
                                                             defaultValue={item.defaultValue}
                                                             style={{ textAlign: "left" }}
+                                                            onChange={handleOnChange}
                                                         />
 
                                                         <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>{item.label}
@@ -163,6 +177,7 @@ function Guardian() {
                                                                     disabled
                                                                     value="+974"
                                                                     style={{ textAlign: "left" }}
+                                                                    onChange={handleOnChange}
 
                                                                 />
                                                                 <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
@@ -185,6 +200,7 @@ function Guardian() {
                                                                     autoComplete="no"
                                                                     defaultValue={item.defaultValue}
                                                                     style={{ textAlign: "left" }}
+                                                                    onChange={handleOnChange}
                                                                 />
                                                                 <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
                                                                     {item.label} <span className="asterisk"> </span>
@@ -209,6 +225,7 @@ function Guardian() {
                                                                 id={item.id}
                                                                 type="checkbox"
                                                                 className={item.className}
+                                                                onChange={handleOnChange}
 
 
                                                             />
