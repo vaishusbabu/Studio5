@@ -30,25 +30,26 @@ function Student() {
     })
 
 
-    const [showOtherFields, setShowOtherFields] = useState(false);
+    // const [showOtherFields, setShowOtherFields] = useState(false);
 
 
-    const handleSchoolNameChange = (e) => {
-        const selectedValue = e.target.value;
-        if (selectedValue === "333") {
-            setShowOtherFields(true);
-        } else {
-            setShowOtherFields(false);
-        }
-        setFormData({
-            ...formData,
-            schoolName: selectedValue,
-        });
-        console.log("showOtherFields:", showOtherFields);
-    };
+    // const handleSchoolNameChange = (e) => {
+    //     const selectedValue = e.target.value;
+    //     if (selectedValue === "333") {
+    //         setShowOtherFields(true);
+    //     } else {
+    //         setShowOtherFields(false);
+    //     }
+    //     setFormData({
+    //         ...formData,
+    //         schoolName: selectedValue,
+    //     });
+    //     console.log("showOtherFields:", showOtherFields);
+    // };
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+
         setFormData({
             ...formData,
             [name]: value,
@@ -331,8 +332,8 @@ function Student() {
                                                             id={item.id}
                                                             tabIndex={0}
                                                             style={{ textAlign: "left" }}
-                                                            // onChange={handleInputChange}
-                                                            onChange={handleSchoolNameChange}
+                                                            onChange={handleInputChange}
+                                                        // onChange={handleSchoolNameChange}
 
                                                         >
                                                             <option value="" disabled>
@@ -353,9 +354,9 @@ function Student() {
                                                         />
 
 
-                                                        {showOtherFields && item.schoolKey === "333" && (
+                                                        {formData.schoolName === "333" && item.schoolKey === "333" && (
                                                             <div>
-                                                                {showOtherFields && (
+                                                                {formData && (
                                                                     <div>
                                                                         {showStudent
                                                                             .filter((field) => field.schoolKey === "333")

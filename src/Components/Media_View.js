@@ -17,7 +17,7 @@ function Media_View() {
                 setMedia(data);
                 console.log("media", data)
             })
-    })
+    }, [])
 
     return (
         <div>

@@ -199,7 +199,7 @@ export const Studentdata = [
         ],
         schoolKey: "333",
         label: "Select School Name",
-        type: "select"
+        type: "select",
 
     },
     ,

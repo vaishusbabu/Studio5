@@ -1,50 +1,151 @@
 
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
-
+import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 function Activity() {
 
     const [activity, setActiviity] = useState('');      //activitylist-api fetch
-
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
     const [title, setTitle] = useState([]);
     const [select, setSelect] = useState('');
     const [selectedActivity, setSelectedActivity] = useState("All");
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-    }
     const titleChange = (e) => {
         setTitle(e.target.value);
     }
 
     const handleSelect = (e) => {
         setSelect(e.target.value);
-
     }
 
     const handleClear = () => {
         setTitle('');
         setStartDate('');
         setSelect('');
-
     }
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/activicties?_format=json`, {
-            method: "POST",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setActiviity(data);
-                console.log("activitylist", data);
+        axios.get('https://studio5drupaldev.applab.qa/session/token')
+            .then((res) => {
+                console.log('res: ', res);
+                const token = res.data;
+                console.log('token: ', token);
+                axios.post(
+                    "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+                    {},
+                    {
+                        headers: {
+                            'X-Csrf-Token': `${res.data}`
+                        }
+                    }
+                )
+                    .then((res) => {
+                        setActiviity(res.data);
+                        console.log("activitylist", res.data);
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching data:", error);
+                    });
+            })
+            .catch((error) => {
+                console.error("Error fetching token:", error);
             });
-    })
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
+            const token = tokenResponse.data;
+
+            const body = {
+                lang: "en",
+                title: title,
+                field_start_and_end_time_value: startDate,
+                field_activity_category_target_id: select,
+            };
+
+            console.log('body: ', body);
+
+            const response = await axios.post(
+                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+                body,
+                {
+                    headers: {
+                        'X-Csrf-Token': token
+                    }
+                }
+            );
+
+            setActiviity(response.data);
+            console.log("activitylist", response.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+
+    // const handleSubmit = async (e) => {
+
+    //     const body = {
+    //         lang: "en",
+    //         title: title,
+    //         field_start_and_end_time_value: startDate,
+    //         field_activity_category_target_id: selectedActivity,
+    //     }
+    //     console.log('body: ', body);
+
+    //     e.preventDefault();
+    //     console.log("date :", startDate)
+    //     console.log("title :", title)
+    //     console.log("selected :", select)
+
+    //     axios.get('https://studio5drupaldev.applab.qa/session/token')
+    //         .then((res) => {
+    //             console.log('res in submit: ', res);
+    //             const token = res.data;
+    //             console.log('token in submit: ', token);
+    //             axios.post(
+    //                 "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+    //                 {},
+    //                 {
+    //                     headers: {
+    //                         'X-Csrf-Token': `${res.data}`
+    //                     }
+    //                 }
+    //             )
+    //                 .then((res) => {
+    //                     setActiviity(res.data);
+    //                     console.log("activitylist", res.data);
+    //                 })
+    //                 .catch((error) => {
+    //                     console.error("Error fetching data:", error);
+    //                 });
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching token:", error);
+    //         });
+    // }
+
+
+    // useEffect(() => {
+    //     fetch(`https://studio5drupaldev.applab.qa/api/activicties?_format=json`, {
+    //         method: "POST",
+    //         headers: {
+    //             'Authorization': `https://studio5drupaldev.applab.qa/session/token`
+    //         }
+    //     })
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setActiviity(data);
+    //             console.log("activitylist", data);
+    //         });
+    // }, [])
 
     return (
         <div id="main-content" className="activiti-list">
@@ -111,7 +212,8 @@ function Activity() {
             <div id="skipContent">
                 <div id="main-container">
                     <div className="container">
-                        <form method="post" name="search" className="search" onSubmit={handleSubmit}>
+                        <form method="post" name="search" className="search"
+                            onSubmit={handleSubmit}>
                             <div className="row topFormHolder">
                                 <div className="col s12 m6 l3">
                                     <div className="input-field item">
@@ -146,7 +248,6 @@ function Activity() {
                                             tabIndex={0}
                                             onChange={handleSelect}
                                             value={select}
-
                                         >
                                             <option value="" disabled="">
                                                 Select activity type
@@ -169,16 +270,8 @@ function Activity() {
                                                     placeholder="Date"
                                                     type="date"
                                                     className="hiddenDob customDateField "
-                                                    defaultValue="" selected={startDate} onChange={(date) => setStartDate(date)} />
-                                                {/* <input
-                                                    name="date"
-                                                    autoComplete="off"
-                                                    id="date"
-                                                    placeholder="Date"
-                                                    type="date"
-                                                    className="hiddenDob customDateField"
-                                                    defaultValue=""
-                                                /> */}
+                                                    defaultValue="" selected={startDate} onChange={(date) => setStartDate((moment(date).format('YYYY-MM-DD')))} />
+
                                                 <button
                                                     aria-label="choose date button"
                                                     type="button"
@@ -283,7 +376,7 @@ function Activity() {
                                                             <span className="calendarNA">
                                                                 <i className="calendar-icons" /> End date{" "}
                                                                 <span className="date">
-                                                                    {item.field_start_and_end_time_4.slice(0, 12)}
+                                                                    {item.field_start_and_end_time_4.slice(-12)}
                                                                     <br />
                                                                     <small>{item.field_start_and_end_time_1.slice(0, 8)}</small>
                                                                 </span>
@@ -300,6 +393,7 @@ function Activity() {
                             }
 
                         </ul>
+
                         <nav className="pagination-wrapper" aria-label="pagination">
                             <ul className="pagination">
                                 <li className="active">
