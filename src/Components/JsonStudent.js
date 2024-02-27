@@ -27,13 +27,13 @@ export const Studentdata = [
 
     },
     {
-        // name: "date",
-        // label: "Date of Birth",
-        // arialabel: "choose date of birth button",
+        name: "date",
+        label: "Date of Birth",
+        arialabel: "choose date of birth button",
         type: "date",
-        // className: "example-custom-input",
-        // ariahidden: "true",
-        // htmlFor: "dob",
+        className: "example-custom-input",
+        ariahidden: "true",
+        htmlFor: "dob",
 
     },
     {
