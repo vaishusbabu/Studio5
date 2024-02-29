@@ -8,7 +8,6 @@ export const Studentdata = [
         autoComplete: "no",
         defaultValue: "",
         htmlFor: "name",
-        className: "asterisk",
         label: "Student name in English ",
 
 
@@ -157,6 +156,7 @@ export const Studentdata = [
         label: "School Name ",
         name: "schoolName",
         id: "schoolName",
+        placeholder: " School Name",
         type: "select",
         options: [
             { value: "", label: "Select school name" },
@@ -197,12 +197,21 @@ export const Studentdata = [
             { value: 136, text: "Doha Academy" },
             { value: 333, label: 'Others' },
         ],
-        schoolKey: "333",
-        label: "Select School Name",
-        type: "select",
-
     },
+    {
+        name: "schoolNameOther",
+        placeholder: "Other School Name",
+        id: "schoolNameOther",
+        className: "",
+        type: "text",
+        autoComplete: "no",
+        defaultValue: "",
+        label: "School Name",
+        refValue: "333",
+        refId: "schoolName"
+    }
     ,
+
     {
         name: "qid",
         placeholder: "Type your QID",
@@ -389,16 +398,17 @@ export const Studentdata = [
     },
 
 ]
-export const showStudent = [
-    {
-        name: "schoolNameOther",
-        placeholder: "Other School Name",
-        id: "schoolNameOther",
-        className: "",
-        type: "text",
-        autoComplete: "no",
-        defaultValue: "",
-        label: "School Name",
-        schoolKey: "333"
-    },
-]
+// export const showStudent = [
+//     {
+//         name: "schoolNameOther",
+//         placeholder: "Other School Name",
+//         id: "schoolNameOther",
+//         className: "",
+//         type: "text",
+//         autoComplete: "no",
+//         defaultValue: "",
+//         label: "School Name",
+//         schoolKey: "333"
+//     },
+// ]
+

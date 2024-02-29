@@ -6,6 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import ReactDOM from 'react-dom';
+import ReactPaginate from 'react-paginate';
 
 function Activity() {
 
@@ -63,18 +65,18 @@ function Activity() {
             const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
             const token = tokenResponse.data;
 
-            const body = {
+            const data1 = {
                 lang: "en",
                 title: title,
                 field_start_and_end_time_value: startDate,
                 field_activity_category_target_id: select,
             };
 
-            console.log('body: ', body);
+            console.log('data : ', data1);
 
             const response = await axios.post(
                 "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-                body,
+                data1,
                 {
                     headers: {
                         'X-Csrf-Token': token
@@ -437,7 +439,6 @@ function Activity() {
                             </ul>
                         </nav>
                     </div>
-
                     <div className="sparkles">
                         <span className="orange-circle" />
                         <span className="multi-square two">

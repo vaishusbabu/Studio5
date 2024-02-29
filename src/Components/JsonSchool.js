@@ -4,6 +4,7 @@ export const schoolData = [
         name: "schoolName",
         id: "schoolName",
         input: "[object Object]",
+        type: "select",
         tabIndex: 0,
         options: [
             { value: "", label: "Select school name" },
@@ -141,10 +142,43 @@ export const schoolData = [
             { value: 68, label: "Qatar Academy (Al-Wakra)" },
             { value: 333, label: 'Others' },
         ],
-        schoolKey: "333",
-        label: "Select School Name",
-        type: "select"
+    },
+    {
+        name: "schoolNameOther",
+        placeholder: "Other School Name",
+        id: "schoolNameOther",
+        className: "",
+        type: "text",
+        autoComplete: "no",
+        defaultValue: "",
+        label: "School Name",
+        refValue: "333",
+        refId: "schoolName"
+    },
+    {
 
+        name: "schoolPhoneNumber",
+        placeholder: "School Phone Number",
+        id: "schoolPhoneNumber",
+        className: "",
+        type: "number",
+        autoComplete: "no",
+        defaultValue: "",
+        label: "School Phone Number",
+        refValue: "333",
+        refId: "schoolName"
+    },
+    {
+        name: "schoolEmail",
+        placeholder: "School Email",
+        id: "schoolEmail",
+        className: "",
+        type: "email",
+        autoComplete: "no",
+        defaultValue: "",
+        label: "School Email",
+        refValue: "333",
+        refId: "schoolName"
     },
     {
         name: "repName",
@@ -226,43 +260,43 @@ export const schoolData = [
     },
 
 ]
-export const showMore = [
-    {
-        name: "schoolNameOther",
-        placeholder: "Other School Name",
-        id: "schoolNameOther",
-        className: "",
-        type: "text",
-        autoComplete: "no",
-        defaultValue: "",
-        label: "School Name",
-        schoolKey: "333"
-    },
+// export const showMore = [
+//     {
+//         name: "schoolNameOther",
+//         placeholder: "Other School Name",
+//         id: "schoolNameOther",
+//         className: "",
+//         type: "text",
+//         autoComplete: "no",
+//         defaultValue: "",
+//         label: "School Name",
+//         schoolKey: "333"
+//     },
 
-    {
+//     {
 
-        name: "schoolPhoneNumber",
-        placeholder: "School Phone Number",
-        id: "schoolPhoneNumber",
-        className: "",
-        type: "number",
-        autoComplete: "no",
-        defaultValue: "",
-        label: "School Phone Number",
-        schoolKey: "333"
-    },
-    {
-        name: "schoolEmail",
-        placeholder: "School Email",
-        id: "schoolEmail",
-        className: "",
-        type: "email",
-        autoComplete: "no",
-        defaultValue: "",
-        label: "School Email",
-        schoolKey: "333"
-    },
-]
+//         name: "schoolPhoneNumber",
+//         placeholder: "School Phone Number",
+//         id: "schoolPhoneNumber",
+//         className: "",
+//         type: "number",
+//         autoComplete: "no",
+//         defaultValue: "",
+//         label: "School Phone Number",
+//         schoolKey: "333"
+//     },
+//     {
+//         name: "schoolEmail",
+//         placeholder: "School Email",
+//         id: "schoolEmail",
+//         className: "",
+//         type: "email",
+//         autoComplete: "no",
+//         defaultValue: "",
+//         label: "School Email",
+//         schoolKey: "333"
+//     },
+// ]
 
 // const formData = [
 //     {

@@ -2,13 +2,12 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { Studentdata } from "./JsonStudent";
-import { showStudent } from "./JsonStudent";
+// import { showStudent } from "./JsonStudent";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 
 function Student() {
     const [startDate, setStartDate] = useState(new Date());
-
     const [formData, setFormData] = useState({
         name: "",
         nameArabic: "",
@@ -28,25 +27,6 @@ function Student() {
         agree: "",
         schoolNameOther: ""
     })
-
-
-    // const [showOtherFields, setShowOtherFields] = useState(false);
-
-
-    // const handleSchoolNameChange = (e) => {
-    //     const selectedValue = e.target.value;
-    //     if (selectedValue === "333") {
-    //         setShowOtherFields(true);
-    //     } else {
-    //         setShowOtherFields(false);
-    //     }
-    //     setFormData({
-    //         ...formData,
-    //         schoolName: selectedValue,
-    //     });
-    //     console.log("showOtherFields:", showOtherFields);
-    // };
-
     const handleInputChange = (event) => {
         const { name, value } = event.target;
 
@@ -175,36 +155,43 @@ function Student() {
                             Required fields are followed by <span className="asterisk">*</span>
                         </p>
                         <form autoComplete="no" onSubmit={handleSubmit}>
-                            {Studentdata.map((item) => {
+                            {Studentdata && Studentdata.map((item, index) => {
                                 switch (item.type) {
                                     case "text":
                                     case "email":
-                                        return (
-                                            <div className="input-field item">
-                                                <input
-                                                    key={item.id}
-                                                    name={item.name}
-                                                    placeholder={item.placeholder}
-                                                    id={item.id}
-                                                    className={item.className}
-                                                    type={item.type === "text" ? "text" : "email"}
-                                                    autoComplete={item.autoComplete}
-                                                    defaultValue={item.defaultValue}
-                                                    style={{ textAlign: "left" }}
-                                                    onChange={handleInputChange}
-                                                />
+                                        console.log("ref id", item?.id);
+                                        console.log("ref value", [item.refValue]);
 
-                                                <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>
-                                                    {item.label}
-                                                </label>
-                                                <span
-                                                    className="helper-text"
-                                                    data-error="Required field."
-                                                    style={{ textAlign: "left" }}
-                                                />
-                                            </div>
+                                        // if (item?.refId && item?.refId === "schoolName") {
+                                        if (item?.refValue == formData.schoolName || !item?.refValue) {
+                                            return (
+                                                <div className="input-field item">
+                                                    <input
+                                                        key={item.id}
+                                                        name={item.name}
+                                                        placeholder={item.placeholder}
+                                                        id={item.id}
+                                                        className={item.className}
+                                                        type={item.type === "text" ? "text" : "email"}
+                                                        autoComplete={item.autoComplete}
+                                                        defaultValue={item.defaultValue}
+                                                        style={{ textAlign: "left" }}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                    <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>
+                                                        {item.label}
+                                                    </label>
+                                                    <span
+                                                        className="helper-text"
+                                                        data-error="Required field."
+                                                        style={{ textAlign: "left" }}
+                                                    />
+                                                </div>
+                                            );
+                                        }
+                                        // else break
 
-                                        );
+                                        else break
 
                                     case "radio":
                                         return (
@@ -312,11 +299,11 @@ function Student() {
                                                             data-error="Required field."
                                                             style={{ textAlign: "left" }}
                                                         />
+
                                                     </div>
                                                 </div>
                                             </div>
                                         );
-
 
                                     case "select":
                                         return (
@@ -333,8 +320,6 @@ function Student() {
                                                             tabIndex={0}
                                                             style={{ textAlign: "left" }}
                                                             onChange={handleInputChange}
-                                                        // onChange={handleSchoolNameChange}
-
                                                         >
                                                             <option value="" disabled>
                                                                 {item.defaultSelectText}
@@ -344,7 +329,6 @@ function Student() {
                                                                     {option.label}
                                                                     {option.text}
                                                                 </option>
-
                                                             ))}
                                                         </select>
                                                         <span
@@ -352,47 +336,10 @@ function Student() {
                                                             data-error="Required field."
                                                             style={{ textAlign: "left" }}
                                                         />
-
-
-                                                        {formData.schoolName === "333" && item.schoolKey === "333" && (
-                                                            <div>
-                                                                {formData && (
-                                                                    <div>
-                                                                        {showStudent
-                                                                            .filter((field) => field.schoolKey === "333")
-                                                                            .map((field) => {
-                                                                                if (field.schoolKey === "333") {
-                                                                                    return (
-                                                                                        <div>
-                                                                                            <label>{field.label}</label>
-                                                                                            <input
-                                                                                                key={field.id}
-                                                                                                name={field.name}
-                                                                                                placeholder={field.placeholder}
-                                                                                                id={field.id}
-                                                                                                className={field.className}
-                                                                                                type={field.type}
-                                                                                                autoComplete={field.autoComplete}
-                                                                                                defaultValue={field.defaultValue}
-                                                                                                onChange={handleInputChange}
-                                                                                            />
-                                                                                        </div>
-                                                                                    );
-                                                                                }
-
-                                                                            })}
-                                                                    </div>
-                                                                )
-                                                                }
-                                                            </div>
-                                                        )}
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         );
-
 
                                     case "checkbox":
                                         return (
