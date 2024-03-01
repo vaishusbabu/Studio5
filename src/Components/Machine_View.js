@@ -17,7 +17,7 @@ function Machine_View() {
                 console.log("Machine data", data)
 
             })
-    })
+    }, [])
     return (
         <div>
             <div id="main-container">

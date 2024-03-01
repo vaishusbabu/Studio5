@@ -62,12 +62,12 @@ function Machines() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <a href="/en/">Home</a>
+                                <Link to="/">Home</Link>
                             </li>
                             <li className="breadcrumb-item">
-                                <a tabIndex={0} aria-current="page" href="/en/machines">
+                                <Link tabIndex={0} aria-current="page" to="/machines">
                                     <span>Machines</span>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </nav>

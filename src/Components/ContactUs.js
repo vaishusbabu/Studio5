@@ -2,6 +2,15 @@ import React, { useEffect, useState } from 'react'
 
 function ContactUs() {
 
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    message: "",
+    agree: ""
+
+  })
+
   const [address, setAddress] = useState([]);
   // const [policy, setPolicy] = useState([]);
   useEffect(() => {
@@ -12,7 +21,14 @@ function ContactUs() {
         console.log("address", data)
       });
   }, [])
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("form", form)
+  }
   return (
     <div>
       <div id="main-container">
@@ -68,7 +84,7 @@ function ContactUs() {
               <p>Please fill out the form below to receive our update</p>
               <div className="row noFlex">
                 <div className="col s12 m10 l9">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div className="row noFlex">
                       <div className="col s12 m6 l6">
                         <div className="input-field item">
@@ -80,6 +96,7 @@ function ContactUs() {
                             type="text"
                             defaultValue=""
                             required
+                            onChange={handleChange}
                           />
                           <label htmlFor="name" className="active">
                             Name<span className="asterisk">*</span>
@@ -94,6 +111,7 @@ function ContactUs() {
                             autoComplete="no"
                             placeholder="Type your email"
                             type="email"
+                            onChange={handleChange}
                             defaultValue=""
                             required
                           />
@@ -110,6 +128,7 @@ function ContactUs() {
                             autoComplete="no"
                             placeholder="Type your mobile number"
                             maxLength={8}
+                            onChange={handleChange}
                             type="number"
                             defaultValue=""
                             required
@@ -124,6 +143,7 @@ function ContactUs() {
                           <textarea
                             id="message"
                             name="message"
+                            onChange={handleChange}
                             placeholder="Type your message"
                             rows={8}
                             defaultValue={""}
@@ -139,6 +159,7 @@ function ContactUs() {
                           <br />
                           <input
                             id="iagree"
+                            onChange={handleChange}
                             name="iagree"
                             type="checkbox"
                             className="checkbox-holder"
@@ -178,7 +199,7 @@ function ContactUs() {
             <div className="col s12 m12 l12 xl5">
               <img
                 alt=""
-                src="/static/media/contact-right.83d2f5489d795bbacb43.png"
+                src="http://51.136.51.121/static/media/contact-right.83d2f5489d795bbacb43.png"
               />
             </div>
           </div>

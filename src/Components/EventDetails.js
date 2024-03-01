@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function EventDetails() {
     const { id } = useParams();
@@ -14,7 +14,7 @@ function EventDetails() {
                 console.log('events', data)
             })
 
-    })
+    }, [])
     return (
         <div>
             <div id="main-content" className="activity-details">
@@ -62,10 +62,10 @@ function EventDetails() {
                     <div className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <a href="/en/">Home</a>
+                                <Link to="/">Home</Link>
                             </li>
                             <li className="breadcrumb-item">
-                                <a href="/en/activities">Activities</a>
+                                <Link to="/activities">Activities</Link>
                             </li>
                             <li className="breadcrumb-item">
                                 <span>Event Details</span>
@@ -154,12 +154,12 @@ function EventDetails() {
                                                                                 <th>End date</th>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td>{item.field_start_and_end_time_3}{" "}{item.field_start_and_end_time}</td>
-                                                                                <td>{item.field_start_and_end_time_4}{" "}{item.field_start_and_end_time_1}</td>
+                                                                                <td>{item.field_start_and_end_time_3.slice(0, 12)} - {item.field_start_and_end_time.slice(0, 8)}</td>
+                                                                                <td>{item.field_start_and_end_time_4.slice(0, 12)} - {item.field_start_and_end_time_1.slice(0, 8)}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <td></td>
-                                                                                <td></td>
+                                                                                <td>{item.field_start_and_end_time_3.slice(13, 25)}  {item.field_start_and_end_time.slice(9, 18)}</td>
+                                                                                <td>{item.field_start_and_end_time_3.slice(13, 25)}  {item.field_start_and_end_time.slice(9, 18)}</td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>

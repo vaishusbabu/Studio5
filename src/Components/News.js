@@ -97,7 +97,7 @@ function News() {
                       <div className="category-wrap Video">
                         {video[0].category}
                       </div>
-                      <Link to="/testVideo">
+                      <Link to="/TestVideo">
                         {" "}
                         <div className="desc">{video[0].title}</div>
                       </Link>

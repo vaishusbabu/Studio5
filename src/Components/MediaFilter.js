@@ -97,7 +97,7 @@ function MediaFilter() {
                                     <div className="filter-wrap">
 
                                         <h3 id="filter-title">Filter Media</h3>
-                                        {
+                                        {/* {
                                             filter && filter.map((item, index) => (
 
                                                 <ul aria-label="aside navigation">
@@ -113,8 +113,24 @@ function MediaFilter() {
                                                 </ul>
                                             )
                                             )
+                                        } */}
+                                        {
+                                            filter && filter.map((item, index) => (
+
+                                                <ul aria-label="aside navigation">
+                                                    <li className="media-item en">
+                                                        <Link
+                                                            aria-label="News section contains 58 items"
+                                                            to={`/media_filter/${item.tid}`}
+                                                        >
+                                                            {item.filter}<span>{item.count}</span>
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                            )
+                                            )
                                         }
-                                        <span className="grey-square-rotate" />
+                                        < span className="grey-square-rotate" />
                                         <span className="multi-square">
                                             <b>
                                                 <i />
@@ -168,8 +184,6 @@ function MediaFilter() {
                                         </ul>
                                     ))}
                                 </div>
-
-
 
                                 <nav className="pagination-wrapper" aria-label="pagination">
                                     <ul className="pagination">

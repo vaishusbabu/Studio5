@@ -9,7 +9,7 @@ function Gallery() {
                 setGallery(data);
                 console.log("gallery", data);
             })
-    })
+    }, [])
 
 
     const [img, setImg] = useState([]);
@@ -20,7 +20,7 @@ function Gallery() {
                 setImg(data);
                 console.log("setImg", data);
             })
-    })
+    }, [])
 
     return (
         <div>

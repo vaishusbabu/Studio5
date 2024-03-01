@@ -6,16 +6,36 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
 
-function Activity() {
+
+function Activity(itemsPerPage) {
 
     const [activity, setActiviity] = useState('');      //activitylist-api fetch
     const [startDate, setStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
     const [title, setTitle] = useState([]);
     const [select, setSelect] = useState('');
     const [selectedActivity, setSelectedActivity] = useState("All");
+
+    const [count, setCountPage] = useState(0);
+
+
+    // //Pagination
+    // const [itemOffset, setItemOffset] = useState(0);
+    // const endOffset = itemOffset + itemsPerPage;
+    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    // const currentItems = items.slice(itemOffset, endOffset);
+    // const pageCount = Math.ceil(items.length / itemsPerPage);
+
+    // const handlePageClick = (event) => {
+    //     const newOffset = (event.selected * itemsPerPage) % items.length;
+    //     console.log(
+    //         `User requested page number ${event.selected}, which is offset ${newOffset}`
+    //     );
+    //     setItemOffset(newOffset);
+    // };
 
     const titleChange = (e) => {
         setTitle(e.target.value);
@@ -92,62 +112,36 @@ function Activity() {
     };
 
 
-    // const handleSubmit = async (e) => {
+    const handlePageClick = async (e) => {
+        e.preventDefault();
 
-    //     const body = {
-    //         lang: "en",
-    //         title: title,
-    //         field_start_and_end_time_value: startDate,
-    //         field_activity_category_target_id: selectedActivity,
-    //     }
-    //     console.log('body: ', body);
+        try {
+            const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
+            const token = tokenResponse.data;
 
-    //     e.preventDefault();
-    //     console.log("date :", startDate)
-    //     console.log("title :", title)
-    //     console.log("selected :", select)
+            const data1 = {
+                lang: "en",
+                page: "count"
+            };
 
-    //     axios.get('https://studio5drupaldev.applab.qa/session/token')
-    //         .then((res) => {
-    //             console.log('res in submit: ', res);
-    //             const token = res.data;
-    //             console.log('token in submit: ', token);
-    //             axios.post(
-    //                 "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-    //                 {},
-    //                 {
-    //                     headers: {
-    //                         'X-Csrf-Token': `${res.data}`
-    //                     }
-    //                 }
-    //             )
-    //                 .then((res) => {
-    //                     setActiviity(res.data);
-    //                     console.log("activitylist", res.data);
-    //                 })
-    //                 .catch((error) => {
-    //                     console.error("Error fetching data:", error);
-    //                 });
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error fetching token:", error);
-    //         });
-    // }
+            console.log('data : ', data1);
 
+            const response = await axios.post(
+                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+                data1,
+                {
+                    headers: {
+                        'X-Csrf-Token': token
+                    }
+                }
+            );
 
-    // useEffect(() => {
-    //     fetch(`https://studio5drupaldev.applab.qa/api/activicties?_format=json`, {
-    //         method: "POST",
-    //         headers: {
-    //             'Authorization': `https://studio5drupaldev.applab.qa/session/token`
-    //         }
-    //     })
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             setActiviity(data);
-    //             console.log("activitylist", data);
-    //         });
-    // }, [])
+            setCountPage(response.data);
+            console.log("pages", response.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
 
     return (
         <div id="main-content" className="activiti-list">
@@ -330,8 +324,6 @@ function Activity() {
                             </div>
                         </div>
 
-
-
                         <ul className="activities-list" aria-label="activities">
                             {
                                 activity && activity.results
@@ -389,55 +381,77 @@ function Activity() {
                                                 <div className="btnHolderNA">
                                                     <button className="btn blueColor btn-disabled">Closed</button>
                                                 </div>
+
                                             </li>
+
+                                            <ReactPaginate
+                                                breakLabel="..."
+                                                nextLabel="next >"
+                                                onPageChange={handlePageClick}
+                                                pageRangeDisplayed={5}
+                                                pageCount={count}
+                                                previousLabel="< previous"
+                                                renderOnZeroPageCount={null}
+                                            />
                                         </div>
                                     ))
                             }
-
                         </ul>
 
-                        <nav className="pagination-wrapper" aria-label="pagination">
-                            <ul className="pagination">
-                                <li className="active">
-                                    <a
-                                        className="undefined"
-                                        href="#"
-                                        aria-label="Go to page number 1"
-                                    >
-                                        1
-                                    </a>
-                                </li>
-                                <li className="">
-                                    <a className="" href="#" aria-label="Go to page number 2">
-                                        2
-                                    </a>
-                                </li>
-                                <li className="">
-                                    <a className="" href="#" aria-label="Go to page number 3">
-                                        3
-                                    </a>
-                                </li>
-                                <li className="">
-                                    <a className="" href="#" aria-label="Go to page number 4">
-                                        4
-                                    </a>
-                                </li>
-                                <li className="">
-                                    <a className="" href="#" aria-label="Go to page number 5">
-                                        5
-                                    </a>
-                                </li>
-                                <li className="">
-                                    <a
-                                        className="linkClassNext"
-                                        href="#"
-                                        aria-label="Go to next page"
-                                    >
-                                        Next &gt;
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div>
+
+
+                        </div>
+
+                        {/* <ul className="pagination">
+                            <li className="">
+                                <a className="linkClassPrev" href="#" aria-label="Go to previous page">
+                                    &lt; Previous
+                                </a>
+                            </li>
+                            <li className="">
+                                <a className="" href="#"
+                                    onChange={handlePageClick}
+                                    aria-label="Go to page number 1">
+                                    1
+                                </a>
+                            </li>
+                            <li className="active">
+                                <a className="undefined" href="#"
+                                    onChange={handlePageClick}
+                                    aria-label="Go to page number 2">
+                                    2
+                                </a>
+                            </li>
+                            <li className="">
+                                <a className="" href="#"
+                                    onChange={handlePageClick}
+                                    aria-label="Go to page number 3">
+                                    3
+                                </a>
+                            </li>
+                            <li className="">
+                                <a className="" href="#"
+                                    onChange={handlePageClick}
+                                    aria-label="Go to page number 4">
+                                    4
+                                </a>
+                            </li>
+                            <li className="">
+                                <a className="" href="#"
+                                    onChange={handlePageClick} aria-label="Go to page number 5">
+                                    5
+                                </a>
+                            </li>
+                            <li className="">
+                                <a className="linkClassNext" href="#" aria-label="Go to next page">
+                                    Next &gt;
+                                </a>
+                            </li>
+                        </ul> */}
+
+
+
                     </div>
                     <div className="sparkles">
                         <span className="orange-circle" />
@@ -459,6 +473,8 @@ function Activity() {
             </div >
         </div >
     )
+
+
 }
 
 export default Activity

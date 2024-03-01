@@ -18,7 +18,6 @@ function Media_Center() {
 
     }, [])
 
-
     useEffect(() => {
         fetch(`https://studio5drupaldev.applab.qa/api/media-centre?_format=json`)
             .then((res) => res.json())
@@ -51,7 +50,8 @@ function Media_Center() {
                                     <a
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        href="http://twitter.com/share?text=Studio 5   Media Center&amp;url=http://51.136.51.121/en/media-center"
+                                        href="http://twitter.com/share?text=Studio 5  
+                                         Media Center&amp;url=http://51.136.51.121/en/media-center"
                                     >
                                         <span>acebook</span>
                                         <i aria-label="Twitter" className="fa-brands fa-x-twitter">
@@ -76,12 +76,12 @@ function Media_Center() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <a href="/en/">Home</a>
+                                <Link to="/">Home</Link>
                             </li>
                             <li className="breadcrumb-item">
-                                <a tabIndex={0} aria-current="page" href="/en/media-center">
+                                <Link tabIndex={0} aria-current="page" href="/media-center">
                                     <span>Media Center</span>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </nav>
@@ -122,7 +122,6 @@ function Media_Center() {
                                     </div>
 
                                 </div>
-
 
                             </div>
 
@@ -167,8 +166,6 @@ function Media_Center() {
                                         </ul>
                                     ))}
                                 </div>
-
-
 
                                 <nav className="pagination-wrapper" aria-label="pagination">
                                     {/* {news(<Pagenation pager={news.pager} />)} */}
