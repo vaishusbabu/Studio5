@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-
-
+import ReactDOM from 'react-dom';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 
 function Media_Center() {
     const [filter, setFilter] = useState([]);
@@ -17,6 +18,10 @@ function Media_Center() {
             });
 
     }, [])
+    
+    const handlePageClick = (selectedPage) => {
+        setCurrentPage(selectedPage);
+    };
 
     useEffect(() => {
         fetch(`https://studio5drupaldev.applab.qa/api/media-centre?_format=json`)
@@ -27,6 +32,47 @@ function Media_Center() {
             });
 
     }, [])
+
+    
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const [totalPages, setTotalPages] = useState(0);
+
+    const itemsPerPage = 10;
+
+    useEffect(() => {
+        fetchData();
+    }, [currentPage, setNews]); 
+
+
+    const fetchData = async () => {
+        try {
+            const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
+            const token = tokenResponse.data;
+
+            const data1 = {
+                lang: "en",
+                page: currentPage + 1 
+               
+            };
+
+            const response = await axios.post(
+                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+                data1,
+                {
+                    headers: {
+                        'X-Csrf-Token': token
+                    }
+                }
+            );
+
+            setNews(response.data);
+            setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
     return (
         <div>
             <div id="main-content" className="media-center-page">
@@ -174,35 +220,17 @@ function Media_Center() {
 
                                     <ul className="pagination">
                                         <li className="active">
-                                            <a className="undefined" href="#" aria-label="Go to page number 1">
-
-                                            </a>
+                                        <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={({ selected }) => handlePageClick(selected)}
+                pageRangeDisplayed={5}
+                pageCount={totalPages}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+            />
                                         </li>
-                                        <li className="">
-                                            <a className="" href="#" aria-label="Go to page number 2">
-                                                2
-                                            </a>
-                                        </li>
-                                        <li className="">
-                                            <a className="" href="#" aria-label="Go to page number 3">
-                                                3
-                                            </a>
-                                        </li>
-                                        <li className="">
-                                            <a className="" href="#" aria-label="Go to page number 4">
-                                                4
-                                            </a>
-                                        </li>
-                                        <li className="">
-                                            <a className="" href="#" aria-label="Go to page number 5">
-                                                5
-                                            </a>
-                                        </li>
-                                        <li className="">
-                                            <a className="linkClassNext" href="#" aria-label="Go to next page">
-                                                Next &gt;
-                                            </a>
-                                        </li>
+                                       
                                     </ul>
 
                                 </nav>

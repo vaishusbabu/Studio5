@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import moment from 'moment';
@@ -11,31 +10,52 @@ import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
 
 
-function Activity(itemsPerPage) {
+function Activity() {
 
     const [activity, setActiviity] = useState('');      //activitylist-api fetch
-    const [startDate, setStartDate] = useState(moment(new Date()).format('YYYY-MM-DD'));
-    const [title, setTitle] = useState([]);
+    const [startDate, setStartDate] = useState();
+    const [title, setTitle] = useState('');
     const [select, setSelect] = useState('');
     const [selectedActivity, setSelectedActivity] = useState("All");
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const [count, setCountPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
 
+    const itemsPerPage = 10;
+    useEffect(() => {
+        fetchData();
+    }, [currentPage, selectedActivity]); 
+    const fetchData = async () => {
+        try {
+            const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
+            const token = tokenResponse.data;
 
-    // //Pagination
-    // const [itemOffset, setItemOffset] = useState(0);
-    // const endOffset = itemOffset + itemsPerPage;
-    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    // const currentItems = items.slice(itemOffset, endOffset);
-    // const pageCount = Math.ceil(items.length / itemsPerPage);
+            const data1 = {
+                lang: "en",
+                page: currentPage + 1 
+            };
 
-    // const handlePageClick = (event) => {
-    //     const newOffset = (event.selected * itemsPerPage) % items.length;
-    //     console.log(
-    //         `User requested page number ${event.selected}, which is offset ${newOffset}`
-    //     );
-    //     setItemOffset(newOffset);
-    // };
+            const response = await axios.post(
+                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+                data1,
+                {
+                    headers: {
+                        'X-Csrf-Token': token
+                    }
+                }
+            );
+
+            setActiviity(response.data);
+            setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    const handlePageClick = (selectedPage) => {
+        setCurrentPage(selectedPage);
+    };
+
 
     const titleChange = (e) => {
         setTitle(e.target.value);
@@ -78,6 +98,8 @@ function Activity(itemsPerPage) {
             });
     }, []);
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -87,9 +109,10 @@ function Activity(itemsPerPage) {
 
             const data1 = {
                 lang: "en",
-                title: title,
-                field_start_and_end_time_value: startDate,
-                field_activity_category_target_id: select,
+                ...(title && { title: title }),
+                ...(startDate && { field_start_and_end_time_value: startDate }),
+                ...(select && { field_activity_category_target_id: select}),
+            
             };
 
             console.log('data : ', data1);
@@ -111,37 +134,6 @@ function Activity(itemsPerPage) {
         }
     };
 
-
-    const handlePageClick = async (e) => {
-        e.preventDefault();
-
-        try {
-            const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
-            const token = tokenResponse.data;
-
-            const data1 = {
-                lang: "en",
-                page: "count"
-            };
-
-            console.log('data : ', data1);
-
-            const response = await axios.post(
-                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-                data1,
-                {
-                    headers: {
-                        'X-Csrf-Token': token
-                    }
-                }
-            );
-
-            setCountPage(response.data);
-            console.log("pages", response.data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
 
     return (
         <div id="main-content" className="activiti-list">
@@ -384,71 +376,28 @@ function Activity(itemsPerPage) {
 
                                             </li>
 
-                                            <ReactPaginate
-                                                breakLabel="..."
-                                                nextLabel="next >"
-                                                onPageChange={handlePageClick}
-                                                pageRangeDisplayed={5}
-                                                pageCount={count}
-                                                previousLabel="< previous"
-                                                renderOnZeroPageCount={null}
-                                            />
+                                      
                                         </div>
                                     ))
                             }
                         </ul>
 
-                        <div>
-
-
-                        </div>
-
-                        {/* <ul className="pagination">
+                        <ul className="pagination">
                             <li className="">
-                                <a className="linkClassPrev" href="#" aria-label="Go to previous page">
-                                    &lt; Previous
-                                </a>
+                                
+                                <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={({ selected }) => handlePageClick(selected)}
+                pageRangeDisplayed={5}
+                pageCount={totalPages}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+            />
                             </li>
-                            <li className="">
-                                <a className="" href="#"
-                                    onChange={handlePageClick}
-                                    aria-label="Go to page number 1">
-                                    1
-                                </a>
-                            </li>
-                            <li className="active">
-                                <a className="undefined" href="#"
-                                    onChange={handlePageClick}
-                                    aria-label="Go to page number 2">
-                                    2
-                                </a>
-                            </li>
-                            <li className="">
-                                <a className="" href="#"
-                                    onChange={handlePageClick}
-                                    aria-label="Go to page number 3">
-                                    3
-                                </a>
-                            </li>
-                            <li className="">
-                                <a className="" href="#"
-                                    onChange={handlePageClick}
-                                    aria-label="Go to page number 4">
-                                    4
-                                </a>
-                            </li>
-                            <li className="">
-                                <a className="" href="#"
-                                    onChange={handlePageClick} aria-label="Go to page number 5">
-                                    5
-                                </a>
-                            </li>
-                            <li className="">
-                                <a className="linkClassNext" href="#" aria-label="Go to next page">
-                                    Next &gt;
-                                </a>
-                            </li>
-                        </ul> */}
+                          
+                          
+                        </ul>
 
 
 

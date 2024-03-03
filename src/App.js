@@ -23,13 +23,14 @@ import Student from './Components/Student';
 import School from './Components/School';
 import ForgotPassword from './Components/ForgotPassword';
 import Subscribe from './Components/Subscribe';
-import EventDetails from './Components/EventDetails';
 import Machine_View from './Components/Machine_View';
 import Media_View from './Components/Media_View';
 import MediaImg from './Components/MediaImg';
 import Gallery from './Components/Gallery';
 import MediaFilter from './Components/MediaFilter';
 import TestVideo from './Components/TestVideo';
+import EventDetails from './Components/EventDetails';
+
 
 
 
@@ -66,7 +67,7 @@ function App() {
               <Route path='/gallery' element={<Gallery />} />
               <Route path='/media_filter/:id' element={<MediaFilter />} />
               {/* connecting pages using useParams */}
-              <Route path='/event_details/:id' element={<EventDetails />} />
+              <Route path='/event_details/:id' element={<EventDetails/>} />
               <Route path='/media_view/:id' element={<Media_View />} />
               <Route path='/machine_view/:id' element={<Machine_View />} />
               <Route path='/media_img/:id' element={<MediaImg />} />
