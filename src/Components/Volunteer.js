@@ -5,7 +5,7 @@ import { volunteer } from "./JsonVolunteer";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Volunteer() {
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState();
     const [formData, setFormData] = useState({
         name: "",
         nameArabic: "",

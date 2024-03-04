@@ -18,7 +18,7 @@ function Media_Center() {
             });
 
     }, [])
-    
+
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage);
     };
@@ -33,7 +33,7 @@ function Media_Center() {
 
     }, [])
 
-    
+
     const [currentPage, setCurrentPage] = useState(0);
 
     const [totalPages, setTotalPages] = useState(0);
@@ -42,7 +42,7 @@ function Media_Center() {
 
     useEffect(() => {
         fetchData();
-    }, [currentPage, setNews]); 
+    }, [currentPage, setNews]);
 
 
     const fetchData = async () => {
@@ -52,8 +52,8 @@ function Media_Center() {
 
             const data1 = {
                 lang: "en",
-                page: currentPage + 1 
-               
+                page: currentPage + 1
+
             };
 
             const response = await axios.post(
@@ -219,15 +219,15 @@ function Media_Center() {
 
                                     <ul className="pagination">
                                         <li className="active">
-                                        <ReactPaginate
-                breakLabel="..."
-                nextLabel="next >"
-                onPageChange={({ selected }) => handlePageClick(selected)}
-                pageRangeDisplayed={5}
-                pageCount={totalPages}
-                previousLabel="< previous"
-                renderOnZeroPageCount={null}
-            />
+                                            <ReactPaginate
+                                                breakLabel="..."
+                                                nextLabel="next >"
+                                                onPageChange={({ selected }) => handlePageClick(selected)}
+                                                pageRangeDisplayed={5}
+                                                pageCount={totalPages}
+                                                previousLabel="< previous"
+                                                renderOnZeroPageCount={null}
+                                            />
                                         </li>
                                     </ul>
                                 </nav>

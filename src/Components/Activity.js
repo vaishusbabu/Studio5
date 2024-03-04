@@ -24,7 +24,7 @@ function Activity() {
     const itemsPerPage = 10;
     useEffect(() => {
         fetchData();
-    }, [currentPage, selectedActivity]); 
+    }, [currentPage, selectedActivity]);
     const fetchData = async () => {
         try {
             const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
@@ -32,7 +32,7 @@ function Activity() {
 
             const data1 = {
                 lang: "en",
-                page: currentPage + 1 
+                page: currentPage + 1
             };
 
             const response = await axios.post(
@@ -111,8 +111,8 @@ function Activity() {
                 lang: "en",
                 ...(title && { title: title }),
                 ...(startDate && { field_start_and_end_time_value: startDate }),
-                ...(select && { field_activity_category_target_id: select}),
-            
+                ...(select && { field_activity_category_target_id: select }),
+
             };
 
             console.log('data : ', data1);
@@ -376,7 +376,7 @@ function Activity() {
 
                                             </li>
 
-                                      
+
                                         </div>
                                     ))
                             }
@@ -384,19 +384,19 @@ function Activity() {
 
                         <ul className="pagination">
                             <li className="">
-                                
+
                                 <ReactPaginate
-                breakLabel="..."
-                nextLabel="next >"
-                onPageChange={({ selected }) => handlePageClick(selected)}
-                pageRangeDisplayed={5}
-                pageCount={totalPages}
-                previousLabel="< previous"
-                renderOnZeroPageCount={null}
-            />
+                                    breakLabel="..."
+                                    nextLabel="next >"
+                                    onPageChange={({ selected }) => handlePageClick(selected)}
+                                    pageRangeDisplayed={5}
+                                    pageCount={totalPages}
+                                    previousLabel="< previous"
+                                    renderOnZeroPageCount={null}
+                                />
                             </li>
-                          
-                          
+
+
                         </ul>
 
 

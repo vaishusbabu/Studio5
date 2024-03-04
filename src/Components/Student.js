@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 
 function Student() {
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState();
     const [formData, setFormData] = useState({
         name: "",
         nameArabic: "",
