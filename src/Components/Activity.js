@@ -5,10 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
-import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
-
 
 function Activity() {
 
@@ -44,7 +41,6 @@ function Activity() {
                     }
                 }
             );
-
             setActiviity(response.data);
             setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
         } catch (error) {
@@ -78,6 +74,7 @@ function Activity() {
                 console.log('token: ', token);
                 axios.post(
                     "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+
                     {},
                     {
                         headers: {

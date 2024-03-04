@@ -9,53 +9,119 @@ import { schoolData } from "./JsonSchool";
 
 function School() {
     const [startDate, setStartDate] = useState(new Date());
+
+    const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         SchoolName: "",
+        // name: "",
+        // nameArabic: "",
         repName: "",
         repNameArabic: "",
         qid: "",
         repPosition: "",
         repMobile: "",
         repEmail: "",
-        agree: null,
+        agree: false,
         schoolName: "",
         schoolNameOther: "",
         schoolPhoneNumber: "",
         schoolEmail: "",
     });
 
-    // const [showOtherFields, setShowOtherFields] = useState(false);
+    const handleInputChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        const newValue = type === "checkbox" ? checked : value;
+        setFormData({ ...formData, [name]: newValue });
+        setErrors({ ...errors, [name]: "" });
+    };
 
-    // const handleSchoolNameChange = (e) => {
-    //     const selectedValue = e.target.value;
-    //     if (selectedValue === "333") {
-    //         setShowOtherFields(true);
-    //     } else {
-    //         setShowOtherFields(false);
-    //     }
-    //     setFormData({
-    //         ...formData,
-    //         SchoolName: selectedValue,
-    //     });
-    //     console.log("showOtherFields:", showOtherFields);
-    // };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitted(true);
+        if (validateForm()) {
+            console.log(formData);
+
+        } else {
+            console.log("Form is invalid");
+        }
+    };
+    const validateForm = () => {
+        let isValid = true;
+        const newErrors = {};
+
+        if (!formData.schoolName) {
+            newErrors.schoolName = "School name is required.";
+            isValid = false;
+        }
+        if (!formData.schoolNameOther) {
+            newErrors.schoolNameOther = "School name is required.";
+            isValid = false;
+        }
+
+        if (!formData.schoolPhoneNumber || !/^\d{8}$/.test(formData.schoolPhoneNumber)) {
+            newErrors.schoolPhoneNumber = "Please enter a valid mobile number.";
+            isValid = false;
+        }
+        if (!formData.schoolEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.schoolEmail)) {
+            newErrors.schoolEmail = "Please enter a valid email address.";
+            isValid = false;
+        }
 
 
+        if (!formData.repName) {
+            newErrors.repName = "Representative name is required";
+            isValid = false;
+        }
+
+        if (!formData.repPosition) {
+            newErrors.repPosition = "repPosition is required";
+            isValid = false;
+        }
+
+        if (!formData.repMobile || !/^\d{8}$/.test(formData.repMobile)) {
+            newErrors.repMobile = "Please enter a valid mobile number.";
+            isValid = false;
+        }
 
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        if (!formData.repEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.repEmail)) {
+            newErrors.repEmail = "Please enter a valid email address.";
+            isValid = false;
+        }
+
+
+        if (!formData.agree) {
+            newErrors.agree = "agree is required";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+    const ErrorList = ({ errors }) => {
+        if (!submitted || Object.keys(errors).length === 0) {
+            return null;
+        }
+
+        return (
+
+            <div className="error-container fail">
+                <h5>
+                    There is a problem with the form, please check and correct the following:
+                </h5>
+
+                <ul className="error-list">
+                    {Object.values(errors).map((error, index) => (
+                        <li key={index}>{error}</li>
+                    ))}
+                </ul>
+
+            </div>
+        );
     };
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(formData);
-    };
     return (
         <div>
             <div id="main-container">
@@ -163,6 +229,7 @@ function School() {
                                 <p style={{ textAlign: "left" }}>
                                     Required fields are followed by <span className="asterisk">*</span>
                                 </p>
+                                <ErrorList errors={errors} />
                                 <form autoComplete="no" onSubmit={handleSubmit}>
                                     {schoolData && schoolData.map((item) => {
                                         switch (item.type) {

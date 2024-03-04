@@ -6,24 +6,101 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Volunteer() {
     const [startDate, setStartDate] = useState();
+
     const [formData, setFormData] = useState({
         name: "",
         nameArabic: "",
         qid: "",
         gender: "",
-
         email: "",
         mobile: "",
-        agree: ""
-
+        agree: false
     })
+
+
+    const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("data", formData);
-    }
+        setSubmitted(true);
+        if (validateForm()) {
+            console.log(formData);
+
+        } else {
+            console.log("Form is invalid");
+        }
+    };
     const handleInputChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+        const { name, value, type, checked } = e.target;
+        const newValue = type === "checkbox" ? checked : value;
+        setFormData({ ...formData, [name]: newValue });
+        setErrors({ ...errors, [name]: "" });
     }
+
+    const validateForm = () => {
+        let isValid = true;
+        const newErrors = {};
+
+        //contain atleast2 words
+        if (!formData.name || !/^\w+\s+\w+/.test(formData.name)) {
+            newErrors.name = "Name must contain at least two words.";
+            isValid = false;
+        }
+        if (!formData.qid || !/^\d{11}$/.test(formData.qid)) {
+            newErrors.qid = "QID is required";
+            isValid = false;
+
+        }
+
+        if (!formData.gender) {
+            newErrors.gender = 'Gender is required';
+            isValid = false;
+        }
+        // if (!formData.dob) {
+        //     newErrors.dob = 'Date of birth is required';
+        //     isValid = false;
+        // }
+
+        if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address.";
+            isValid = false;
+        }
+
+        if (!formData.mobile || !/^\d{8}$/.test(formData.mobile)) {
+            newErrors.mobile = "Please enter a valid mobile number.";
+            isValid = false;
+        }
+        if (!formData.agree) {
+            newErrors.agree = 'You must agree to the terms and conditions';
+            isValid = false;
+        }
+        setErrors(newErrors);
+        return isValid;
+    };
+
+    const ErrorList = ({ errors }) => {
+        if (!submitted || Object.keys(errors).length === 0) {
+            return null;
+        }
+
+        return (
+
+            <div className="error-container fail">
+                <h5>
+                    There is a problem with the form, please check and correct the following:
+                </h5>
+
+                <ul className="error-list">
+                    {Object.values(errors).map((error, index) => (
+                        <li key={index}>{error}</li>
+                    ))}
+                </ul>
+
+            </div>
+        );
+    };
+
     return (
         <div>
             <div id="main-container">
@@ -130,7 +207,7 @@ function Volunteer() {
                             <p>
                                 Required fields are followed by <span className="asterisk">*</span>
                             </p>
-
+                            <ErrorList errors={errors} />
                             <form autoComplete="no" onSubmit={handleSubmit}>
                                 {volunteer.map((item) => {
                                     switch (item.type) {

@@ -57,7 +57,7 @@ function Media_Center() {
             };
 
             const response = await axios.post(
-                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+                "https://studio5drupaldev.applab.qa/api/media-centre?_format=json",
                 data1,
                 {
                     headers: {

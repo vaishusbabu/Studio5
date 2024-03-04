@@ -1,62 +1,100 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Login() {
+    const [errors, setErrors] = useState({});
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
+
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+        setErrors({ ...errors, [name]: "" });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitted(true);
+        if (validForm()) {
+            console.log('formData check ', formData);
+        }
+        else {
+            console.log("Form is invalid");
+        }
+    };
+
+    const validForm = () => {
+        const newErrors = {};
+        let isValid = true;
+
+        if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address.";
+            isValid = false;
+        }
+
+        //Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
+
+        if (!formData.password || !/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/.test(formData.password)) {
+            newErrors.password = "Password is required.";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    }
+    const ErrorList = ({ errors }) => {
+        if (!submitted || Object.keys(errors).length === 0) {
+            return null;
+        }
+
+    }
     return (
-        <div><div id="main-content">
+        <div id="main-content">
             <div className="page-title en">
-                <div className="container">
-                    <div className="head-title">
-                        <div />
-                        <h2
-                            id="pageHeading"
-                            role="heading"
-                            tabIndex={0}
-                            aria-label="page heading Login"
-                        >
-                            Login
-                        </h2>
-                    </div>
-                </div>
+
             </div>
             <div id="skipContent">
                 <div id="main-container">
-                    <div className="student-color-container">
-                        <span className="grey-square-rotate red-sq one" />
-                        <span className="grey-square-rotate red-sq four" />
-                        <span className="orange-circle one" />
-                        <span className="orange-circle three" />
-                        <span className="multi-square one">
-                            <b>
-                                <i />
-                            </b>
-                        </span>
-                        <span className="multi-square three">
-                            <b>
-                                <i />
-                            </b>
-                        </span>
-                    </div>
+
                     <div className="container">
-                        <br />
-                        <br />
+
                         <div className="center" />
                         <div className="row col-8">
-                            <form name="login" className="login-form loginForm" autoComplete="on">
+
+                            <ErrorList errors={errors} />
+                            <form name="login" className="login-form loginForm" autoComplete="on" onSubmit={handleSubmit}>
                                 <h2>Login</h2>
+
+                                <div className="error-container fail">
+                                    <h5>
+                                        There is a problem with the form, please check and correct the following:
+                                    </h5>
+
+                                    <ul className="error-list">
+                                        {Object.values(errors).map((error, index) => (
+                                            <li key={index}>{error}</li>
+                                        ))}
+                                    </ul>
+
+                                </div>
                                 <div className="input-field item">
                                     <input
-                                        name="username"
+                                        name="email"
                                         placeholder="Type your email"
                                         autoComplete="no"
                                         className="fontEnglish"
-                                        id="username"
+                                        id="email"
                                         type="text"
                                         defaultValue=""
+                                        onChange={handleOnChange}
                                     />
-                                    <label htmlFor="username" style={{ left: 0, right: "auto" }}>
+                                    <label htmlFor="email" style={{ left: 0, right: "auto" }}>
                                         Email
                                     </label>
-                                    <span className="helper-text" data-error="Required field." />
+                                    {/* {errors.email && <span className="error">{errors.email}</span>} */}
                                 </div>
                                 <div className="input-field item">
                                     <input
@@ -67,6 +105,7 @@ function Login() {
                                         className="fontEnglish"
                                         type="password"
                                         defaultValue=""
+                                        onChange={handleOnChange}
                                     />
                                     <button
                                         type="button"
@@ -79,7 +118,7 @@ function Login() {
                                     <label htmlFor="password" style={{ left: 0, right: "auto" }}>
                                         Password
                                     </label>
-                                    <span className="helper-text" data-error="Required field." />
+                                    {/* {errors.password && <span className="error">{errors.password}</span>} */}
                                 </div>
                                 <div className="left-align">
                                     <a className="underline-text" href="/forgot_password">
@@ -87,7 +126,7 @@ function Login() {
                                     </a>
                                 </div>
                                 <div className="left-align btn-wrap">
-                                    <button aria-label="login" className="btn blue login">
+                                    <button aria-label="login" className="btn blue login" type="submit">
                                         Login <i className="material-icons en">arrow_forward</i>
                                     </button>
                                 </div>
@@ -102,8 +141,8 @@ function Login() {
                     </div>
                 </div>
             </div>
-        </div></div>
-    )
+        </div>
+    );
 }
 
-export default Login
+export default Login;

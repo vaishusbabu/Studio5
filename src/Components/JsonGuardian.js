@@ -12,8 +12,7 @@ export const guardian = [
         defaultValue: "",
         htmlFor: "parentName",
         className: "asterisk",
-        label: "Guardian name in English",
-
+        label: "Guardian name in English"
     },
     {
         name: "parentId",
@@ -26,7 +25,7 @@ export const guardian = [
         autoComplete: "no",
         defaultValue: "",
         htmlFor: "parentId",
-        className: "asterisk"
+        className: "asterisk",
     },
     {
         name: "email",

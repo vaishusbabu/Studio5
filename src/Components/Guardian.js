@@ -3,22 +3,92 @@ import { Link } from 'react-router-dom'
 import { guardian } from './JsonGuardian.js';
 
 
-
 function Guardian() {
     const [formData, setFormData] = useState({
         parentName: "",
         parentId: "",
         email: "",
         mobileNumber: "",
-        agree: ""
-    })
+        agree: false
+    });
+    const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData)
-    }
+        setSubmitted(true);
+        if (validateForm()) {
+            console.log(formData);
+
+        } else {
+            console.log("Form is invalid");
+        }
+    };
+
     const handleOnChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
+        const { name, value, type, checked } = e.target;
+        const newValue = type === "checkbox" ? checked : value;
+        setFormData({ ...formData, [name]: newValue });
+        setErrors({ ...errors, [name]: "" });
+    };
+
+    const validateForm = () => {
+        let isValid = true;
+        const newErrors = {};
+
+        if (!formData.parentName || !/^\w+\s+\w+/.test(formData.parentName)) {
+            newErrors.parentName = "Parent name must contain at least two words.";
+            isValid = false;
+        }
+
+
+        if (!formData.parentId || !/^\d{11}$/.test(formData.parentId)) {
+            newErrors.parentId = "Parent ID is required.";
+            isValid = false;
+        }
+
+        if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address.";
+            isValid = false;
+        }
+
+        if (!formData.mobileNumber || !/^\d{8}$/.test(formData.mobileNumber)) {
+            newErrors.mobileNumber = "Please enter a valid mobile number.";
+            isValid = false;
+        }
+
+        if (!formData.agree) {
+            newErrors.agree = "You must agree to the terms and conditions.";
+            isValid = false;
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+
+    const ErrorList = ({ errors }) => {
+        if (!submitted || Object.keys(errors).length === 0) {
+            return null;
+        }
+
+        return (
+
+            <div className="error-container fail">
+                <h5>
+                    There is a problem with the form, please check and correct the following:
+                </h5>
+
+                <ul className="error-list">
+                    {Object.values(errors).map((error, index) => (
+                        <li key={index}>{error}</li>
+                    ))}
+                </ul>
+
+            </div>
+        );
+    };
+
+
     return (
         <div>
             <div id="main-container">
@@ -131,39 +201,36 @@ function Guardian() {
                                 <p style={{ textAlign: "left" }}>
                                     Required fields are followed by <span className="asterisk">*</span>
                                 </p>
+
+                                <ErrorList errors={errors} />
                                 <form autoComplete="no" onSubmit={handleSubmit}>
                                     {guardian.map((item) => {
                                         switch (item.type) {
                                             case "text":
                                             case "email":
                                                 return (
-                                                    <div className="input-field item">
+                                                    <div className="input-field item" key={item.id}>
                                                         <input
-                                                            key={item.id}
                                                             name={item.name}
                                                             placeholder={item.placeholder}
                                                             id={item.id}
                                                             className={item.className}
-                                                            type={item.type === "text" ? "text" : "email"}
+                                                            type={item.type}
                                                             autoComplete={item.autoComplete}
                                                             defaultValue={item.defaultValue}
                                                             style={{ textAlign: "left" }}
                                                             onChange={handleOnChange}
                                                         />
-
-                                                        <label htmlFor="parentId" style={{ left: 0, right: "auto" }}>{item.label}
+                                                        <label htmlFor={item.id} style={{ left: 0, right: "auto" }}>
+                                                            {item.label}
                                                         </label>
-                                                        <span
-                                                            className="helper-text"
-                                                            data-error="Required field."
-                                                            style={{ textAlign: "left" }}
-                                                        />
-                                                    </div>
+                                                        {/* {errors[item.name] && <span data-error={errors[item.name]}>{errors[item.name]}</span>} */}
 
+                                                    </div>
                                                 );
                                             case "number":
                                                 return (
-                                                    <div className="row mobile">
+                                                    <div className="row mobile" key={item.id}>
                                                         <div className="col s4">
                                                             <div className="input-field item">
                                                                 <input
@@ -178,17 +245,15 @@ function Guardian() {
                                                                     value="+974"
                                                                     style={{ textAlign: "left" }}
                                                                     onChange={handleOnChange}
-
                                                                 />
                                                                 <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
                                                                     Country Code *
                                                                 </label>
-                                                                <span className="helper-text" data-error="Enter a valid code."></span>
+                                                                <span className="helper-text" data-error="Enter a valid code." />
                                                             </div>
                                                         </div>
                                                         <div className="col s8">
                                                             <div className="input-field item">
-
                                                                 <input
                                                                     name={item.name}
                                                                     placeholder={item.placeholder}
@@ -202,36 +267,30 @@ function Guardian() {
                                                                     style={{ textAlign: "left" }}
                                                                     onChange={handleOnChange}
                                                                 />
-                                                                <label htmlFor={item.htmlFor} style={{ left: 0, right: "auto" }}>
+                                                                <label htmlFor={item.id} style={{ left: 0, right: "auto" }}>
                                                                     {item.label} <span className="asterisk"> </span>
                                                                 </label>
-                                                                <span
-                                                                    className="helper-text"
-                                                                    data-error="Required field."
-                                                                    style={{ textAlign: "left" }}
-                                                                />
+                                                                {/* 
+                                                                {errors[item.name] && <span data-error={errors[item.name]}>{errors[item.name]}
+                                                                </span>} */}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 );
-
                                             case "checkbox":
                                                 return (
-                                                    <div className="item subscribe-items">
+                                                    <div className="item subscribe-items" key={item.id}>
                                                         <p>
                                                             <input
-                                                                key={item.id}
                                                                 name={item.name}
                                                                 id={item.id}
                                                                 type="checkbox"
                                                                 className={item.className}
                                                                 onChange={handleOnChange}
-
-
                                                             />
-                                                            <label htmlFor="agree">
+                                                            <label htmlFor={item.id}>
                                                                 <span className="en">
-                                                                    I agree to the studio 5
+                                                                    {item.label}
                                                                     <button
                                                                         type="button"
                                                                         aria-label="Read terms and condition"
@@ -244,6 +303,8 @@ function Guardian() {
                                                                     </button>
                                                                 </span>
                                                             </label>
+
+
                                                         </p>
                                                     </div>
                                                 );
@@ -254,9 +315,7 @@ function Guardian() {
                                     <div className="btn-wrap">
                                         <button className="btn blue">Register</button>
                                     </div>
-
                                 </form>
-
 
                             </div>
                             <div className="col s6" />
