@@ -1,34 +1,31 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { setBanner } from '../Redux/banner/bannerSlice';
+import { urlEndPoints } from '../urlEndPoints';
 
 
 function Contact() {
-    const [banner, setBanner] = useState("");
-
+    const { banner } = useSelector(state => state.banner)
+    console.log('banner: ', banner);
+    const dispatch = useDispatch()
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(urlEndPoints.banner);
+                dispatch(setBanner(response.data));
+                console.log("contact ", response.data);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        };
 
-        fetch(`https://studio5drupaldev.applab.qa/api/banner?_format=json`)
-            .then((res) => res.json())
-            .then((data) => {
-                setBanner(data);
-                console.log("contact", data);
-            });
-    }, [])
+        fetchData();
+    }, []);
     return (
         <div>
-            {/* <div className="video-box">
-                <div className="video-btn">
-                    <button className="btn-toggle play" aria-label="Pause the video">
-                        Pause
-                    </button>
-                </div>
-                <video muted playsInline loop
-                    style={{ backgroundImage: 'url("https://studio5drupaldev.applab.qa/")', width: '100%', height: 'auto' }}
-                    >
-                    <source src="https://studio5drupaldev.applab.qa//sites/default/files/2023-11/Outro1366.768.mov"/>
-                    Your browser does not support the video tag.
-                </video>
-            </div> */}
+
             <div className="video-box">
                 <div className="video-btn">
                     <button className="btn-toggle play" aria-label="Pause the video">
@@ -49,7 +46,7 @@ function Contact() {
                     <div className="desc en">
 
                         <div dangerouslySetInnerHTML={{ __html: banner?.[0]?.body }}></div>
-                        <div>{banner?.video}</div>
+                        {/* <div>{banner?.video}</div> */}
 
 
                     </div>

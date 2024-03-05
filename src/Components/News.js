@@ -8,7 +8,7 @@ function News() {
   const { id } = useParams();
   useEffect(() => {
     fetch(
-      `https://studio5drupaldev.applab.qa/api/featured-news-article?_format=json`
+      `https://www.studio5.qa/drupal-app/api/featured-news-article?_format=json`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -18,7 +18,7 @@ function News() {
   }, []);
   useEffect(() => {
     fetch(
-      `https://studio5drupaldev.applab.qa/api/featured-news-gallery?_format=json`
+      `https://www.studio5.qa/drupal-app/api/featured-news-gallery?_format=json`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -28,7 +28,7 @@ function News() {
   }, []);
   useEffect(() => {
     fetch(
-      `https://studio5drupaldev.applab.qa/api/featured-news-video?_format=json`
+      `https://www.studio5.qa/drupal-app/api/featured-news-video?_format=json`
     )
       .then((res) => res.json())
       .then((data) => {

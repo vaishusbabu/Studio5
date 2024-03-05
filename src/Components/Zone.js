@@ -6,7 +6,7 @@ function Zone() {
     const [zone, setZone] = useState("");
     useEffect(() => {
 
-        fetch(`https://studio5drupaldev.applab.qa/api/zones?_format=json`)
+        fetch(`https://www.studio5.qa/drupal-app/api/zones?_format=json`)
             .then((res) => res.json())
             .then((data) => {
                 setZone(data);
@@ -61,10 +61,10 @@ function Zone() {
                                 <p>There are no latest activities at the moment, check out activities page to see what's new
                                 </p>
                                 <Link to="/activities" className="btnNewYellow btn"
-                                        aria-labelledby="activity"
-                                        aria-label="Button for view more activity">View More
-                                        <i className="material-icons en">
-                                        </i></Link>
+                                    aria-labelledby="activity"
+                                    aria-label="Button for view more activity">View More
+                                    <i className="material-icons en">
+                                    </i></Link>
                             </div>
                         </ul>
                     </div>
