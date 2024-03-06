@@ -1,31 +1,18 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { setBanner } from '../Redux/banner/bannerSlice';
-import { urlEndPoints } from '../urlEndPoints';
-
+import { fetchBannerData } from '../Redux/SliceFiles/bannerSlice.js'
 
 function Contact() {
-    const { banner } = useSelector(state => state.banner)
-    console.log('banner: ', banner);
-    const dispatch = useDispatch()
+    const { data: banner } = useSelector(state => state.banner);
+    console.log('banner data: ', banner);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(urlEndPoints.banner);
-                dispatch(setBanner(response.data));
-                console.log("contact ", response.data);
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        };
+        dispatch(fetchBannerData());
+    }, [dispatch]);
 
-        fetchData();
-    }, []);
     return (
         <div>
-
             <div className="video-box">
                 <div className="video-btn">
                     <button className="btn-toggle play" aria-label="Pause the video">
@@ -46,7 +33,7 @@ function Contact() {
                     <div className="desc en">
 
                         <div dangerouslySetInnerHTML={{ __html: banner?.[0]?.body }}></div>
-                        {/* <div>{banner?.video}</div> */}
+                        <div>{banner?.video}</div>
 
 
                     </div>

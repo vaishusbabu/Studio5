@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchMachineData } from '../Redux/SliceFiles/machineSlice.js'
 
 function Machines() {
-    const [machine, setMachines] = useState(['']);
-    const baseURL = "https://studio5drupaldev.applab.qa/";
+
+    const baseURL = "https://www.studio5.qa/drupal-app/";
+    const { data: machine } = useSelector(state => state.machine);
+    console.log('banner data: ', machine);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/get_machines?page=0`)
-            .then((res) => res.json())
-            .then((data) => {
-                setMachines(data);
-                console.log("machines", data)
-            })
-    }, [])
-
+        dispatch(fetchMachineData());
+    }, [dispatch]);
 
     return (
         <div>
@@ -84,6 +83,7 @@ function Machines() {
                                 <figure className="machine-item-figure">
                                     <img
                                         src={`${baseURL + item.field_machines_image_1}`}
+
                                         // src="https://studio5drupaldev.applab.qa//sites/default/files/2020-03/index_0.jpg"
                                         alt="machine img"
                                     />

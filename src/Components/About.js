@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Topline from './Topline';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAboutData } from '../Redux/SliceFiles/aboutSlice';
 
 
 function About() {
-    const [about, setAbout] = useState("");
+    const { data: about } = useSelector(state => state.about);
+    console.log('about data: ', about);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/about_page`)
-            .then((res) => res.json())
-            .then((data) => {
-                setAbout(data);
-                console.log("about contents", data)
-            })
-    }, [])
+        dispatch(fetchAboutData());
+    }, [dispatch]);
+
     return (
         <div>
             <div id="main-container">

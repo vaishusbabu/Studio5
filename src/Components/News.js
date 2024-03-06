@@ -1,46 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { fetchFoodData } from '../Redux/SliceFiles/newsSlice';
+import { fetchGalleryData } from "../Redux/SliceFiles/gallerySlice";
+import { fetchVideoData } from "../Redux/SliceFiles/videoSlice";
+import { useDispatch, useSelector } from 'react-redux';
 
 function News() {
-  const [food, setFood] = useState("");
-  const [video, setVideo] = useState("");
-  const [gallery, setGallery] = useState("");
+  const { data: food } = useSelector(state => state.food);
+  const { data: gallery } = useSelector(state => state.gallery);
+  const { data: video } = useSelector(state => state.video);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFoodData());
+    dispatch(fetchGalleryData());
+    dispatch(fetchVideoData());
+  }, [dispatch]);
+
   const { id } = useParams();
-  useEffect(() => {
-    fetch(
-      `https://www.studio5.qa/drupal-app/api/featured-news-article?_format=json`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setFood(data);
-        console.log("food", data);
-      });
-  }, []);
-  useEffect(() => {
-    fetch(
-      `https://www.studio5.qa/drupal-app/api/featured-news-gallery?_format=json`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setGallery(data);
-        console.log("gallery", data);
-      });
-  }, []);
-  useEffect(() => {
-    fetch(
-      `https://www.studio5.qa/drupal-app/api/featured-news-video?_format=json`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setVideo(data);
-        console.log("video", data);
-      });
-  }, []);
+
   return (
     <div>
       <div className="news-wrap">
         <div className="container">
-          <h2 id="news-media" className="line">
+          <h2 id="news-media"
+            className="line">
             News &amp; Media
             <span className="grey-square-rotate" />
           </h2>
@@ -63,13 +47,19 @@ function News() {
                       />
                     </div>
                     <div className="homeNewsText2">
-                      <div className="category-wrap">{food[0].category}</div>
-                      <div className="desc"></div>
+                      <div className="category-wrap">
+                        {food[0].category}
+                      </div>
+                      <div className="desc">
+                      </div>
                       <p
                         className="date-wrap"
-                        aria-label='Published <time datetime="2023-12-19T13:13:52+00:00" class="datetime">19 December 2023</time>'
+                        aria-label='Published
+                        <time datetime="2023-12-19T13:13:52+00:00" class="datetime">19 December 2023
+                        </time>'
                         dangerouslySetInnerHTML={{ __html: food[0].date }}
-                      ></p>
+                      >
+                      </p>
                     </div>
                   </div>
                 )}

@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchEquipmentData } from '../Redux/SliceFiles/equipmentSlice'
 
 function Equipments() {
 
-    const [equipment, setEquipment] = useState({})
+    const { data: equipment } = useSelector(state => state.equipment);
+    console.log('equipment data: ', equipment);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/get_equipment_used?page=0`)
-            .then((res) => res.json())
-            .then((data) => {
-                setEquipment(data);
-                console.log("equipment", data)
-            })
-
-    }, [])
+        dispatch(fetchEquipmentData());
+    }, [dispatch]);
 
     return (
         <div>
@@ -82,7 +80,7 @@ function Equipments() {
                                 <div className="machine-item small">
                                     <figure className="machine-item-figure small">
                                         <img
-                                            src="https://studio5drupaldev.applab.qa//sites/default/files/2020-03/announcements-img1.dabf8003_4.jpg"
+                                            src="https://www.studio5.qa/drupal-app//sites/default/files/2020-03/announcements-img1.dabf8003_4.jpg"
                                             alt="Coding 101 image"
                                         />
                                     </figure>

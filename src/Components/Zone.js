@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { fetchZoneData } from '../Redux/SliceFiles/zoneSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 function Zone() {
+    const { data: zone } = useSelector(state => state.zone);
+    console.log('zone data: ', zone);
+    const dispatch = useDispatch();
 
-    const [zone, setZone] = useState("");
     useEffect(() => {
+        dispatch(fetchZoneData());
+    }, [dispatch]);
 
-        fetch(`https://www.studio5.qa/drupal-app/api/zones?_format=json`)
-            .then((res) => res.json())
-            .then((data) => {
-                setZone(data);
-                console.log("Zone", data);
-            });
-    }, [])
 
     return (
         <div>

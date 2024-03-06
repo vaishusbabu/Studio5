@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchMachineViewData } from '../Redux/SliceFiles/machineViewSlice.js'
 function Machine_View() {
 
-    const [view, setView] = useState([]);
+
     const { id } = useParams();
     console.log("id", id)
 
-    const baseURL = "https://studio5drupaldev.applab.qa/";
+    const baseURL = "https://www.studio5.qa/drupal-app/";
+    const { data: machineview } = useSelector(state => state.machineview);
+    console.log('machine data: ', machineview);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/machine_details/701`)
-            .then((res) => res.json())
-            .then((data) => {
-                setView(data);
-                console.log("Machine data", data)
+        dispatch(fetchMachineViewData());
+    }, [dispatch]);
 
-            })
-    }, [])
     return (
         <div>
             <div id="main-container">
@@ -75,7 +74,7 @@ function Machine_View() {
                         </ul>
                     </nav>
                 </div>
-                {view.map((item, index) => (
+                {machineview.map((item, index) => (
                     <div id="skipContent" className="container">
                         <h2 className="line">{item.title}</h2>
                         <div className="row machine-detail-holder">

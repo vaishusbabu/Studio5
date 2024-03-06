@@ -1,3 +1,172 @@
+
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+// Define the async function using createAsyncThunk
+const fetchData = createAsyncThunk('data/fetchData', async () => {
+    const response = await fetch('https://api.example.com/data');
+    return response.json();
+});
+
+// Define a slice to manage your state
+const dataSlice = createSlice({
+    name: 'data',
+    initialState: {
+        data: [],
+        status: 'idle',
+        error: null,
+    },
+    reducers: {
+        // Additional reducers can go here
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchData.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchData.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.data = action.payload;
+            })
+            .addCase(fetchData.rejected, (state, action) => {
+                state.status = 'idle';
+                state.error = action.error.message;
+            });
+    },
+});
+
+// Export the reducer and actions
+export const { /* your other actions */ } = dataSlice.actions;
+
+export default dataSlice.reducer;
+
+
+// import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchData } from './dataSlice';
+
+// const MyComponent = () => {
+//     const dispatch = useDispatch();
+//     const data = useSelector((state) => state.data.data);
+//     const status = useSelector((state) => state.data.status);
+
+//     useEffect(() => {
+//         dispatch(fetchData());
+//     }, [dispatch]);
+
+//     return (
+//         <div>
+//             {status === 'loading' && <p>Loading...</p>}
+//             {status === 'idle' && <p>Data loaded: {JSON.stringify(data)}</p>}
+//             {status === 'error' && <p>Error: Unable to load data</p>}
+//         </div>
+//     );
+// };
+
+// export default MyComponent;
+
+
+// import { createSlice } from '@reduxjs/toolkit';
+
+// const initialState = {
+//   form: {
+//     name: '',
+//     email: '',
+//     mobile: '',
+//     message: '',
+//     agree: ''
+//   },
+//   address: []
+// };
+
+// const formSlice = createSlice({
+//   name: 'form',
+//   initialState,
+//   reducers: {
+//     setAddress(state, action) {
+//       state.address = action.payload;
+//     },
+//     updateForm(state, action) {
+//       const { name, value } = action.payload;
+//       state.form[name] = value;
+//     }
+//   }
+// });
+
+// export const { setAddress, updateForm } = formSlice.actions;
+
+// export default formSlice.reducer;
+
+// // src/app/store.js
+// import { configureStore } from '@reduxjs/toolkit';
+// import formReducer from '../features/formSlice';
+
+// const store = configureStore({
+//   reducer: {
+//     form: formReducer
+//   }
+// });
+
+// export default store;
+
+
+// // YourComponent.js
+// import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { setAddress, updateForm } from '../features/formSlice';
+
+// const YourComponent = () => {
+//   const dispatch = useDispatch();
+//   const { form, address } = useSelector((state) => state.form);
+
+//   useEffect(() => {
+//     fetch('https://studio5drupaldev.applab.qa/api/contact_us_page')
+//       .then((res) => res.json())
+//       .then((data) => {
+//         dispatch(setAddress(data));
+//         console.log('address', data);
+//       });
+//   }, [dispatch]);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     dispatch(updateForm({ name, value }));
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log('form', form);
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       {/* Your form inputs */}
+//     </form>
+//   );
+// };
+
+// export default YourComponent;
+
+// // src/index.js
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { Provider } from 'react-redux';
+// import store from './app/store';
+// import App from './App';
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// );
+
+
+
+
+
+
+
+
 // function Guardian() {
 //     const [formData, setFormData] = useState({
 //       parentName: "",
@@ -543,7 +712,130 @@
 // }
 
 // export default Test;
+// src/features/formSlice.js
+// import { createSlice } from '@reduxjs/toolkit';
 
+// const initialState = {
+//   form: {
+//     name: '',
+//     email: '',
+//     mobile: '',
+//     message: '',
+//     agree: ''
+//   },
+//   address: []
+// };
+
+// const formSlice = createSlice({
+//   name: 'form',
+//   initialState,
+//   reducers: {
+//     setAddress(state, action) {
+//       state.address = action.payload;
+//     },
+//     updateForm(state, action) {
+//       const { name, value } = action.payload;
+//       state.form[name] = value;
+//     }
+//   }
+// });
+
+// export const { setAddress, updateForm } = formSlice.actions;
+
+// export default formSlice.reducer;
+
+// // src/app/store.js
+// import { configureStore } from '@reduxjs/toolkit';
+// import formReducer from '../features/formSlice';
+
+// const store = configureStore({
+//   reducer: {
+//     form: formReducer
+//   }
+// });
+
+// export default store;
+
+
+// // YourComponent.js
+// import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { setAddress, updateForm } from '../features/formSlice';
+
+// const YourComponent = () => {
+//   const dispatch = useDispatch();
+//   const { form, address } = useSelector((state) => state.form);
+
+//   useEffect(() => {
+//     fetch('https://studio5drupaldev.applab.qa/api/contact_us_page')
+//       .then((res) => res.json())
+//       .then((data) => {
+//         dispatch(setAddress(data));
+//         console.log('address', data);
+//       });
+//   }, [dispatch]);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     dispatch(updateForm({ name, value }));
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log('form', form);
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       {/* Your form inputs */}
+//     </form>
+//   );
+// };
+
+// export default YourComponent;
+
+// // src/index.js
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { Provider } from 'react-redux';
+// import store from './app/store';
+// import App from './App';
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// );
+
+
+
+
+useEffect(() => {
+    (async () => {
+        const bannerData = await fetchData(endpointURL.banner);
+        setBanner(bannerData);
+        console.log("bannerData:", bannerData);
+        const homeAboutData = await fetchData(endpointURL.homeAbout);
+        setHomeAbout(homeAboutData);
+        console.log("about:", homeAboutData);
+        const zoneData = await fetchData(endpointURL.zone);
+        setZone(zoneData);
+        console.log("zone:", zoneData);
+        const activitiesData = await fetchData(endpointURL.featured_activities);
+        setActivitiesState(activitiesData);
+        console.log("activities state:", activitiesState);
+        const newsArticleData = await fetchData(endpointURL.newsArticle);
+        setNewsArticleState(newsArticleData);
+        console.log("news article:", newsArticleState);
+        const newsVideoData = await fetchData(endpointURL.newsVideo);
+        setNewsVideoState(newsVideoData);
+        console.log(newsVideoState);
+        const newsGalleryData = await fetchData(endpointURL.newsgallery);
+        setNewsGalleryState(newsGalleryData);
+        console.log("news gallery state:", newsGalleryState);
+    })();
+}, []);
 
 function Guardian() {
     const [formData, setFormData] = useState({

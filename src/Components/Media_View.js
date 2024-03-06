@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import MediaImg from './MediaImg';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchMediaViewData } from '../Redux/SliceFiles/mediaviewSlice.js'
 
 function Media_View() {
 
     const { id } = useParams();
     console.log("id", id);
 
-
-    const [media, setMedia] = useState([]);
+    const { data: media } = useSelector(state => state.media);
+    console.log('media data: ', media);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/media-details/${id}?_format=json`)
-            .then((res) => res.json())
-            .then((data) => {
-                setMedia(data);
-                console.log("media", data)
-            })
-    }, [])
+        dispatch(fetchMediaViewData());
+    }, [dispatch]);
 
     return (
         <div>

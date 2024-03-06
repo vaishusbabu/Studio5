@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAddressData } from '../Redux/SliceFiles/addressSlice';
 
 function ContactUs() {
 
@@ -8,19 +10,17 @@ function ContactUs() {
     mobile: "",
     message: "",
     agree: ""
-
   })
 
-  const [address, setAddress] = useState([]);
-  // const [policy, setPolicy] = useState([]);
+  const { data: address } = useSelector(state => state.address);
+  console.log('address data: ', address);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch(`https://studio5drupaldev.applab.qa/api/contact_us_page`)
-      .then((res) => res.json())
-      .then((data) => {
-        setAddress(data);
-        console.log("address", data)
-      });
-  }, [])
+    dispatch(fetchAddressData());
+  }, [dispatch]);
+
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
