@@ -1,23 +1,20 @@
-
-
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchEventData } from "../Redux/SliceFiles/eventSlice";
 
 function EventDetails() {
+
     const { id } = useParams();
-    console.log("id", id)
+    console.log("id", id);
 
-    const [events, setEvents] = useState([]);
+    const { data: events } = useSelector(state => state.events);
+    console.log('events data : ', events);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/activity-details/${id}?_format=json`)
-            .then((res) => res.json())
-            .then((data) => {
-                setEvents(data);
-                console.log('events', data)
-            })
-
-    }, [])
+        dispatch(fetchEventData(id));
+    }, []);
     return (
         <div>
             <div id="main-content" className="activity-details">

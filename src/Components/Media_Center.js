@@ -18,19 +18,16 @@ function Media_Center() {
     useEffect(() => {
         dispatch(fetchMediaNewsData());
         dispatch(fetchFilterData());
-    }, [dispatch]);
-
-    const handlePageClick = (selectedPage) => {
-        setCurrentPage(selectedPage);
-    };
-
+    }, []);
 
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const itemsPerPage = 10;
+
     useEffect(() => {
         fetchData();
     }, [currentPage, medianews]);
+
     const fetchData = async () => {
         try {
             // const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
@@ -59,6 +56,10 @@ function Media_Center() {
         }
     };
 
+
+    const handlePageClick = (selectedPage) => {
+        setCurrentPage(selectedPage);
+    };
     return (
         <div>
             <div id="main-content" className="media-center-page">

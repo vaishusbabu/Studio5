@@ -13,6 +13,9 @@ import machineViewReducer from './SliceFiles/machineViewSlice'
 import medianewsReducer from './SliceFiles/mediaNewsSlice';
 import filterReducer from './SliceFiles/FilterSlice';
 import mediaviewReducer from './SliceFiles/mediaviewSlice'
+import eventsReducer from './SliceFiles/eventSlice';
+import activityReducer from './SliceFiles/activitySlice';
+
 
 export default configureStore({
     reducer: {
@@ -30,6 +33,9 @@ export default configureStore({
         medianews: medianewsReducer,
         filter: filterReducer,
         media: mediaviewReducer,
+        events: eventsReducer,
+        activity: activityReducer,
+
 
 
     }

@@ -14,9 +14,8 @@ export const urlEndPoints = {
     machineview: "https://www.studio5.qa/drupal-app/machine_details/701",
     medianews: "https://www.studio5.qa/drupal-app/api/media-centre?_format=json",
     filter: "https://www.studio5.qa/drupal-app/api/filter/en?_format=json",
-    media: `https://www.studio5.qa/drupal-app/api/media-details/56624?_format=json`,
-    // media: `https://www.studio5.qa/drupal-app/api/media-details/${id}?_format=json`,
-
-
-
+    media: id => `https://www.studio5.qa/drupal-app/api/media-details/${id}?_format=json`,
+    events: id => `https://www.studio5.qa/drupal-app/api/activity-details/${id}?_format=json`,
+    // activity: "https://www.studio5.qa/drupal-app/api/activicties?_format=json",
+    activity: "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
 }

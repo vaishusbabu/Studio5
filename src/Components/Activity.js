@@ -1,53 +1,74 @@
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import moment from 'moment';
-import Topline from './Topline';
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 import ReactPaginate from 'react-paginate';
+import PageTitle from "./PageTitle";
+import BreadCRum from "./BreadCRum";
+import Topline from './Topline';
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchActivityData } from "../Redux/SliceFiles/activitySlice";
+
 
 function Activity() {
 
-    const [activity, setActiviity] = useState('');      //activitylist-api fetch
+
+    const { data: activity } = useSelector(state => state.activity);
+    // const { data: actfilter } = useSelector(state => state.actfilter);
+
+
+    console.log('activity data : ', activity);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchActivityData());
+
+    }, []);
+
+    // const [activity, setActiviity] = useState('');      //activitylist-api fetch
     const [startDate, setStartDate] = useState();
     const [title, setTitle] = useState('');
     const [select, setSelect] = useState('');
     const [selectedActivity, setSelectedActivity] = useState("All");
+
+
     const [currentPage, setCurrentPage] = useState(0);
-
     const [totalPages, setTotalPages] = useState(0);
-
     const itemsPerPage = 10;
-    useEffect(() => {
-        fetchData();
-    }, [currentPage, selectedActivity]);
 
-    const fetchData = async () => {
-        try {
-            const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
-            const token = tokenResponse.data;
+    // useEffect(() => {
+    //     fetchData();
+    // }, [currentPage, selectedActivity]);
 
-            const data1 = {
-                lang: "en",
-                page: currentPage + 1
-            };
+    // const fetchData = async () => {
+    //     try {
+    //         const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
+    //         const token = tokenResponse.data;
 
-            const response = await axios.post(
-                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-                data1,
-                {
-                    headers: {
-                        'X-Csrf-Token': token
-                    }
-                }
-            );
-            setActiviity(response.data);
-            setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
+    //         const data1 = {
+    //             lang: "en",
+    //             page: currentPage + 1
+    //         };
+
+    //         const response = await axios.post(
+    //             "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+    //             data1,
+    //             {
+    //                 headers: {
+    //                     'X-Csrf-Token': token
+    //                 }
+    //             }
+    //         );
+    //         // setActiviity(response.data);
+    //         setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
+    //     } catch (error) {
+    //         console.error("Error fetching data:", error);
+    //     }
+    // };
 
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage);
@@ -67,128 +88,46 @@ function Activity() {
         setStartDate('');
         setSelect('');
     }
-    useEffect(() => {
-        axios.get('https://studio5drupaldev.applab.qa/session/token')
-            .then((res) => {
-                console.log('res: ', res);
-                const token = res.data;
-                console.log('token: ', token);
-                axios.post(
-                    "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-
-                    {},
-                    {
-                        headers: {
-                            'X-Csrf-Token': `${res.data}`
-                        }
-                    }
-                )
-                    .then((res) => {
-                        setActiviity(res.data);
-                        console.log("activitylist", res.data);
-                    })
-                    .catch((error) => {
-                        console.error("Error fetching data:", error);
-                    });
-            })
-            .catch((error) => {
-                console.error("Error fetching token:", error);
-            });
-    }, []);
-
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
-            const token = tokenResponse.data;
+        dispatch(fetchActivityData({ currentPage, title, startDate, select }));
+        // try {
+        //     const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
+        //     const token = tokenResponse.data;
 
-            const data1 = {
-                lang: "en",
-                ...(title && { title: title }),
-                ...(startDate && { field_start_and_end_time_value: startDate }),
-                ...(select && { field_activity_category_target_id: select }),
+        //     const data1 = {
+        //         lang: "en",
+        //         ...(title && { title: title }),
+        //         ...(startDate && { field_start_and_end_time_value: startDate }),
+        //         ...(select && { field_activity_category_target_id: select }),
 
-            };
+        //     };
 
-            console.log('data : ', data1);
+        //     console.log('data : ', data1);
 
-            const response = await axios.post(
-                "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-                data1,
-                {
-                    headers: {
-                        'X-Csrf-Token': token
-                    }
-                }
-            );
-
-            setActiviity(response.data);
-            console.log("activitylist", response.data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
+        //     const response = await axios.post(
+        //         "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
+        //         data1,
+        //         {
+        //             headers: {
+        //                 'X-Csrf-Token': token
+        //             }
+        //         }
+        //     );
+        //     // setActiviity(response.data);
+        //     console.log("activitylist", response.data);
+        // } catch (error) {
+        //     console.error("Error fetching data:", error);
+        // }
     };
 
 
     return (
         <div id="main-content" className="activiti-list">
-            <div className="page-title en">
-                <div className="container">
-                    <div className="head-title">
-                        <div>
-                            <div className="share-page en">
-                                <h2>Share this page</h2>
-                                <a
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=http://51.136.51.121/en/activities&amp;src=sdkpreparse"
-                                    className="fb-xfbml-parse-ignore"
-                                >
-                                    <span>acebook</span>
-                                    <i aria-label="Facebook" className="fa fa-facebook">
-                                        &nbsp;
-                                    </i>
-                                </a>
-                                <a
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    href="http://twitter.com/share?text=Studio 5   Activities&amp;url=http://51.136.51.121/en/activities"
-                                >
-                                    <span>acebook</span>
-                                    <i aria-label="Twitter" className="fa-brands fa-x-twitter">
-                                        &nbsp;
-                                    </i>
-                                </a>
-                            </div>
-                        </div>
-                        <h2
-                            id="pageHeading"
-                            role="heading"
-                            tabIndex={0}
-                            aria-label="page heading Activities"
-                        >
-                            Activities
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div className="container">
-                <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
-                    <ul>
-                        <li className="breadcrumb-item">
-                            <Link to="/">Home</Link>{" "}
-                        </li>
-                        <li className="breadcrumb-item">
-                            <Link tabIndex={0} aria-current="page" to="/activities">
-                                <span>Activities</span>
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <PageTitle />
+            <BreadCRum />
             <span className="multi-square one">
                 <b>
                     <i />
@@ -317,7 +256,7 @@ function Activity() {
                         <ul className="activities-list" aria-label="activities">
                             {
                                 activity && activity.results
-                                    .filter(activity => selectedActivity === "All" || activity.field_event_type === selectedActivity)
+                                    ?.filter(activity => selectedActivity === "All" || activity.field_event_type === selectedActivity)
                                     .map((item, index) => (
                                         <div listItem={item} key={index} >
                                             <li className="newactivities test3">
@@ -393,12 +332,7 @@ function Activity() {
                                     renderOnZeroPageCount={null}
                                 />
                             </li>
-
-
                         </ul>
-
-
-
                     </div>
                     <div className="sparkles">
                         <span className="orange-circle" />
@@ -420,6 +354,9 @@ function Activity() {
 }
 
 export default Activity
+
+
+
 
 
 

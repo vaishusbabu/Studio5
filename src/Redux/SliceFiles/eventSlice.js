@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { urlEndPoints } from "../../urlEndPoints";
 import axios from 'axios'
 
-export const fetchMediaViewData = createAsyncThunk('SliceFile/fetchMediaViewData',
+export const fetchEventData = createAsyncThunk('SliceFile/fetchEventData',
     async (id) => {
         try {
-            const response = await axios.get(urlEndPoints.media(id));
+            const response = await axios.get(urlEndPoints.events(id));
             return response.data;
         } catch (error) {
             console.error('Error Occured', error);
@@ -14,37 +14,37 @@ export const fetchMediaViewData = createAsyncThunk('SliceFile/fetchMediaViewData
     }
 );
 
-const mediaviewSlice = createSlice({
-    name: 'media',
+const eventsSlice = createSlice({
+    name: 'events',
     initialState: {
         data: [],
         loading: false,
         error: null,
     },
     reducers: {
-        setMeidaView: (state, action) => {
+        setEvents: (state, action) => {
             state.data = action.payload;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchMediaViewData.pending, (state) => {
+            .addCase(fetchEventData.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchMediaViewData.fulfilled, (state, action) => {
+            .addCase(fetchEventData.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
             })
-            .addCase(fetchMediaViewData.rejected, (state, action) => {
+            .addCase(fetchEventData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });
     },
 });
 
-export const { setMeidaView } = mediaviewSlice.actions;
+export const { setEvents } = eventsSlice.actions;
 
-export default mediaviewSlice.reducer;
+export default eventsSlice.reducer;
 
 
