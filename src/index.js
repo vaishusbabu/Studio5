@@ -4,15 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './Redux/store';
-import { Provider } from "react-redux"
+import I18n from 'redux-i18n';
+import { Provider } from "react-redux";
+import I18n from 'redux-i18n/immutable';
+
+import { translations } from './translations'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>
+    <I18n translations={translations} initialLang="de" fallbackLang="en">
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </I18n>
+  </Provider >
 );
 
 // If you want to start measuring performance in your app, pass a function
