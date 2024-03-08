@@ -4,7 +4,7 @@ import { fetchBannerData } from '../Redux/SliceFiles/bannerSlice.js'
 
 function Contact() {
     const { data: banner } = useSelector(state => state.banner);
-    console.log('banner data: ', banner);
+    console.log('banner data fetchBannerData: ', banner);
     const dispatch = useDispatch();
 
     useEffect(() => {

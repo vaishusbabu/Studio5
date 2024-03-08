@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import Topline from './Topline';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAboutData } from '../Redux/SliceFiles/aboutSlice';
-
+import { useTranslation } from 'react-i18next';
 
 function About() {
+    const { t } = useTranslation();
+    console.log("t: ",t);
     const { data: about } = useSelector(state => state.about);
-    console.log('about data: ', about);
+    console.log('about data:', about);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -51,7 +53,7 @@ function About() {
                                 tabIndex={0}
                                 aria-label="page heading About us"
                             >
-                                About us
+                                {t('about')}
                             </h2>
                         </div>
                     </div>

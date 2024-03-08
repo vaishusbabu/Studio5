@@ -35,14 +35,16 @@ import EventDetails from './Components/EventDetails';
 
 
 
+
+
 function App() {
+ 
+
   return (
     <div>
       <div className="clearfix"></div>
       <div id="main-content">
         <div className="app-slider stickySocial">
-
-
           <BrowserRouter>
             <Header />
             <Routes>
@@ -67,7 +69,7 @@ function App() {
               <Route path='/gallery' element={<Gallery />} />
               <Route path='/media_filter/:id' element={<MediaFilter />} />
               {/* connecting pages using useParams */}
-              <Route path='/event_details/:id' element={<EventDetails/>} />
+              <Route path='/event_details/:id' element={<EventDetails />} />
               <Route path='/media_view/:id' element={<Media_View />} />
               <Route path='/machine_view/:id' element={<Machine_View />} />
               <Route path='/media_img/:id' element={<MediaImg />} />
