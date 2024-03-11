@@ -40,16 +40,14 @@ function App() {
       <div id="main-content">
         <div className="app-slider stickySocial">
 
-          <BrowserRouter>
+          <BrowserRouter basename='en'>
             <Header currentLanguage={currentLanguage} />
 
             <Routes>
-
-
-              <Route path={`/${currentLanguage}/`} element={<HomeNavbar />} />
-              <Route path={`/${currentLanguage}/home`} element={<HomeNavbar />} />
+              <Route path='/' element={<HomeNavbar />} />
+              <Route path='/home' element={<HomeNavbar />} />
               <Route path='/subscribe' element={<Subscribe />} />
-              <Route path={`/${currentLanguage}/about`} element={<HomeNavbar />} />
+              <Route path='/about' element={<HomeNavbar />} />
               <Route path='/activities' element={<Activity />} />
               <Route path='/media_center' element={<Media_Center />} />
               <Route path='/testvideo' element={<TestVideo />} />
