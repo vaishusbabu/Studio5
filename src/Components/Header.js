@@ -1,12 +1,33 @@
-import React from 'react'
-// import NavLink from 'react-bootstrap/esm/NavLink';
+import React, { useEffect } from 'react';
 import logoMCIT from '../assets/images/logoMCIT.png';
 import logoSTUDIO5 from '../assets/images/logoSTUDIO5.svg';
-
 import { NavLink } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 function Header() {
+    const { t } = useTranslation();
+
+    const handleLanguage = () => {
+        const currentLanguage = localStorage.getItem('language') || 'en';
+        console.log('currentLanguage: ', currentLanguage);
+
+        if (currentLanguage === 'en') {
+            localStorage.setItem('language', 'ar');
+        } else {
+            localStorage.setItem('language', 'en');
+        }
+        i18n.changeLanguage(localStorage.getItem('language'));
+        console.log('currentLanguage: ', currentLanguage);
+    }
+
+    useEffect(() => {
+        const currentLanguage = localStorage.getItem('language');
+        if (!currentLanguage) {
+            localStorage.setItem('language', 'en');
+        }
+    }, []);
+
     return (
         <div> <header id="main-header" className="navbar en">
             <div id="menuPopup" className="modal menuHolder" tabindex={0}>
@@ -79,48 +100,44 @@ function Header() {
                     <li>
                         <NavLink aria-label="Home" activeclassname="active" classNamelass="sidenav-close active" to="/"
                             aria-current="page">
-                            Home
+                            {t("home")}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink aria-label="About us" activeclassname="active" className="sidenav-close" to="/about">
-                            About us
+                            {t("about")}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink aria-label="Activities" activeclassname="active" className="sidenav-close"
                             to="/activities">
-                            Activities
+                            {t("activities")}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink aria-label="Media Center" activeclassname="active" className="sidenav-close"
                             to="/media_center">
-                            Media Center
+                            {t("navmedia")}
                         </NavLink>
                     </li>
                     <li>
 
                         <NavLink aria-label="Machines" activeclassname="active" className="sidenav-close"
                             to="/machines">
-                            Machines
+                            {t("navmachine")}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink aria-label="Equipment" activeclassname="active" className="sidenav-close"
                             to="/equipment">
-                            Equipment
+                            {t("navequi")}
                         </NavLink>
                     </li>
                     <li className="contactPopover">
-                        {/* <NavLink aria-label="E  Contact us"
-                            activeclassname="active"
-                            className="sidenav-close"
-                            to="/contact_us">
-                            Contact us</NavLink> */}
+
                         <NavLink aria-label="Contact us" activeclassname="active" className="sidenav-close"
                             to="/contact_us">
-                            Contact us
+                            {t("navcontact")}
                         </NavLink>
                     </li>
                     <li className="dropdown">
@@ -130,7 +147,7 @@ function Header() {
                             className="sidenav-close get-started"
                             style={{ direction: "ltr" }}
                         >
-                            Login
+                            {t("navlogin")}
                             <i
                                 class="material-icons en"></i>
                         </NavLink>
@@ -139,10 +156,11 @@ function Header() {
                         <NavLink activeclassname=""
                             aria-label="language button to arabic"
                             className="sidenav-close nav-lang active"
-                            to="/english"
+                            to="/"
+                            onClick={handleLanguage}
                             style={{ fontFamily: "politicaextrabold" }}
                             aria-current="page">
-                            ع
+                            {localStorage.getItem('language') === 'en' ? 'ع' : 'En'}
                         </NavLink>
                     </li>
                 </ul>

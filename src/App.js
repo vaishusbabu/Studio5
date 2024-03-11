@@ -13,7 +13,6 @@ import Activity from './Components/Activity';
 import Media_Center from './Components/Media_Center';
 import Machines from './Components/Machines';
 import Equipments from './Components/Equipments';
-
 import ContactUs from './Components/ContactUs';
 import Login from './Components/Login';
 import RegisterHome from './Components/RegisterHome';
@@ -31,27 +30,26 @@ import MediaFilter from './Components/MediaFilter';
 import TestVideo from './Components/TestVideo';
 import EventDetails from './Components/EventDetails';
 
-
-
-
-
-
-
 function App() {
- 
+  const currentLanguage = localStorage.getItem('language') || 'en';
+  console.log('currentLanguage in app.js: ', currentLanguage);
 
   return (
     <div>
       <div className="clearfix"></div>
       <div id="main-content">
         <div className="app-slider stickySocial">
+
           <BrowserRouter>
-            <Header />
+            <Header currentLanguage={currentLanguage} />
+
             <Routes>
-              <Route path='/' element={<HomeNavbar />} />
-              <Route path='/home' element={<HomeNavbar />} />
+
+
+              <Route path={`/${currentLanguage}/`} element={<HomeNavbar />} />
+              <Route path={`/${currentLanguage}/home`} element={<HomeNavbar />} />
               <Route path='/subscribe' element={<Subscribe />} />
-              <Route path='/about' element={<About />} />
+              <Route path={`/${currentLanguage}/about`} element={<HomeNavbar />} />
               <Route path='/activities' element={<Activity />} />
               <Route path='/media_center' element={<Media_Center />} />
               <Route path='/testvideo' element={<TestVideo />} />
@@ -73,7 +71,6 @@ function App() {
               <Route path='/media_view/:id' element={<Media_View />} />
               <Route path='/machine_view/:id' element={<Machine_View />} />
               <Route path='/media_img/:id' element={<MediaImg />} />
-
             </Routes>
           </BrowserRouter>
           <Footer />
@@ -84,3 +81,5 @@ function App() {
 }
 
 export default App;
+
+

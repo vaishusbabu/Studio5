@@ -1,6 +1,8 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 function PageTitle() {
+    const { t } = useTranslation();
     return (
         <div>
             <div className="page-title en">
@@ -8,7 +10,7 @@ function PageTitle() {
                     <div className="head-title">
                         <div>
                             <div className="share-page en">
-                                <h2>Share this page</h2>
+                                <h2>{t("share")}</h2>
                                 <a
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -38,7 +40,7 @@ function PageTitle() {
                             tabIndex={0}
                             aria-label="page heading Activities"
                         >
-                            Activities
+                            {t("activities")}
                         </h2>
                     </div>
                 </div>

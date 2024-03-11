@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchEquipmentData } from '../Redux/SliceFiles/equipmentSlice'
+import { fetchEquipmentData } from '../Redux/SliceFiles/equipmentSlice';
+import { useTranslation } from 'react-i18next';
+
 
 function Equipments() {
-
+    const { t } = useTranslation();
     const { data: equipment } = useSelector(state => state.equipment);
     console.log('equipment data: ', equipment);
     const dispatch = useDispatch();
@@ -21,7 +23,7 @@ function Equipments() {
                         <div className="head-title">
                             <div>
                                 <div className="share-page en">
-                                    <h2>Share this page</h2>
+                                    <h2>{t("share")}</h2>
                                     <a
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -51,7 +53,7 @@ function Equipments() {
                                 tabIndex={0}
                                 aria-label="page heading Equipment"
                             >
-                                Equipment
+                                {t("navequi")}
                             </h2>
                         </div>
                     </div>
@@ -60,18 +62,18 @@ function Equipments() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <Link to="/">Home</Link>
+                                <Link to="/">{t("home")}</Link>
                             </li>
                             <li className="breadcrumb-item">
                                 <Link tabIndex={0} aria-current="page" to="/equipment">
-                                    <span>Equipment Used</span>
+                                    <span>{t("eqused")}</span>
                                 </Link>
                             </li>
                         </ul>
                     </nav>
                 </div>
                 <div className="container">
-                    <h2 className="line">Equipment</h2>
+                    <h2 className="line">   {t("navequi")}</h2>
                     <div className="row machine-item-small-holder">
                         <div className="col m12 l6">
                             {equipment && equipment.results && equipment.results.map((item, index) => (

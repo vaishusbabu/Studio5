@@ -5,7 +5,7 @@ import axios from 'axios'
 export const fetchBannerData = createAsyncThunk('SliceFile/fetchBannerData',
     async () => {
         try {
-            const response = await axios.get(urlEndPoints.medianews);
+            const response = await axios.get(urlEndPoints.banner);
             return response.data;
         } catch (error) {
             console.error('Error Occured', error);

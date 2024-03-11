@@ -37,6 +37,5 @@ export default configureStore({
         activity: activityReducer,
 
 
-
     }
 })

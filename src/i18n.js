@@ -4,6 +4,8 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import ar from './locales/ar.json'
 import en from './locales/en.json'
+
+
 const resources = {
     en: {
         translation: en
@@ -13,16 +15,16 @@ const resources = {
     }
 };
 
-const initialLanguage = "ar"
+
 
 i18n
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
         resources,
-        lng: initialLanguage,
+        lng: localStorage.getItem('language') || 'en',
         fallback: 'en',
-        debug:true,
+        debug: true,
         interpolation: {
             escapeValue: false
         }

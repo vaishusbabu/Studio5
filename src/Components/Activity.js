@@ -3,77 +3,38 @@ import DatePicker from "react-datepicker";
 import moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
-
 import ReactPaginate from 'react-paginate';
 import PageTitle from "./PageTitle";
 import BreadCRum from "./BreadCRum";
 import Topline from './Topline';
-
 import { useDispatch, useSelector } from "react-redux";
 import { fetchActivityData } from "../Redux/SliceFiles/activitySlice";
+import { useTranslation } from "react-i18next";
 
 
 function Activity() {
 
-
-    const { data: activity } = useSelector(state => state.activity);
-    // const { data: actfilter } = useSelector(state => state.actfilter);
-
-
+    const { t } = useTranslation();
+    const { data: activity, totalPages } = useSelector(state => state.activity);
     console.log('activity data : ', activity);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchActivityData());
-
-    }, []);
-
-    // const [activity, setActiviity] = useState('');      //activitylist-api fetch
     const [startDate, setStartDate] = useState();
     const [title, setTitle] = useState('');
     const [select, setSelect] = useState('');
     const [selectedActivity, setSelectedActivity] = useState("All");
-
-
     const [currentPage, setCurrentPage] = useState(0);
-    const [totalPages, setTotalPages] = useState(0);
-    const itemsPerPage = 10;
 
-    // useEffect(() => {
-    //     fetchData();
-    // }, [currentPage, selectedActivity]);
 
-    // const fetchData = async () => {
-    //     try {
-    //         const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
-    //         const token = tokenResponse.data;
+    useEffect(() => {
+        dispatch(fetchActivityData({ currentPage, title, startDate, select }));
+    }, [currentPage, title, startDate, select]);
 
-    //         const data1 = {
-    //             lang: "en",
-    //             page: currentPage + 1
-    //         };
-
-    //         const response = await axios.post(
-    //             "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-    //             data1,
-    //             {
-    //                 headers: {
-    //                     'X-Csrf-Token': token
-    //                 }
-    //             }
-    //         );
-    //         // setActiviity(response.data);
-    //         setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
-    //     } catch (error) {
-    //         console.error("Error fetching data:", error);
-    //     }
-    // };
 
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage);
+        dispatch(fetchActivityData({ currentPage: selectedPage, title, startDate, select }));
     };
-
 
     const titleChange = (e) => {
         setTitle(e.target.value);
@@ -91,38 +52,14 @@ function Activity() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setCurrentPage(0);
         dispatch(fetchActivityData({ currentPage, title, startDate, select }));
-        // try {
-        //     const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
-        //     const token = tokenResponse.data;
-
-        //     const data1 = {
-        //         lang: "en",
-        //         ...(title && { title: title }),
-        //         ...(startDate && { field_start_and_end_time_value: startDate }),
-        //         ...(select && { field_activity_category_target_id: select }),
-
-        //     };
-
-        //     console.log('data : ', data1);
-
-        //     const response = await axios.post(
-        //         "https://studio5drupaldev.applab.qa/api/activicties?_format=json",
-        //         data1,
-        //         {
-        //             headers: {
-        //                 'X-Csrf-Token': token
-        //             }
-        //         }
-        //     );
-        //     // setActiviity(response.data);
-        //     console.log("activitylist", response.data);
-        // } catch (error) {
-        //     console.error("Error fetching data:", error);
-        // }
     };
-
+    const handleActivitySelect = (activityType) => {
+        setSelectedActivity(activityType);
+        setCurrentPage(0);
+        setSelect(activityType);
+    };
 
     return (
         <div id="main-content" className="activiti-list">
@@ -153,7 +90,7 @@ function Activity() {
                                             onChange={titleChange}
                                         />
                                         <label htmlFor="title" style={{ left: 0, right: "auto" }}>
-                                            Title
+                                            {t("title")}
                                         </label>
                                         <span className="helper-text" />
                                     </div>
@@ -165,7 +102,7 @@ function Activity() {
                                             className="active"
                                             style={{ left: 0, right: "auto" }}
                                         >
-                                            Activity type
+                                            {t("activitytype")}
                                         </label>
                                         <select
                                             className="browser-default"
@@ -175,11 +112,11 @@ function Activity() {
                                             value={select}
                                         >
                                             <option value="" disabled="">
-                                                Select activity type
+                                                {t("selectact")}
                                             </option>
-                                            <option value="All">All</option>
-                                            <option value={77}>Public activity</option>
-                                            <option value={78}>School activity</option>
+                                            <option value="All">{t("all")}</option>
+                                            <option value={77}>{t("public")}</option>
+                                            <option value={78}>{t("school")}</option>
                                         </select>
                                         <span className="helper-text" />
                                     </div>
@@ -208,7 +145,7 @@ function Activity() {
                                             </div>
                                         </div>
                                         <label htmlFor="date" style={{ left: 0, right: "auto" }}>
-                                            Date
+                                            {t("date")}
                                         </label>
                                         <span className="helper-text" />
                                     </div>
@@ -220,7 +157,7 @@ function Activity() {
                                         aria-label="Activity search"
 
                                     >
-                                        Search <i className="material-icons en"></i>
+                                        {t("search")} <i className="material-icons en"></i>
                                     </button>
                                     <button
                                         type="button"
@@ -228,7 +165,7 @@ function Activity() {
                                         className="btn noWidth blue-btn waves-effect waves-light"
                                         onClick={handleClear}
                                     >
-                                        Clear
+                                        {t("clear")}
                                     </button>
                                 </div>
                             </div>
@@ -238,16 +175,16 @@ function Activity() {
                             <div className="col s7 result-status" />
                             <div className="col s5 result-type">
                                 <div className="input-field col s12 mobileSelect filter-select en">
-                                    <label htmlFor="result-type">Select Activity</label>
+                                    <label htmlFor="result-type">{t("selectActivity")}</label>
                                     <select id="result-type" className="browser-default" tabIndex={0} value={selectedActivity} onChange={(e) => {
                                         setSelectedActivity(e.target.value)
                                     }}>
-                                        <option value="All">All</option>
-                                        <option value="competition">Competitions</option>
-                                        <option value="session">Workshops</option>
-                                        <option value="event">Events</option>
-                                        <option value="challenge">Challenges</option>
-                                        <option value="project">Projects</option>
+                                        <option value="All">{t("all")}</option>
+                                        <option value="competition">{t("competition")}</option>
+                                        <option value="session">{t("workshop")}</option>
+                                        <option value="event">{t("Events")}</option>
+                                        <option value="challenge">{t("challenge")}</option>
+                                        <option value="project">{t("project")}</option>
                                     </select>
                                 </div>
                             </div>
@@ -258,7 +195,7 @@ function Activity() {
                                 activity && activity.results
                                     ?.filter(activity => selectedActivity === "All" || activity.field_event_type === selectedActivity)
                                     .map((item, index) => (
-                                        <div listItem={item} key={index} >
+                                        <li key={index}>
                                             <li className="newactivities test3">
                                                 <div className="figHolderNA">
                                                     <img
@@ -281,7 +218,7 @@ function Activity() {
                                                             <span className="blackText">
                                                                 <i className="topBoyIconNA" /> {item.field_gender}
                                                             </span>
-                                                            <span>{item.field_age_group}Years Old</span>
+                                                            <span>{item.field_age_group}{t("old")}</span>
                                                         </div>
                                                     </div>
                                                     <div className="bottomTextHolderNA">
@@ -290,14 +227,14 @@ function Activity() {
                                                         </div>
                                                         <div className="bottomTextRightNA">
                                                             <span className="calendarNA">
-                                                                <i className="calendar-icons" /> Start date{" "}
+                                                                <i className="calendar-icons" /> {t("startdate")}{" "}
                                                                 <span className="date">
                                                                     {item.field_start_and_end_time_3.slice(0, 12)} <br />
                                                                     <small>{item.field_start_and_end_time.slice(0, 8)}</small>
                                                                 </span>
                                                             </span>
                                                             <span className="calendarNA">
-                                                                <i className="calendar-icons" /> End date{" "}
+                                                                <i className="calendar-icons" />{t("enddate")}{" "}
                                                                 <span className="date">
                                                                     {item.field_start_and_end_time_4.slice(-12)}
                                                                     <br />
@@ -308,31 +245,34 @@ function Activity() {
                                                     </div>
                                                 </div>
                                                 <div className="btnHolderNA">
-                                                    <button className="btn blueColor btn-disabled">Closed</button>
+                                                    <button className="btn blueColor btn-disabled">{t("closed")}</button>
                                                 </div>
 
                                             </li>
 
 
-                                        </div>
+                                        </li>
                                     ))
                             }
                         </ul>
-
-                        <ul className="pagination">
-                            <li className="">
-
-                                <ReactPaginate
-                                    breakLabel="..."
-                                    nextLabel="next >"
-                                    onPageChange={({ selected }) => handlePageClick(selected)}
-                                    pageRangeDisplayed={5}
-                                    pageCount={totalPages}
-                                    previousLabel="< previous"
-                                    renderOnZeroPageCount={null}
-                                />
-                            </li>
-                        </ul>
+                        <nav className="pagination-wrapper" aria-label="pagination">
+                            <ul className="pagination">
+                                <li >
+                                    <ReactPaginate
+                                        previousLabel="Pre"
+                                        nextLabel="Next"
+                                        breakLabel="..."
+                                        breakClassName="break-me"
+                                        pageCount={totalPages}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={handlePageClick}
+                                        containerClassName="pagination"
+                                        activeClassName="active"
+                                    />
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                     <div className="sparkles">
                         <span className="orange-circle" />
@@ -354,25 +294,3 @@ function Activity() {
 }
 
 export default Activity
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

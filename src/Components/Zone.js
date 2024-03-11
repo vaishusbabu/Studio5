@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { fetchZoneData } from '../Redux/SliceFiles/zoneSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 
 function Zone() {
+    const { t } = useTranslation();
     const { data: zone } = useSelector(state => state.zone);
     console.log('zone data: ', zone);
     const dispatch = useDispatch();
@@ -13,17 +15,15 @@ function Zone() {
         dispatch(fetchZoneData());
     }, [dispatch]);
 
-
     return (
         <div>
 
             <div className="zone-wrap">
                 <div className="container">
                     <div className="zone-text en">
-                        <h3>Zone</h3>
+                        <h3>{t("zone")}</h3>
                         <div>
-                            Studio 5 has three main zones to provide the kids extraordinary
-                            learning experiences.
+                            {t("3zone")}
                         </div>
                     </div>
                     <div className="service-zone en">
@@ -52,17 +52,18 @@ function Zone() {
             <div class="activityHome">
                 <div class="container">
                     <div class="zone-text en activity-block">
-                        <h3 id="activity">Activities</h3>
-                        <div>Explore our latest activities and enroll in them</div>
+                        <h3 id="activity">{t("activities")}</h3>
+                        <div>{t("explore")}</div>
                     </div>
                     <div class="row noFlex">
                         <ul aria-label="Activities">
                             <div class="activities-inner">
-                                <p>There are no latest activities at the moment, check out activities page to see what's new
+                                <p>
+                                    {t("latest")}
                                 </p>
                                 <Link to="/activities" className="btnNewYellow btn"
                                     aria-labelledby="activity"
-                                    aria-label="Button for view more activity">View More
+                                    aria-label="Button for view more activity">{t("view")}
                                     <i className="material-icons en">
                                     </i></Link>
                             </div>

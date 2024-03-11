@@ -6,9 +6,10 @@ import Topline from './Topline';
 import { fetchFilterData } from '../Redux/SliceFiles/FilterSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMediaNewsData } from '../Redux/SliceFiles/mediaNewsSlice';
+import { useTranslation } from 'react-i18next';
 
 function Media_Center() {
-
+    const { t } = useTranslation();
     const baseURL = "https://www.studio5.qa/drupal-app/";
     const { data: medianews } = useSelector(state => state.medianews);
     const { data: filter } = useSelector(state => state.filter);
@@ -68,7 +69,7 @@ function Media_Center() {
                         <div className="head-title">
                             <div>
                                 <div className="share-page en">
-                                    <h2>Share this page</h2>
+                                    <h2>{t("share")}</h2>
                                     <a
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -99,7 +100,7 @@ function Media_Center() {
                                 tabIndex={0}
                                 aria-label="page heading Media Center"
                             >
-                                Media Center
+                                {t("navmedia")}
                             </h2>
                         </div>
                     </div>
@@ -109,11 +110,11 @@ function Media_Center() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <Link to="/">Home</Link>
+                                <Link to="/">  {t("home")}</Link>
                             </li>
                             <li className="breadcrumb-item">
                                 <Link tabIndex={0} aria-current="page" href="/media-center">
-                                    <span>Media Center</span>
+                                    <span> {t("navmedia")}</span>
                                 </Link>
                             </li>
                         </ul>
@@ -130,7 +131,9 @@ function Media_Center() {
 
                                     <div className="filter-wrap">
 
-                                        <h3 id="filter-title">Filter Media</h3>
+                                        <h3 id="filter-title">
+                                            {t("filer")}
+                                        </h3>
                                         {filter && filter.map((item, index) => (
 
                                             <ul aria-label="aside navigation">
@@ -229,10 +232,12 @@ function Media_Center() {
                             alt=""
                         />
                     </div>
-                    <p>Our latest insights, delivered straight to your inbox</p>
+                    <p>
+                        {t("sublatest")}
+                    </p>
                     <p>
                         <Link className="red-btn btn" to="/subscribe">
-                            Subscribe <i className="material-icons en">arrow_forward</i>
+                            {t("subscribe")} <i className="material-icons en"></i>
                         </Link>
                     </p>
                 </div>

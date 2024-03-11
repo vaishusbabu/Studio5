@@ -3,7 +3,7 @@ import { urlEndPoints } from "../../urlEndPoints";
 import axios from 'axios'
 
 export const fetchActivityData = createAsyncThunk('SliceFile/fetchActivityData',
-    async ({currentPage, title, startDate, select}) => {
+    async ({ currentPage, title, startDate, select }) => {
         try {
 
             const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
@@ -16,8 +16,7 @@ export const fetchActivityData = createAsyncThunk('SliceFile/fetchActivityData',
                 ...(startDate && { field_start_and_end_time_value: startDate }),
                 ...(select && { field_activity_category_target_id: select }),
             };
-
-            const response = await axios.post(urlEndPoints.activity,
+            const response = await axios.post("https://studio5drupaldev.applab.qa/api/activicties?_format=json",
                 data1,
                 {
                     headers: {
@@ -35,23 +34,22 @@ export const fetchActivityData = createAsyncThunk('SliceFile/fetchActivityData',
 );
 
 const activitySlice = createSlice({
-    name: 'acitivity',
+    name: 'activity',
     initialState: {
         data: [],
         totalPages: 0,
         loading: false,
         error: null,
-
     },
     reducers: {
-        setActiviity: (state, action) => {
+        setActivity: (state, action) => {
             state.data = action.payload;
         },
         setTotalPages: (state, action) => {
             state.totalPages = action.payload;
         }
     },
-    extraReducers: (builder, itemsPerPage) => {
+    extraReducers: (builder) => {
         builder
             .addCase(fetchActivityData.pending, (state) => {
                 state.loading = true;
@@ -60,14 +58,17 @@ const activitySlice = createSlice({
             .addCase(fetchActivityData.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
-                state.totalPages = Math.ceil(action.payload.pager.count / itemsPerPage);
+                // state.totalPages = action.payload.pager ? Math.ceil(action.payload.pager.count / 10) : 0;
+                state.totalPages = action.payload && action.payload.pager ? Math.ceil(action.payload.pager.count / 10) : 0;
             })
+
             .addCase(fetchActivityData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });
     },
 });
+
 
 export const { setActiviity } = activitySlice.actions;
 

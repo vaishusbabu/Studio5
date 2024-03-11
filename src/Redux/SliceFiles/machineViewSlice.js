@@ -5,7 +5,7 @@ import axios from 'axios'
 export const fetchMachineViewData = createAsyncThunk('SliceFile/fetchMachineViewData',
     async () => {
         try {
-            const response = await axios.get(urlEndPoints.machineview);
+            const response = await axios.get('https://studio5drupaldev.applab.qa/machine_details/701');
             return response.data;
         } catch (error) {
             console.error('Error Occured', error);

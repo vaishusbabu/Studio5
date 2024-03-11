@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
+
 
 function Login() {
+    const { t } = useTranslation();
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
-
     const [submitted, setSubmitted] = useState(false);
 
     const handleOnChange = (e) => {
@@ -14,7 +16,6 @@ function Login() {
         setFormData({ ...formData, [name]: value });
         setErrors({ ...errors, [name]: "" });
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitted(true);
@@ -25,7 +26,6 @@ function Login() {
             console.log("Form is invalid");
         }
     };
-
     const validForm = () => {
         const newErrors = {};
         let isValid = true;
@@ -66,11 +66,13 @@ function Login() {
 
                             <ErrorList errors={errors} />
                             <form name="login" className="login-form loginForm" autoComplete="on" onSubmit={handleSubmit}>
-                                <h2>Login</h2>
+                                <h2>
+                                    {t("navlogin")}
+                                </h2>
 
                                 <div className="error-container fail">
                                     <h5>
-                                        There is a problem with the form, please check and correct the following:
+                                        {t("prblm")}
                                     </h5>
 
                                     <ul className="error-list">
@@ -92,7 +94,7 @@ function Login() {
                                         onChange={handleOnChange}
                                     />
                                     <label htmlFor="email" style={{ left: 0, right: "auto" }}>
-                                        Email
+                                        {t("email")}
                                     </label>
                                     {/* {errors.email && <span className="error">{errors.email}</span>} */}
                                 </div>
@@ -113,27 +115,28 @@ function Login() {
                                         className="showEyes"
                                     >
                                         <i className="fa fa-eye" aria-hidden="true" />
-                                        <span>show password</span>
+                                        <span> </span>
                                     </button>
                                     <label htmlFor="password" style={{ left: 0, right: "auto" }}>
-                                        Password
+                                        {t("email")}
                                     </label>
                                     {/* {errors.password && <span className="error">{errors.password}</span>} */}
                                 </div>
                                 <div className="left-align">
                                     <a className="underline-text" href="/forgot_password">
-                                        <b>Forget Password?</b>
+                                        <b>{t("Forget Password?")}</b>
                                     </a>
                                 </div>
                                 <div className="left-align btn-wrap">
                                     <button aria-label="login" className="btn blue login" type="submit">
-                                        Login <i className="material-icons en">arrow_forward</i>
+                                        {t("login")} <i className="material-icons en">arrow_forward</i>
                                     </button>
                                 </div>
                                 <div className="left-align">
-                                    Don’t have an account?{" "}
+                                    {t("donthve")}
+                                    {" "}
                                     <a className="underline-text" href="/register_home">
-                                        <b>Sign up</b>
+                                        <b>{t("signup")}</b>
                                     </a>
                                 </div>
                             </form>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchMachineData } from '../Redux/SliceFiles/machineSlice.js'
+import { fetchMachineData } from '../Redux/SliceFiles/machineSlice.js';
+import { useTranslation } from 'react-i18next';
 
 function Machines() {
-
+    const { t } = useTranslation();
     const baseURL = "https://www.studio5.qa/drupal-app/";
     const { data: machine } = useSelector(state => state.machine);
-    console.log('banner data: ', machine);
+    console.log('machine datas ulti: ', machine);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +23,7 @@ function Machines() {
                         <div className="head-title">
                             <div>
                                 <div className="share-page en">
-                                    <h2>Share this page</h2>
+                                    <h2>{t("share")}</h2>
                                     <a
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -52,7 +53,7 @@ function Machines() {
                                 tabIndex={0}
                                 aria-label="page heading Machines"
                             >
-                                Machines
+                                {t("navmachine")}
                             </h2>
                         </div>
                     </div>
@@ -61,18 +62,18 @@ function Machines() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <Link to="/">Home</Link>
+                                <Link to="/">{t("home")}</Link>
                             </li>
                             <li className="breadcrumb-item">
                                 <Link tabIndex={0} aria-current="page" to="/machines">
-                                    <span>Machines</span>
+                                    <span>{t("navmachine")}</span>
                                 </Link>
                             </li>
                         </ul>
                     </nav>
                 </div>
                 <div id="skipContent" className="container">
-                    <h2 className="line">Machines</h2>
+                    <h2 className="line">{t("navmachine")}</h2>
 
                     {machine && machine.results && machine.results.map((item, index) => (
 
@@ -106,7 +107,7 @@ function Machines() {
                                         className="machine-btn"
                                         to={`/machine_view/${item.nid}`}
                                     >
-                                        View More
+                                        {t("viewmore")}
                                     </Link>
                                 </aside>
                             </div>

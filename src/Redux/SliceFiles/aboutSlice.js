@@ -7,14 +7,12 @@ export const fetchAboutData = createAsyncThunk('SliceFile/fetchAboutData',
         try {
             const response = await axios.get(urlEndPoints.about);
             return response.data;
-
         }
         catch (error) {
             console.error("Error Ocuured", error);
             return null;
         }
     }
-
 )
 const aboutSlice = createSlice({
     name: 'about',

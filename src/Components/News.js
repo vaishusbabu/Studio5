@@ -4,12 +4,15 @@ import { fetchFoodData } from '../Redux/SliceFiles/newsSlice';
 import { fetchGalleryData } from "../Redux/SliceFiles/gallerySlice";
 import { fetchVideoData } from "../Redux/SliceFiles/videoSlice";
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from "react-i18next";
 
 function News() {
   const { data: food } = useSelector(state => state.food);
   const { data: gallery } = useSelector(state => state.gallery);
   const { data: video } = useSelector(state => state.video);
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(fetchFoodData());
@@ -25,7 +28,7 @@ function News() {
         <div className="container">
           <h2 id="news-media"
             className="line">
-            News &amp; Media
+            {t("news")}
             <span className="grey-square-rotate" />
           </h2>
           <div className="flex-row col-2">
@@ -137,7 +140,7 @@ function News() {
               aria-label="Button for view more news and media"
               to="/media_center"
             >
-              View More
+              {t("newsview")}
               <i className="material-icons en" />
             </Link>
           </div>
@@ -168,14 +171,16 @@ function News() {
               alt=""
             />
           </div>
-          <p>Our latest insights, delivered straight to your inbox</p>
+          <p>
+            {t("sublatest")}
+          </p>
           <p>
             <Link
               className="red-btn btn btn-signup"
               aria-label="subscribe button for newsletter"
               to="/subscribe"
             >
-              Subscribe
+              {t("subscribe")}
               <i className="material-icons en"></i>
             </Link>
           </p>

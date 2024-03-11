@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 function About() {
     const { t } = useTranslation();
-    console.log("t: ",t);
+
     const { data: about } = useSelector(state => state.about);
     console.log('about data:', about);
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function About() {
                         <div className="head-title">
                             <div>
                                 <div className="share-page en">
-                                    <h2>Share this page</h2>
+                                    <h2>{t("share")}</h2>
                                     <a
                                         target="_blank"
                                         rel="noopener noreferrer"

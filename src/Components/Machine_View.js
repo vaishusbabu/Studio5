@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMachineViewData } from '../Redux/SliceFiles/machineViewSlice.js'
-function Machine_View() {
+import { useTranslation } from 'react-i18next';
 
+function Machine_View() {
+    const { t } = useTranslation();
 
     const { id } = useParams();
     console.log("id", id)
@@ -25,7 +27,7 @@ function Machine_View() {
                         <div className="head-title">
                             <div>
                                 <div className="share-page en">
-                                    <h2>Share this page</h2>
+                                    <h2>{t("share")}</h2>
                                     <a
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -55,7 +57,7 @@ function Machine_View() {
                                 tabIndex={0}
                                 aria-label="page heading Machines"
                             >
-                                Machines
+                                {t("navmachine")}
                             </h2>
                         </div>
                     </div>
@@ -64,11 +66,13 @@ function Machine_View() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <Link to="/machines">Machines</Link>{" "}
+                                <Link to="/machines"> {t("navmachine")}</Link>{" "}
                             </li>
                             <li className="breadcrumb-item">
                                 <Link tabIndex={0} aria-current="page" to={`/machine_view/:id}`}>
-                                    <span>Ultimaker 3 &amp; Ultimaker 3 Extended</span>
+                                    <span>
+                                        {t("ulti")}
+                                    </span>
                                 </Link>
                             </li>
                         </ul>
