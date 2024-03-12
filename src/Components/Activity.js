@@ -17,8 +17,7 @@ function Activity() {
     const { t } = useTranslation();
     const { data: activity, totalPages } = useSelector(state => state.activity);
     console.log('activity data : ', activity);
-    const dispatch = useDispatch();
-
+    const dispatch = useDispatch()
     const [startDate, setStartDate] = useState();
     const [title, setTitle] = useState('');
     const [select, setSelect] = useState('');

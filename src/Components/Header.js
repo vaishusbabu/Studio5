@@ -10,23 +10,23 @@ function Header() {
 
     const handleLanguage = () => {
         const currentLanguage = localStorage.getItem('language') || 'en';
-        console.log('currentLanguage: ', currentLanguage);
+
 
         if (currentLanguage === 'en') {
             localStorage.setItem('language', 'ar');
         } else {
             localStorage.setItem('language', 'en');
         }
-        i18n.changeLanguage(localStorage.getItem('language'));
-        console.log('currentLanguage: ', currentLanguage);
-    }
 
-    useEffect(() => {
-        const currentLanguage = localStorage.getItem('language');
-        if (!currentLanguage) {
-            localStorage.setItem('language', 'en');
-        }
-    }, []);
+        const newLanguage = localStorage.getItem('language');
+        i18n.changeLanguage(newLanguage);
+
+
+        window.location.pathname = window.location.pathname.replace('/' + currentLanguage + '/', '/' + newLanguage + '/');
+
+    }
+    const currentLanguage = i18n.language;
+
 
     return (
         <div> <header id="main-header" className="navbar en">
@@ -76,7 +76,7 @@ function Header() {
             </div>
 
             <div className="container flex-row"
-                style={{ direction: "ltr" }}>
+                style={{ direction: currentLanguage === 'en' ? 'ltr' : 'rtl' }}>
                 <nav className="navbar top-menu">
                     <div className="nav-wrapper">
                         <span className="brand-logo">
@@ -96,7 +96,7 @@ function Header() {
                     </div>
                 </nav>
                 <ul id="main-nav" className="sidenav sidenav-fixed align-center"
-                    style={{ direction: "ltr" }}>
+                    style={{ direction: currentLanguage === 'en' ? 'ltr' : 'rtl' }}>
                     <li>
                         <NavLink aria-label="Home" activeclassname="active" classNamelass="sidenav-close active" to="/"
                             aria-current="page">
@@ -156,7 +156,7 @@ function Header() {
                         <NavLink activeclassname=""
                             aria-label="language button to arabic"
                             className="sidenav-close nav-lang active"
-                            to="/"
+                            to="/home"
                             onClick={handleLanguage}
                             style={{ fontFamily: "politicaextrabold" }}
                             aria-current="page">

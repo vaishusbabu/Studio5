@@ -5,8 +5,12 @@ import { Studentdata } from "./JsonStudent";
 // import { showStudent } from "./JsonStudent";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 function Student() {
+    const currentLanguage = i18n.language
+    const { t } = useTranslation();
     const [startDate, setStartDate] = useState();
     const [formData, setFormData] = useState({
         name: "",
@@ -53,7 +57,7 @@ function Student() {
                             tabIndex={0}
                             aria-label="page heading Register"
                         >
-                            Register
+                            {t("reg")}
                         </h2>
                     </div>
                 </div>
@@ -62,11 +66,11 @@ function Student() {
                 <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                     <ul>
                         <li className="breadcrumb-item">
-                            <a href="/register_home">Register</a>
+                            <a href="/register_home">   {t("reg")}</a>
                         </li>
                         <li className="breadcrumb-item">
                             <a tabIndex={0} aria-current="page" href="/student">
-                                <span>Student</span>
+                                <span>   {t("std")}</span>
                             </a>
                         </li>
                     </ul>
@@ -110,33 +114,35 @@ function Student() {
                     <h2
                         id="registration-title"
                         className="primary-heading"
-                        style={{ textAlign: "left" }}
+                        style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                     >
-                        Are you?
+                        {t("are")}
                     </h2>
                     <div className="btn-wrap type-selection" id="skipContent">
                         <button aria-label="Are you Guardian" role="button" className="btn">
                             <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/guardian">
                                 {" "}
-                                Guardian{" "}
+
+                                {t("gua")}
+                                {" "}
                             </Link>
 
                         </button>
                         <button aria-label="Are you Student" className="btn">
                             <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/student">
                                 {" "}
-                                Student{" "}
+                                {t("std")}{" "}
                             </Link>
                         </button>
                         <button aria-label="Are you School" className="btn">
                             <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/school">
 
-                                School
+                                {t("scl")}
                             </Link>
                         </button>
                         <button aria-label="Are you Volunteer" className="btn">
                             <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/volunteer">
-                                Volunteer
+                                {t("vol")}
                             </Link>
                         </button>
                     </div>
@@ -145,14 +151,14 @@ function Student() {
                     tabIndex={0}
                     aria-label="For Student form"
                     className="primary-heading"
-                    style={{ textAlign: "left" }}
+                    style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                 >
-                    For Student
+                    {t("fstd")}
                 </h2>
                 <div className="row">
                     <div className="col s6 form-container">
-                        <p style={{ textAlign: "left" }}>
-                            Required fields are followed by <span className="asterisk">*</span>
+                        <p style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}>
+                            {t("req2")} <span className="asterisk">*</span>
                         </p>
                         <form autoComplete="no" onSubmit={handleSubmit}>
                             {Studentdata && Studentdata.map((item, index) => {

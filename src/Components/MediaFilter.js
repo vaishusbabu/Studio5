@@ -121,7 +121,7 @@ function MediaFilter() {
                                             filter && filter.map((item, index) => (
 
                                                 <ul aria-label="aside navigation">
-                                                    <li className="media-item en">
+                                                    <li className="media-item ar">
                                                         <Link
                                                             aria-label="News section contains 58 items"
                                                             to={`/media_filter/${item.tid}`}
@@ -188,7 +188,7 @@ function MediaFilter() {
                                     ))}
                                 </div>
 
-                                {/* <nav className="pagination-wrapper" aria-label="pagination">
+                                <nav className="pagination-wrapper" aria-label="pagination">
                                     <ul className="pagination">
                                         <li className="active">
                                             <a className="undefined" href="#" aria-label="Go to page number 1">
@@ -221,7 +221,7 @@ function MediaFilter() {
                                             </a>
                                         </li>
                                     </ul>
-                                </nav> */}
+                                </nav>
                             </div>
 
 

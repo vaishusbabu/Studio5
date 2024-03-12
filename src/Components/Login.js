@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
 
 
 function Login() {
+
     const { t } = useTranslation();
     const [errors, setErrors] = useState({});
     const [formData, setFormData] = useState({
@@ -51,6 +53,13 @@ function Login() {
         }
 
     }
+    const currentLanguage = i18n.language
+    // const newLanguage = localStorage.getItem('language');
+    // i18n.changeLanguage(newLanguage);
+
+
+    // window.location.pathname = window.location.pathname.replace('/' + currentLanguage + '/', '/' + newLanguage + '/');
+
     return (
         <div id="main-content">
             <div className="page-title en">
@@ -124,19 +133,22 @@ function Login() {
                                 </div>
                                 <div className="left-align">
                                     <a className="underline-text" href="/forgot_password">
-                                        <b>{t("Forget Password?")}</b>
+                                        <b>{t("forgot")}</b>
                                     </a>
                                 </div>
                                 <div className="left-align btn-wrap">
                                     <button aria-label="login" className="btn blue login" type="submit">
-                                        {t("login")} <i className="material-icons en">arrow_forward</i>
+                                        {t("login")} <i className="material-icons en"></i>
                                     </button>
                                 </div>
                                 <div className="left-align">
                                     {t("donthve")}
                                     {" "}
                                     <a className="underline-text" href="/register_home">
-                                        <b>{t("signup")}</b>
+                                        <b>{t("signup")}
+
+                                        </b>
+
                                     </a>
                                 </div>
                             </form>

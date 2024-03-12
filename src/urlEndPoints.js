@@ -1,20 +1,27 @@
-const baseURL = "https://www.studio5.qa/drupal-app/api/";
+import i18n from "./i18n";
+
+// let baseURL = "https://www.studio5.qa/drupal-app";
+let baseURL = "https://studio5drupaldev.applab.qa";
+const currentLanguage = i18n.language;
+if (currentLanguage === 'ar') {
+    baseURL += "/ar";
+}
 
 export const urlEndPoints = {
-    banner: `${baseURL}banner?_format=json`,
-    studio: `${baseURL}about?_format=json`,
-    zone: `${baseURL}zones?_format=json`,
-    food: `${baseURL}featured-news-article?_format=json`,
-    gallery: `${baseURL}featured-news-gallery?_format=json`,
-    video: `${baseURL}featured-news-video?_format=json`,
-    about: `${baseURL}about_page`,
-    equipment: `${baseURL}get_equipment_used?page=0`,
-    address: `${baseURL}contact_us_page`,
-    machine: `${baseURL}get_machines?page=0`,
-    machineview: `${baseURL}machine_details/701`,
-    medianews: `${baseURL}media-centre?_format=json`,
-    filter: `${baseURL}filter/en?_format=json`,
-    media: id => `${baseURL}media-details/${id}?_format=json`,
-    events: id => `${baseURL}activity-details/${id}?_format=json`,
-    activity: `${baseURL}activicties?_format=json`,
+    banner: `${baseURL}/api/banner?_format=json`,
+    studio: `${baseURL}/api/about?_format=json`,
+    zone: `${baseURL}/api/zones?_format=json`,
+    food: `${baseURL}/api/featured-news-article?_format=json`,
+    gallery: `${baseURL}/api/featured-news-gallery?_format=json`,
+    video: `${baseURL}/api/featured-news-video?_format=json`,
+    about: `${baseURL}/api/about_page`,
+    equipment: `${baseURL}/api/get_equipment_used?page=0`,
+    address: `${baseURL}/api/contact_us_page`,
+    machine: `${baseURL}/api/get_machines?page=0`,
+    machineview: `${baseURL}/machine_details/701`,
+    medianews: `${baseURL}/api/media-centre?_format=json`,
+    filter: `${baseURL}/api/filter/en?_format=json`,
+    media: id => `${baseURL}/api/media-details/${id}?_format=json`,
+    events: id => `${baseURL}/api/activity-details/${id}?_format=json`,
+    activity: `${baseURL}/api/activicties?_format=json`
 }

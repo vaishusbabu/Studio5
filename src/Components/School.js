@@ -4,10 +4,14 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
-import { schoolData } from "./JsonSchool";
-// import { showMore } from "./JsonSchool";
+// import { schoolData } from "./JsonSchool";
+import { schoolData } from './JsonSchool';
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 function School() {
+    const { t } = useTranslation();
+    const currentLanguage = i18n.language
     const [startDate, setStartDate] = useState(new Date());
 
     const [errors, setErrors] = useState({});
@@ -108,7 +112,7 @@ function School() {
 
             <div className="error-container fail">
                 <h5>
-                    There is a problem with the form, please check and correct the following:
+                    {t("prblm")}
                 </h5>
 
                 <ul className="error-list">
@@ -135,7 +139,7 @@ function School() {
                                 tabIndex={0}
                                 aria-label="page heading Register"
                             >
-                                Register
+                                {t("reg")}
                             </h2>
                         </div>
                     </div>
@@ -144,7 +148,7 @@ function School() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <a href="/en/register_home">Register</a>
+                                <a href="/en/register_home"> {t("reg")}</a>
                             </li>
                             <li className="breadcrumb-item">
                                 <a tabIndex={0} aria-current="page" href="/school">
@@ -185,33 +189,35 @@ function School() {
                             <h2
                                 id="registration-title"
                                 className="primary-heading"
-                                style={{ textAlign: "left" }}
+                                style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                             >
-                                Are you?
+                                {t("are")}
                             </h2>
                             <div className="btn-wrap type-selection" id="skipContent">
                                 <button aria-label="Are you Guardian" role="button" className="btn">
                                     <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/guardian">
                                         {" "}
-                                        Guardian{" "}
+
+                                        {t("gua")}
+                                        {" "}
                                     </Link>
 
                                 </button>
                                 <button aria-label="Are you Student" className="btn">
                                     <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/student">
                                         {" "}
-                                        Student{" "}
+                                        {t("std")}{" "}
                                     </Link>
                                 </button>
                                 <button aria-label="Are you School" className="btn">
                                     <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/school">
 
-                                        School
+                                        {t("scl")}
                                     </Link>
                                 </button>
                                 <button aria-label="Are you Volunteer" className="btn">
                                     <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/volunteer">
-                                        Volunteer
+                                        {t("vol")}
                                     </Link>
                                 </button>
                             </div>
@@ -220,14 +226,14 @@ function School() {
                             tabIndex={0}
                             aria-label="For School representative form"
                             className="primary-heading"
-                            style={{ textAlign: "left" }}
+                            style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                         >
-                            For School representative
+                            {t("fscl")}
                         </h2>
                         <div className="row">
                             <div className="col s6 form-container">
-                                <p style={{ textAlign: "left" }}>
-                                    Required fields are followed by <span className="asterisk">*</span>
+                                <p style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}>
+                                    {t("req2")} <span className="asterisk">*</span>
                                 </p>
                                 <ErrorList errors={errors} />
                                 <form autoComplete="no" onSubmit={handleSubmit}>

@@ -65,57 +65,7 @@ export const guardian = [
 ];
 
 function Jsonguardian() {
-    return (
-        <div>
-            {/* {guardian.map((item) => {
-                switch (item.type) {
-                    case "text":
-                    case "email":
-                        return (
-                            <input
-                                key={item.id}
-                                name={item.name}
-                                placeholder={item.placeholder}
-                                id={item.id}
-                                className={item.className}
-                                type={item.type === "text" ? "text" : "email"}
-                                autoComplete={item.autoComplete}
-                                defaultValue={item.defaultValue}
-                                style={{ textAlign: "left" }}
-                            />
-                        );
-                    case "number":
-                        return (
-                            <input
-                                key={item.id}
-                                name={item.name}
-                                placeholder={item.placeholder}
-                                id={item.id}
-                                className={item.className}
-                                type={item.type}
-                                maxLength={item.maxLength}
-                                autoComplete={item.autoComplete}
-                                defaultValue={item.defaultValue}
-                                style={{ textAlign: "left" }}
-                            />
-                        );
-                    case "checkbox":
-                        return (
-                            <input
-                                key={item.id}
-                                name={item.name}
-                                id={item.id}
-                                type="checkbox"
-                                className={item.className}
-                            />
-                        );
-                    default:
-                        return null;
-                }
-            })} */}
-
-        </div>
-    );
+    return
 }
 
 export default Jsonguardian;

@@ -1,10 +1,13 @@
-
+import i18n from "../i18n";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { volunteer } from "./JsonVolunteer";
 import "react-datepicker/dist/react-datepicker.css";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 function Volunteer() {
+    const { t } = useTranslation();
     const [startDate, setStartDate] = useState();
 
     const [formData, setFormData] = useState({
@@ -17,6 +20,7 @@ function Volunteer() {
         agree: false
     })
 
+    const currentLanguage = i18n.language;
 
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
@@ -88,7 +92,7 @@ function Volunteer() {
 
             <div className="error-container fail">
                 <h5>
-                    There is a problem with the form, please check and correct the following:
+                    {t("prblm")}
                 </h5>
 
                 <ul className="error-list">
@@ -114,7 +118,7 @@ function Volunteer() {
                                 tabIndex={0}
                                 aria-label="page heading Register"
                             >
-                                Register
+                                {t("reg")}
                             </h2>
                         </div>
                     </div>
@@ -123,11 +127,11 @@ function Volunteer() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <a href="/register_home">Register</a>
+                                <a href="/register_home"> {t("reg")}</a>
                             </li>
                             <li className="breadcrumb-item">
                                 <a tabIndex={0} aria-current="page" href="/volunteer">
-                                    <span>Volunteer</span>
+                                    <span> {t("vol")}</span>
                                 </a>
                             </li>
                         </ul>
@@ -162,36 +166,36 @@ function Volunteer() {
                         <h2
                             id="registration-title"
                             className="primary-heading"
-                            style={{ textAlign: "left" }}
+                            style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                         >
-                            Are you?
+                            {t("are")}
                         </h2>
                         <div className="btn-wrap type-selection" id="skipContent">
                             <button aria-label="Are you Guardian" role="button" className="btn">
-                                <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/guardian">
+                                <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/guardian">
                                     {" "}
-                                    Guardian{" "}
-                                </a>
+
+                                    {t("gua")}
+                                    {" "}
+                                </Link>
+
+                            </button>
+                            <button aria-label="Are you Student" className="btn">
+                                <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/student">
+                                    {" "}
+                                    {t("std")}{" "}
+                                </Link>
                             </button>
                             <button aria-label="Are you School" className="btn">
-                                <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
-                                    {" "}
-                                    Student{" "}
-                                </a>
-                            </button>
+                                <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/school">
 
-                            <button aria-label="Are you Student" className="btn">
-                                <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
-                                    {" "}
-                                    School{" "}
-                                </a>
+                                    {t("scl")}
+                                </Link>
                             </button>
-
-                            <button aria-label="Are you Volunteer" className="btn active">
-                                <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/volunteer">
-                                    {" "}
-                                    Volunteer{" "}
-                                </a>
+                            <button aria-label="Are you Volunteer" className="btn">
+                                <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/volunteer">
+                                    {t("vol")}
+                                </Link>
                             </button>
                         </div>
                     </div>
@@ -200,12 +204,13 @@ function Volunteer() {
                         aria-label="For Volunteer form"
                         className="primary-heading"
                     >
-                        For Volunteer
+                        {t("fvol")}
                     </h2>
                     <div className="row">
                         <div className="col s6 form-container">
                             <p>
-                                Required fields are followed by <span className="asterisk">*</span>
+                                {t("req2")}
+                                <span className="asterisk">*</span>
                             </p>
                             <ErrorList errors={errors} />
                             <form autoComplete="no" onSubmit={handleSubmit}>

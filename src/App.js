@@ -29,52 +29,80 @@ import Gallery from './Components/Gallery';
 import MediaFilter from './Components/MediaFilter';
 import TestVideo from './Components/TestVideo';
 import EventDetails from './Components/EventDetails';
+import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from 'react';
+
 
 function App() {
-  const currentLanguage = localStorage.getItem('language') || 'en';
+
+  const { t } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState(localStorage.getItem('language') || 'en');
+
+
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setCurrentLanguage(localStorage.getItem('language') || 'en');
+    };
+
+    window.addEventListener('storage', handleLanguageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleLanguageChange);
+    };
+  }, []);
   console.log('currentLanguage in app.js: ', currentLanguage);
 
   return (
     <div>
-      <div className="clearfix"></div>
-      <div id="main-content">
-        <div className="app-slider stickySocial">
 
-          <BrowserRouter basename='en'>
-            <Header currentLanguage={currentLanguage} />
+      <div className={currentLanguage === 'en' ? '' : 'ab'}
+        style={{ direction: currentLanguage === 'en' ? 'ltr' : 'rtl', overflow: 'hidden' }}>
 
-            <Routes>
-              <Route path='/' element={<HomeNavbar />} />
-              <Route path='/home' element={<HomeNavbar />} />
-              <Route path='/subscribe' element={<Subscribe />} />
-              <Route path='/about' element={<HomeNavbar />} />
-              <Route path='/activities' element={<Activity />} />
-              <Route path='/media_center' element={<Media_Center />} />
-              <Route path='/testvideo' element={<TestVideo />} />
+        {/* <div className="" style={{ direction: "ltr", overflow: "hidden" }}> */}
+        <a href="#skipContent" className="skipLink">
+          {t("skip")}
+        </a>
+        <div className="clearfix"></div>
+        <div id="main-content">
+          <div className="app-slider stickySocial">
 
-              <Route path='/machines' element={<Machines />} />
-              <Route path='/equipment' element={<Equipments />} />
-              <Route path='/contact_us' element={<ContactUs />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/register_home' element={<RegisterHome />} />
-              <Route path='/guardian' element={<Guardian />} />
-              <Route path='/school' element={<School />} />
-              <Route path='/student' element={<Student />} />
-              <Route path='/volunteer' element={<Volunteer />} />
-              <Route path='/forgot_password' element={<ForgotPassword />} />
-              <Route path='/gallery' element={<Gallery />} />
-              <Route path='/media_filter/:id' element={<MediaFilter />} />
-              {/* connecting pages using useParams */}
-              <Route path='/event_details/:id' element={<EventDetails />} />
-              <Route path='/media_view/:id' element={<Media_View />} />
-              <Route path='/machine_view/:id' element={<Machine_View />} />
-              <Route path='/media_img/:id' element={<MediaImg />} />
-            </Routes>
-          </BrowserRouter>
-          <Footer />
+            {/* <BrowserRouter basename='en'> */}
+            <BrowserRouter basename={currentLanguage === 'ar' ? 'ar' : 'en'}>
+              <Header />
+              <Routes>
+                <Route path='/home' element={<HomeNavbar />} />
+                <Route path='/subscribe' element={<Subscribe />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/activities' element={<Activity />} />
+                <Route path='/media_center' element={<Media_Center />} />
+                <Route path='/testvideo' element={<TestVideo />} />
+                <Route path='/machines' element={<Machines />} />
+                <Route path='/equipment' element={<Equipments />} />
+                <Route path='/contact_us' element={<ContactUs />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register_home' element={<RegisterHome />} />
+                <Route path='/guardian' element={<Guardian />} />
+                <Route path='/school' element={<School />} />
+                <Route path='/student' element={<Student />} />
+                <Route path='/volunteer' element={<Volunteer />} />
+                <Route path='/forgot_password' element={<ForgotPassword />} />
+                <Route path='/gallery' element={<Gallery />} />
+                <Route path='/media_filter/:id' element={<MediaFilter />} />
+
+                {/* connecting pages using useParams */}
+                <Route path='/event_details/:id' element={<EventDetails />} />
+                <Route path='/media_view/:id' element={<Media_View />} />
+                <Route path='/machine_view/:id' element={<Machine_View />} />
+                <Route path='/media_img/:id' element={<MediaImg />} />
+              </Routes>
+            </BrowserRouter>
+            <Footer />
+          </div>
         </div>
+
       </div>
     </div>
+
   );
 }
 
