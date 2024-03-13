@@ -31,12 +31,9 @@ function Media_Center() {
 
     const fetchData = async () => {
         try {
-            // const tokenResponse = await axios.get('https://studio5drupaldev.applab.qa/session/token');
-            // const token = tokenResponse.data;
-
             const data1 = {
                 lang: "en",
-                page: currentPage + 1
+                page: currentPage
 
             };
 
@@ -44,9 +41,6 @@ function Media_Center() {
                 "https://studio5drupaldev.applab.qa/api/media-centre?_format=json",
                 data1,
                 {
-                    // headers: {
-                    //     'X-Csrf-Token': token
-                    // }
                 }
             );
 
@@ -56,8 +50,6 @@ function Media_Center() {
             console.error("Error fetching data:", error);
         }
     };
-
-
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage);
     };

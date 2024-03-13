@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Topline from './Topline';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchMediaFiltersData } from '../Redux/SliceFiles/mediafilterSlice';
+import { fetchmFiltertData } from '../Redux/SliceFiles/mfilterSlice';
 
 function MediaFilter() {
     const { t } = useTranslation();
@@ -10,17 +13,27 @@ function MediaFilter() {
     const { id } = useParams();
     const baseURL = "https://studio5drupaldev.applab.qa/";
 
+    // useEffect(() => {
+    //     fetch(`https://studio5drupaldev.applab.qa/api/filter/en?_format=json`)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setFilter(data);
+    //             console.log("filter", data)
+    //         });
+
+    // }, [])
+
+    const { data: mediafilter } = useSelector(state => state.mediafilter);
+    console.log('mediafilter data:', mediafilter);
+
+    const { data: mfilter } = useSelector(state => state.mfilter)
+    console.log('mfilter data: ', mfilter);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        fetch(`https://studio5drupaldev.applab.qa/api/filter/en?_format=json`)
-            .then((res) => res.json())
-            .then((data) => {
-                setFilter(data);
-                console.log("filter", data)
-            });
-
-    }, [])
-
-
+        // dispatch(fetchMediaFiltersData());
+        dispatch(fetchmFiltertData());
+    }, []);
     useEffect(() => {
         fetch(`https://studio5drupaldev.applab.qa/api/filtermedia-centre/${id}?_format=json`)
 
@@ -118,7 +131,7 @@ function MediaFilter() {
                                             )
                                         } */}
                                         {
-                                            filter && filter.map((item, index) => (
+                                            mfilter && mfilter.map((item, index) => (
 
                                                 <ul aria-label="aside navigation">
                                                     <li className="media-item ar">
@@ -126,7 +139,7 @@ function MediaFilter() {
                                                             aria-label="News section contains 58 items"
                                                             to={`/media_filter/${item.tid}`}
                                                         >
-                                                            {item.filter}<span>{item.count}</span>
+                                                            {t(item.filter)} <span>{item.count}</span>
                                                         </Link>
                                                     </li>
                                                 </ul>
