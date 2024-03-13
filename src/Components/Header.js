@@ -98,7 +98,7 @@ function Header() {
                 <ul id="main-nav" className="sidenav sidenav-fixed align-center"
                     style={{ direction: currentLanguage === 'en' ? 'ltr' : 'rtl' }}>
                     <li>
-                        <NavLink aria-label="Home" activeclassname="active" classNamelass="sidenav-close active" to="/"
+                        <NavLink aria-label="Home" activeclassname="active" classNamelass="sidenav-close active" to="/home"
                             aria-current="page">
                             {t("home")}
                         </NavLink>

@@ -1,38 +1,38 @@
 export const volunteer = [
     {
         name: "name",
-        placeholder: "Type name in English",
+        placeholder: "tyvo",
         id: "name",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
-        label: "Name in English"
+        label: "volname"
     },
     {
         name: "nameArabic",
-        placeholder: "Type name in Arabic",
+        placeholder: "tyar",
         id: "nameArabic",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
-        label: "Name in Arabic"
+        label: "vol2"
     },
     {
         name: "qid",
-        placeholder: "Type your QID",
+        placeholder: "typegid",
         id: "qid",
         className: "",
         maxLength: 11,
         type: "text",
         autoComplete: "no",
         defaultValue: "",
-        label: "QID"
+        label: "qid"
     },
     {
         type: "radio",
-        label: "Gender",
+        label: "gen",
         htmlFor: "gender",
         id: "gender",
         details: [{
@@ -57,20 +57,19 @@ export const volunteer = [
         }]
     },
     {
-        // placeholder: "dd-mm-yyyy",
-        // label: "Date of Birth",
-        // arialabel: "choose date of birth button",
+        placeholder: "dd-mm-yyyy",
+        label: "dob",
+        arialabel: "choose date of birth button",
         type: "date",
-        // className: "example-custom-input",
-        // ariahidden: "true",
-        // htmlFor: "dob",
-
-        // defaultValue: "dd-mm-yyyy",
+        className: "example-custom-input",
+        ariahidden: "true",
+        htmlFor: "dob",
+        defaultValue: "dd-mm-yyyy",
     },
     {
         name: "email",
-        label: "Email",
-        placeholder: "Type your email",
+        label: "email",
+        placeholder: "email",
         id: "email",
         className: "fontEnglish",
         type: "email",
@@ -81,12 +80,12 @@ export const volunteer = [
     {
         name: "mobile",
         type: "mobile",
-        placeholder: "Type your mobile number",
+        placeholder: "pgmob",
         id: "mobile",
         className: "",
         type: "number",
         defaultValue: "",
-        label: "Mobile Number",
+        label: "phone",
         ariaLabel: "Mobile number",
         maxLength: 8,
         htmlFor: "mobile",
@@ -96,7 +95,7 @@ export const volunteer = [
         type: "checkbox",
         id: "s",
         type: "checkbox",
-        label: "I agree to the studio 5",
+        label: "agree",
         ariaLabel: "Read terms and condition",
         className: "modal-trigger underline-text"
     }

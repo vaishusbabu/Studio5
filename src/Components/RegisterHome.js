@@ -1,10 +1,13 @@
 import React from 'react'
 import Topline from './Topline'
 import { useTranslation } from 'react-i18next'
+import i18n from '../i18n';
+import { Link } from 'react-router-dom';
 
 
 function RegisterHome() {
     const { t } = useTranslation();
+    const currentLanguage = i18n.language
     return (
         <div><div id="main-content" className="registration-page">
             <div className="page-title en">
@@ -26,9 +29,9 @@ function RegisterHome() {
                 <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                     <ul>
                         <li className="breadcrumb-item">
-                            <a tabIndex={0} aria-current="page" href="/register_home">
+                            <Link tabIndex={0} aria-current="page" to="/register_home">
                                 <span>    {t("reg")}</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -54,36 +57,36 @@ function RegisterHome() {
                     <h2
                         id="registration-title"
                         className="primary-heading"
-                        style={{ textAlign: "left" }}
+                        style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                     >
                         {t("are")}
                     </h2>
                     <div className="btn-wrap type-selection" id="skipContent">
                         <button aria-label="Are you Guardian" role="button" className="btn">
-                            <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/guardian">
+                            <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/guardian">
                                 {" "}
                                 {t("gua")}
                                 {" "}
-                            </a>
+                            </Link>
 
                         </button>
                         <button aria-label="Are you Student" className="btn">
-                            <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/student">
+                            <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/student">
                                 {" "}
                                 {t("std")}
                                 {" "}
-                            </a>
+                            </Link>
                         </button>
                         <button aria-label="Are you School" className="btn">
-                            <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/school">
+                            <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/school">
 
                                 {t("scl")}
-                            </a>
+                            </Link>
                         </button>
                         <button aria-label="Are you Volunteer" className="btn">
-                            <a aria-label="About us" activeclassname="active" className="sidenav-close" href="/volunteer">
+                            <Link aria-label="About us" activeclassname="active" className="sidenav-close" to="/volunteer">
                                 {t("vol")}
-                            </a>
+                            </Link>
                         </button>
                     </div>
                 </div>

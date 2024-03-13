@@ -1,16 +1,18 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 function Subscribe() {
+    const { t } = useTranslation();
     return (
         <div>
-
             <div id="main-content">
                 <div className="page-title en">
                     <div className="container">
                         <div className="head-title">
                             <div>
                                 <div className="share-page en">
-                                    <h2>Share this page</h2>
+                                    <h2>{t("share")}
+                                    </h2>
                                     <a
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -40,7 +42,7 @@ function Subscribe() {
                                 tabIndex={0}
                                 aria-label="page heading Subscribe"
                             >
-                                Subscribe
+                                {t("subscribe")}
                             </h2>
                         </div>
                     </div>
@@ -49,22 +51,29 @@ function Subscribe() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <a href="/en/">Home</a>{" "}
+                                <a href="/en/">{t("home")}</a>{" "}
                             </li>
                             <li className="breadcrumb-item">
                                 <a tabIndex={0} aria-current="page" href="/en/subscribe">
-                                    <span>Subscribe</span>
+                                    <span>
+                                        {t("subscribe")}
+                                    </span>
                                 </a>
                             </li>
                         </ul>
                     </nav>
                 </div>
                 <div id="main-container">
-                    <div id="skipContent" className="container">
+                    <div id="skipContent"
+                        className="container">
                         <div className="row col-2">
                             <div className="item subscribe-form">
-                                <h2 style={{ marginBottom: 10 }}>Subscribe</h2>
-                                <p>Please fill out the form below to receive our update</p>
+                                <h2 style={{ marginBottom: 10 }}>
+                                    {t("subscribe")}
+                                </h2>
+                                <p>
+                                    {t("plz")}
+                                </p>
                                 <form name="subscribe" className="subscribe-form">
                                     <div className="row col-2">
                                         <div className="input-field item">
@@ -77,7 +86,7 @@ function Subscribe() {
                                                 defaultValue=""
                                             />
                                             <label htmlFor="name" style={{ left: 0, right: "auto" }}>
-                                                Name
+                                                {t("name2")}
                                             </label>
                                             <span className="helper-text" data-error="Required field." />
                                         </div>
@@ -91,7 +100,7 @@ function Subscribe() {
                                                 defaultValue=""
                                             />
                                             <label htmlFor="email" style={{ left: 0, right: "auto" }}>
-                                                Email
+                                                {t("email")}
                                             </label>
                                             <span
                                                 className="helper-text"
@@ -114,14 +123,16 @@ function Subscribe() {
                                                 htmlFor="mobile_number"
                                                 style={{ left: 0, right: "auto" }}
                                             >
-                                                Mobile Number
+                                                {t("phone")}
                                             </label>
                                             <span className="helper-text" data-error="Required field" />
                                         </div>
                                     </div>
                                     <div className="form-check">
                                         <div className="text-item">
-                                            <h4 id="describe-title">How you best describe yourself?</h4>
+                                            <h4 id="describe-title">
+                                                {t("decs")}
+                                            </h4>
                                         </div>
                                         <div className="input-field  subscribe-items">
                                             <div style={{ margin: 0 }}>
@@ -147,7 +158,7 @@ function Subscribe() {
                                                             className="custom-radio-style"
                                                         >
                                                             <span className="custom-radio-style">
-                                                                School representative
+                                                                {t("sclrep")}
                                                             </span>
                                                         </label>
                                                     </div>
@@ -168,7 +179,9 @@ function Subscribe() {
                                                             htmlFor="Parents"
                                                             className="custom-radio-style"
                                                         >
-                                                            <span className="custom-radio-style">Parents</span>
+                                                            <span className="custom-radio-style">
+                                                                {t("parents")}
+                                                            </span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -189,7 +202,7 @@ function Subscribe() {
                                                             className="custom-radio-style"
                                                         >
                                                             <span className="custom-radio-style">
-                                                                Student (7-18 years old)
+                                                                {t("substd")}
                                                             </span>
                                                         </label>
                                                     </div>
@@ -230,7 +243,8 @@ function Subscribe() {
                                                     />
                                                     <label htmlFor="agree" id="desc-agree">
                                                         <span className="en">
-                                                            I agree to the studio 5{" "}
+                                                            {t("agree")}
+                                                            {" "}
                                                             <u>
                                                                 <a className="modal-trigger">Privacy Policy</a>
                                                             </u>

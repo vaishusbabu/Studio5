@@ -1,21 +1,21 @@
 export const Studentdata = [
     {
         name: "name",
-        placeholder: "Type student name in English",
+        placeholder: "pstdnm",
         id: "name",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
         htmlFor: "name",
-        label: "Student name in English ",
+        label: "stdeng",
 
 
     },
     {
-        label: "Student name in Arabic",
+        label: "stdar",
         name: "nameArabic",
-        placeholder: "Type student name in Arabic",
+        placeholder: "pstar",
         id: "nameArabic",
         className: "",
         type: "text",
@@ -27,7 +27,8 @@ export const Studentdata = [
     },
     {
         name: "date",
-        label: "Date of Birth",
+        placeholder: "pdate",
+        label: "dob",
         arialabel: "choose date of birth button",
         type: "date",
         className: "example-custom-input",
@@ -37,14 +38,16 @@ export const Studentdata = [
     },
     {
         name: "nationality",
-        label: "Nationality ",
+        label: "nation",
+        placeholder: "nation",
         type: "select",
         className: "browser-default",
         name: "nationality",
         id: "nationality",
         tabIndex: 0,
+        defaultSelectText: "nationality",
         options: [
-
+            { value: "", label: "Nationality" },
             { value: '1', label: 'Afghanistan' },
             { value: '2', label: 'Albania' },
             { value: '3', label: 'Algeria' },
@@ -153,13 +156,14 @@ export const Studentdata = [
 
     },
     {
-        label: "School Name ",
+        label: "sclname",
         name: "schoolName",
         id: "schoolName",
         placeholder: " School Name",
         type: "select",
+        defaultSelectText: "sscname",
         options: [
-            { value: "", label: "Select school name" },
+            { value: "", label: "Select School Name" },
             { value: 163, text: "A bayan p2" },
             { value: 241, text: "ACS Doha International School" },
             { value: 165, text: "Al Hammad International School" },
@@ -200,13 +204,13 @@ export const Studentdata = [
     },
     {
         name: "schoolNameOther",
-        placeholder: "Other School Name",
+        placeholder: "scother",
         id: "schoolNameOther",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
-        label: "School Name",
+        label: "scname",
         refValue: "333",
         refId: "schoolName"
     }
@@ -214,7 +218,7 @@ export const Studentdata = [
 
     {
         name: "qid",
-        placeholder: "Type your QID",
+        placeholder: "typegid",
         id: "qid",
         className: "",
         maxLength: 11,
@@ -222,12 +226,12 @@ export const Studentdata = [
         autoComplete: "no",
         defaultValue: "",
         htmlFor: "qid",
-        label: "QID",
+        label: "qid",
 
     },
     {
         type: "radio",
-        label: "Gender",
+        label: "gen",
         htmlFor: "gender",
         id: "gender",
         details: [{
@@ -257,7 +261,7 @@ export const Studentdata = [
         name: "grade",
         type: "select",
         id: "grade",
-        label: "Grade",
+        label: "grade",
         htmlFor: "grade",
         defaultSelectText: "Select your grade",
         options: [
@@ -280,23 +284,23 @@ export const Studentdata = [
     {
         name: "email",
         type: "text",
-        placeholder: "Type your email",
+        placeholder: "tyemail",
         id: "email",
         className: "fontEnglish",
         type: "email",
         defaultValue: "",
-        label: "Email",
+        label: "email",
 
     },
     {
         name: "mobile",
         type: "mobile",
-        placeholder: "Type your mobile number",
+        placeholder: "pgmob",
         id: "mobile",
         className: "",
         type: "number",
         defaultValue: "",
-        label: "Mobile Number",
+        label: "phone",
         ariaLabel: "Mobile number starting with country code +974",
         maxLength: 8,
         htmlFor: "mobile",
@@ -304,7 +308,7 @@ export const Studentdata = [
     },
     {
         name: "parentQid",
-        placeholder: "Type guardian QID",
+        placeholder: "tyqid",
         id: "parentQid",
         className: "",
         maxLength: 11,
@@ -312,28 +316,28 @@ export const Studentdata = [
         autoComplete: "no",
         defaultValue: "",
         htmlFor: "parentQid",
-        label: "Guardian QID",
+        label: "gid",
 
     },
     {
         name: "parentName",
-        placeholder: "Type your guardian name",
+        placeholder: "tygn",
         id: "parentparentNameQid",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
         htmlFor: "parentName",
-        label: "Guardian Name",
+        label: "gnme",
 
     },
     {
         name: "relation",
         type: "select",
         id: "relation",
-        label: "Relation",
+        label: "rlt",
         htmlFor: "relation",
-        defaultSelectText: "Select relation",
+        defaultSelectText: "sltrlt",
         options: [
             { text: "Select relation" },
             { text: "Father" },
@@ -350,12 +354,12 @@ export const Studentdata = [
     {
         name: "parentMobile",
         type: "mobile",
-        placeholder: "Type guardian mobile number",
+        placeholder: "tygm",
         id: "parentMobile",
         className: "",
         type: "number",
         defaultValue: "",
-        label: "Guardian Mobile 1",
+        label: "gm1",
         ariaLabel: "Mobile number starting with country code +974",
         maxLength: 8,
         htmlFor: "parentMobile",
@@ -364,12 +368,12 @@ export const Studentdata = [
     {
         name: "parentMobile2",
         type: "mobile",
-        placeholder: "Type guardian mobile number 2",
+        placeholder: "tygm2",
         id: "parentMobile2",
         className: "",
         type: "number",
         defaultValue: "",
-        label: "Guardian Mobile 2",
+        label: "gm2",
         ariaLabel: "Mobile number starting with country code +974",
         maxLength: 8,
         htmlFor: "parentMobile2",
@@ -378,12 +382,12 @@ export const Studentdata = [
     {
         name: "parentEmail",
         type: "text",
-        placeholder: "Type guardian email address",
+        placeholder: "tygem",
         id: "parentEmail",
         className: "fontEnglish",
         type: "email",
         defaultValue: "",
-        label: "Guardian Email Address",
+        label: "gmail",
 
     },
     {
@@ -391,24 +395,11 @@ export const Studentdata = [
         type: "checkbox",
         id: "agree",
         type: "checkbox",
-        label: "I agree to the studio 5",
+        label: "term",
         ariaLabel: "Read terms and condition",
         className: "modal-trigger underline-text",
 
     },
 
 ]
-// export const showStudent = [
-//     {
-//         name: "schoolNameOther",
-//         placeholder: "Other School Name",
-//         id: "schoolNameOther",
-//         className: "",
-//         type: "text",
-//         autoComplete: "no",
-//         defaultValue: "",
-//         label: "School Name",
-//         schoolKey: "333"
-//     },
-// ]
 

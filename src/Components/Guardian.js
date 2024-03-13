@@ -199,7 +199,7 @@ function Guardian() {
                         </h2>
                         <div className="row">
                             <div className="col s6 form-container">
-                                <p style={{ textAlign: 'left' }}>
+                                <p style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}>
                                     {t("req2")} <span className="asterisk">*</span>
                                 </p>
 
@@ -213,20 +213,18 @@ function Guardian() {
                                                     <div className="input-field item" key={item.id}>
                                                         <input
                                                             name={item.name}
-                                                            placeholder={item.placeholder}
+                                                            placeholder={t(item.placeholder)}
                                                             id={item.id}
                                                             className={item.className}
                                                             type={item.type}
                                                             autoComplete={item.autoComplete}
                                                             defaultValue={item.defaultValue}
-                                                            style={{ textAlign: "left" }}
+                                                            style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                                                             onChange={handleOnChange}
                                                         />
-                                                        <label htmlFor={item.id} style={{ left: 0, right: "auto" }}>
-                                                            {item.label}
+                                                        <label htmlFor={item.id} style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right', left: currentLanguage === 'en' ? 0 : 'auto', right: currentLanguage === 'en' ? 'auto' : 0 }}>
+                                                            {t(item.label)}
                                                         </label>
-                                                        {/* {errors[item.name] && <span data-error={errors[item.name]}>{errors[item.name]}</span>} */}
-
                                                     </div>
                                                 );
                                             case "number":
@@ -236,19 +234,19 @@ function Guardian() {
                                                             <div className="input-field item">
                                                                 <input
                                                                     name="mobileNumber_country_code"
-                                                                    placeholder="Country Code"
+                                                                    placeholder={t("code")}
                                                                     className=""
                                                                     id="mobileNumber_country_code"
                                                                     type="text"
                                                                     minLength={3}
                                                                     maxLength={3}
                                                                     disabled
-                                                                    value="+974"
-                                                                    style={{ textAlign: "left" }}
+                                                                    value={t("code")}
+                                                                    style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                                                                     onChange={handleOnChange}
                                                                 />
-                                                                <label htmlFor="mobileNumber_country_code" className="active" style={{ left: 0, right: "auto" }}>
-                                                                    Country Code *
+                                                                <label htmlFor="mobileNumber_country_code" className="active" style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right', left: currentLanguage === 'en' ? 0 : 'auto', right: currentLanguage === 'en' ? 'auto' : 0 }}>
+                                                                    {t("ccode")}
                                                                 </label>
                                                                 <span className="helper-text" data-error="Enter a valid code." />
                                                             </div>
@@ -257,7 +255,7 @@ function Guardian() {
                                                             <div className="input-field item">
                                                                 <input
                                                                     name={item.name}
-                                                                    placeholder={item.placeholder}
+                                                                    placeholder={t(item.placeholder)}
                                                                     id={item.id}
                                                                     className={item.className}
                                                                     maxLength={item.maxLength}
@@ -265,15 +263,13 @@ function Guardian() {
                                                                     aria-label={item.ariaLabel}
                                                                     autoComplete="no"
                                                                     defaultValue={item.defaultValue}
-                                                                    style={{ textAlign: "left" }}
+                                                                    style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right' }}
                                                                     onChange={handleOnChange}
                                                                 />
-                                                                <label htmlFor={item.id} style={{ left: 0, right: "auto" }}>
-                                                                    {item.label} <span className="asterisk"> </span>
+                                                                <label htmlFor={item.id} style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right', left: currentLanguage === 'en' ? 0 : 'auto', right: currentLanguage === 'en' ? 'auto' : 0 }}>
+                                                                    {t(item.label)} <span className="asterisk"> </span>
                                                                 </label>
-                                                                {/* 
-                                                                {errors[item.name] && <span data-error={errors[item.name]}>{errors[item.name]}
-                                                                </span>} */}
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -291,7 +287,7 @@ function Guardian() {
                                                             />
                                                             <label htmlFor={item.id}>
                                                                 <span className="en">
-                                                                    {item.label}
+                                                                    {t(item.label)}
                                                                     <button
                                                                         type="button"
                                                                         aria-label="Read terms and condition"
@@ -300,7 +296,7 @@ function Guardian() {
                                                                         style={{ border: 0, background: "none" }}
                                                                     >
                                                                         {" "}
-                                                                        Terms and conditions
+                                                                        {t("fterms")}
                                                                     </button>
                                                                 </span>
                                                             </label>
@@ -314,7 +310,7 @@ function Guardian() {
                                         }
                                     })}
                                     <div className="btn-wrap">
-                                        <button className="btn blue">Register</button>
+                                        <button className="btn blue">{t("reg")}</button>
                                     </div>
                                 </form>
 

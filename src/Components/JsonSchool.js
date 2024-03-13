@@ -2,6 +2,7 @@
 export const schoolData = [
 
     {
+        label: "sclname",
         className: "browser-default",
         name: "schoolName",
         id: "schoolName",
@@ -147,33 +148,34 @@ export const schoolData = [
     },
     {
         name: "schoolNameOther",
-        placeholder: "Other School Name",
+        placeholder: "scother",
         id: "schoolNameOther",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
-        label: "School Name",
+        label: "sclname",
         refValue: "333",
         refId: "schoolName"
     },
     {
 
         name: "schoolPhoneNumber",
-        placeholder: "School Phone Number",
+        placeholder: "tysclno",
         id: "schoolPhoneNumber",
         className: "",
         type: "number",
         autoComplete: "no",
         defaultValue: "",
-        label: "School Phone Number",
+        label: "sclmb",
         refValue: "333",
         refId: "schoolName"
     },
     {
         name: "schoolEmail",
-        placeholder: "School Email",
+        placeholder: "sclmail",
         id: "schoolEmail",
+        placeholder: "tysclmail",
         className: "",
         type: "email",
         autoComplete: "no",
@@ -184,57 +186,55 @@ export const schoolData = [
     },
     {
         name: "repName",
-        placeholder: "Type  Rep name in English",
+        placeholder: "typerep",
         id: "repName",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
-        label: "Name in English Rep",
+        label: "repscl",
     },
     {
         name: "repNameArabic",
-        placeholder: "Type Rep name in Arabic Rep",
+        placeholder: "repar",
         id: "repNameArabic",
         className: "",
         type: "text",
         autoComplete: "no",
         defaultValue: "",
-        label: "Name in Arabic",
+        label: "nar",
 
     },
     {
         name: "qid",
-        placeholder: "Type your QID",
+        placeholder: "typegid",
         id: "qid",
         className: "",
         type: "text",
         maxLength: 11,
         autoComplete: "no",
         defaultValue: "",
-        label: "QID ",
+        label: "qid",
 
     },
     {
         name: "repPosition",
-        placeholder: "Type your position",
+        placeholder: "typos",
         id: "repPosition",
         className: "",
         type: "text",
         autoComplete: "no",
-        label: "Position",
+        label: "pos",
         defaultValue: "",
-
-
     },
 
     {
         name: "repMobile",
-        placeholder: "Type your mobile number",
+        placeholder: "pgmob",
         className: "",
         id: "repMobile",
         maxLength: 8,
-        label: "Mobile number",
+        label: "phone",
         type: "number",
         autoComplete: "no",
         defaultValue: "",
@@ -242,7 +242,7 @@ export const schoolData = [
     },
     {
         name: "repEmail",
-        placeholder: "Type your email",
+        placeholder: "pgmail",
         id: "repEmail",
         className: "fontEnglish",
         type: "email",
@@ -255,7 +255,7 @@ export const schoolData = [
         switchkey: "checkbox",
         id: "agree",
         type: "checkbox",
-        label: "I agree to the studio 5",
+        label: "term",
         ariaLabel: "Read terms and condition",
         className: "modal-trigger underline-text",
 

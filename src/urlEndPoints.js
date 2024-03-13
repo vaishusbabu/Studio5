@@ -23,5 +23,7 @@ export const urlEndPoints = {
     filter: `${baseURL}/api/filter/en?_format=json`,
     media: id => `${baseURL}/api/media-details/${id}?_format=json`,
     events: id => `${baseURL}/api/activity-details/${id}?_format=json`,
-    activity: `${baseURL}/api/activicties?_format=json`
+    activity: `${baseURL}/api/activicties?_format=json`,
+    videos: `${baseURL}/api/media-details/3?_format=json`,
+    gall: `${baseURL}api/media-detail-gallery/4?_format=json`
 }

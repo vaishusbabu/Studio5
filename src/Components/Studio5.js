@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStudioData } from '../Redux/SliceFiles/studioSlice';
@@ -21,7 +20,9 @@ function WhtStd5() {
             <div className="about-studio container">
                 <div className="item">
 
-                    <div dangerouslySetInnerHTML={{ __html: studio?.[0]?.body }}></div>
+                    <div dangerouslySetInnerHTML={{ __html: studio?.[0]?.body }}>
+
+                    </div>
                     <div className="bootstrapiso" data-original-title=""
                         id="mttContainer"
                         style={{
@@ -43,7 +44,8 @@ function WhtStd5() {
                             name="ocrFrame"
                             src="chrome-extension://hmigninkgibhdckiaphhmbgcghochdjc/ocr.html"
                             style={{ display: 'none' }}>
-                        </iframe><lt-toolbar contenteditable="false"
+                        </iframe>
+                        <lt-toolbar contenteditable="false"
                             data-lt-force-appearance="light"
                             style={{ display: "none" }}>
                             <lt-div className="lt-toolbar__wrapper"

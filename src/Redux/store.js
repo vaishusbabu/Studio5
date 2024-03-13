@@ -15,7 +15,8 @@ import filterReducer from './SliceFiles/FilterSlice';
 import mediaviewReducer from './SliceFiles/mediaviewSlice'
 import eventsReducer from './SliceFiles/eventSlice';
 import activityReducer from './SliceFiles/activitySlice';
-
+import videosReducer from './SliceFiles/homevideoSlice';
+import gallReducer from './SliceFiles/homegallerySlice'
 
 export default configureStore({
     reducer: {
@@ -35,7 +36,7 @@ export default configureStore({
         media: mediaviewReducer,
         events: eventsReducer,
         activity: activityReducer,
-
-
+        videos: videosReducer,
+        gall: gallReducer
     }
 })

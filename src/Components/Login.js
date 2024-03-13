@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import i18n from '../i18n';
-
+import { Link } from 'react-router-dom';
 
 function Login() {
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const { t } = useTranslation();
     const [errors, setErrors] = useState({});
@@ -18,16 +19,17 @@ function Login() {
         setFormData({ ...formData, [name]: value });
         setErrors({ ...errors, [name]: "" });
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitted(true);
         if (validForm()) {
             console.log('formData check ', formData);
-        }
-        else {
+        } else {
             console.log("Form is invalid");
         }
     };
+
     const validForm = () => {
         const newErrors = {};
         let isValid = true;
@@ -37,8 +39,8 @@ function Login() {
             isValid = false;
         }
 
-        //Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
-
+        // Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character,
+        // no space, and it must be 8-16 characters long.
         if (!formData.password || !/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/.test(formData.password)) {
             newErrors.password = "Password is required.";
             isValid = false;
@@ -46,55 +48,38 @@ function Login() {
 
         setErrors(newErrors);
         return isValid;
-    }
+    };
+
     const ErrorList = ({ errors }) => {
         if (!submitted || Object.keys(errors).length === 0) {
             return null;
         }
+    };
 
-    }
-    const currentLanguage = i18n.language
-    // const newLanguage = localStorage.getItem('language');
-    // i18n.changeLanguage(newLanguage);
-
-
-    // window.location.pathname = window.location.pathname.replace('/' + currentLanguage + '/', '/' + newLanguage + '/');
 
     return (
         <div id="main-content">
-            <div className="page-title en">
-
-            </div>
+            <div className="page-title en"></div>
             <div id="skipContent">
                 <div id="main-container">
-
                     <div className="container">
-
-                        <div className="center" />
+                        <div className="center"></div>
                         <div className="row col-8">
-
                             <ErrorList errors={errors} />
                             <form name="login" className="login-form loginForm" autoComplete="on" onSubmit={handleSubmit}>
-                                <h2>
-                                    {t("navlogin")}
-                                </h2>
-
+                                <h2>{t("navlogin")}</h2>
                                 <div className="error-container fail">
-                                    <h5>
-                                        {t("prblm")}
-                                    </h5>
-
+                                    <h5>{t("prblm")}</h5>
                                     <ul className="error-list">
                                         {Object.values(errors).map((error, index) => (
                                             <li key={index}>{error}</li>
                                         ))}
                                     </ul>
-
                                 </div>
                                 <div className="input-field item">
                                     <input
                                         name="email"
-                                        placeholder="Type your email"
+                                        placeholder={t("pgmail")}
                                         autoComplete="no"
                                         className="fontEnglish"
                                         id="email"
@@ -105,51 +90,46 @@ function Login() {
                                     <label htmlFor="email" style={{ left: 0, right: "auto" }}>
                                         {t("email")}
                                     </label>
-                                    {/* {errors.email && <span className="error">{errors.email}</span>} */}
                                 </div>
                                 <div className="input-field item">
                                     <input
                                         name="password"
                                         autoComplete="no"
-                                        placeholder="Type your password"
-                                        id="password"
-                                        className="fontEnglish"
-                                        type="password"
-                                        defaultValue=""
-                                        onChange={handleOnChange}
+                                        placeholder={t("pass")}
+                                        id="pass"
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
                                     />
                                     <button
                                         type="button"
                                         aria-label="show password"
                                         className="showEyes"
+                                        value={showPassword}
+                                        onClick={() => setShowPassword(!showPassword)}
                                     >
-                                        <i className="fa fa-eye" aria-hidden="true" />
+                                        <i className="fa fa-eye" aria-hidden="true"></i>
                                         <span> </span>
                                     </button>
                                     <label htmlFor="password" style={{ left: 0, right: "auto" }}>
-                                        {t("email")}
+                                        {t("password")}
                                     </label>
-                                    {/* {errors.password && <span className="error">{errors.password}</span>} */}
                                 </div>
                                 <div className="left-align">
-                                    <a className="underline-text" href="/forgot_password">
+                                    <Link className="underline-text" to="/forgot_password">
                                         <b>{t("forgot")}</b>
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="left-align btn-wrap">
                                     <button aria-label="login" className="btn blue login" type="submit">
-                                        {t("login")} <i className="material-icons en"></i>
+                                        {t("navlogin")} <i className="material-icons en"></i>
                                     </button>
                                 </div>
                                 <div className="left-align">
-                                    {t("donthve")}
-                                    {" "}
-                                    <a className="underline-text" href="/register_home">
-                                        <b>{t("signup")}
-
-                                        </b>
-
-                                    </a>
+                                    {t("donthve")}{" "}
+                                    <Link className="underline-text" to="/register_home">
+                                        <b>{t("signup")}</b>
+                                    </Link>
                                 </div>
                             </form>
                         </div>

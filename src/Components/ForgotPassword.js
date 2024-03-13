@@ -1,6 +1,11 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
+import i18n from '../i18n';
+import { Link } from 'react-router-dom';
 
 function ForgotPassword() {
+    const { t } = useTranslation();
+    const currentLanguage = i18n.language
     return (
         <div>
             <div id="main-content">
@@ -14,7 +19,7 @@ function ForgotPassword() {
                                 tabIndex={0}
                                 aria-label="page heading Forgot password"
                             >
-                                Forgot password
+                                {t("forgt")}
                             </h2>
                         </div>
                     </div>
@@ -23,12 +28,14 @@ function ForgotPassword() {
                     <nav className="breadcrumb" id="breadcrumb-wrap" aria-label="breadcrumb">
                         <ul>
                             <li className="breadcrumb-item">
-                                <a href="/en/">Home</a>{" "}
+                                <Link to="/home">{t("home")}</Link>{" "}
                             </li>
                             <li className="breadcrumb-item">
-                                <a tabIndex={0} aria-current="page" href="/en/forgot-password">
-                                    <span>Forgot password</span>
-                                </a>
+                                <Link tabIndex={0} aria-current="page" to="/forgot_password">
+                                    <span>
+                                        {t("forgt")}
+                                    </span>
+                                </Link>
                             </li>
                         </ul>
                     </nav>
@@ -41,21 +48,22 @@ function ForgotPassword() {
                                     <div className="input-field item">
                                         <input
                                             name="username"
-                                            placeholder="Type your email"
+                                            placeholder={t("pgmail")}
                                             className="fontEnglish"
                                             id="username"
                                             type="text"
                                             defaultValue=""
                                         />
-                                        <label htmlFor="username" style={{ left: 0, right: "auto" }}>
-                                            Email
+                                        <label htmlFor="username" style={{ textAlign: currentLanguage === 'en' ? 'left' : 'right', left: currentLanguage === 'en' ? 0 : 'auto', right: currentLanguage === 'en' ? 'auto' : 0 }}>
+                                            {t("email")}
                                         </label>
                                         <span className="helper-text" data-error="Required field." />
                                     </div>
                                     <div className="btn-wrap reset-button-container">
                                         <button className="btn blue login">
-                                            Reset password{" "}
-                                            <i className="material-icons en">arrow_forward</i>
+                                            {t("reset")}
+                                            {" "}
+                                            <i className="material-icons en"></i>
                                         </button>
                                     </div>
                                 </form>

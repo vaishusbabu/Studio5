@@ -18,7 +18,7 @@ function HomeNavbar() {
                     <AgeImg />
                     <Zone />
                     <News />
-                   
+
                 </div>
             </div>
         </div >

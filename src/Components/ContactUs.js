@@ -116,7 +116,7 @@ function ContactUs() {
                             id="email"
                             name="email"
                             autoComplete="no"
-                            placeholder="Type your email"
+                            placeholder={t("pgmail")}
                             type="email"
                             onChange={handleChange}
                             defaultValue=""
@@ -134,7 +134,7 @@ function ContactUs() {
                             id="mobile"
                             name="mobile"
                             autoComplete="no"
-                            placeholder="Type your mobile number"
+                            placeholder={t("pgmob")}
                             maxLength={8}
                             onChange={handleChange}
                             type="number"
@@ -153,7 +153,7 @@ function ContactUs() {
                             id="message"
                             name="message"
                             onChange={handleChange}
-                            placeholder="Type your message"
+                            placeholder={t("msg1")}
                             rows={8}
                             defaultValue={""}
                             required

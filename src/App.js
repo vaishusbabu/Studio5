@@ -88,7 +88,6 @@ function App() {
                 <Route path='/forgot_password' element={<ForgotPassword />} />
                 <Route path='/gallery' element={<Gallery />} />
                 <Route path='/media_filter/:id' element={<MediaFilter />} />
-
                 {/* connecting pages using useParams */}
                 <Route path='/event_details/:id' element={<EventDetails />} />
                 <Route path='/media_view/:id' element={<Media_View />} />
