@@ -29,10 +29,9 @@ function Activity() {
         dispatch(fetchActivityData({ currentPage, title, startDate, select }));
     }, [currentPage, title, startDate, select]);
 
-
-    const handlePageClick = (selectedPage) => {
-        setCurrentPage(selectedPage);
-        dispatch(fetchActivityData({ currentPage: selectedPage, title, startDate, select }));
+    const handlePageClick = (selectedItem) => {
+        // Call your fetchActivityData function with the selected page number
+        dispatch(fetchActivityData({ currentPage: selectedItem.selected, title, startDate, select }));
     };
 
     const titleChange = (e) => {

@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 function Media_Center() {
     const { t } = useTranslation();
     const baseURL = "https://www.studio5.qa/drupal-app/";
+    const [filterData, setFilterData] = useState([]);
     const { data: medianews } = useSelector(state => state.medianews);
     const { data: filter } = useSelector(state => state.filter);
     console.log('medianews data: ', medianews);
@@ -24,32 +25,45 @@ function Media_Center() {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const itemsPerPage = 10;
+    const handleFilterChange = (tid) => {
+        dispatch(fetchMediaNewsData(tid));
+      };
+    
+      useEffect(() => {
+        fetch(
+          `https://studio5drupaldev.applab.qa/api/filter/en?_format=json`
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setFilterData(data);
+            console.log("news in media center", data);
+          });
+      }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, [currentPage, medianews]);
 
-    useEffect(() => {
-        fetchData();
-    }, [currentPage, medianews]);
+    // const fetchData = async () => {
+    //     try {
+    //         const data1 = {
+    //             lang: "en",
+    //             page: currentPage
 
-    const fetchData = async () => {
-        try {
-            const data1 = {
-                lang: "en",
-                page: currentPage
+    //         };
 
-            };
+    //         const response = await axios.post(
+    //             "https://studio5drupaldev.applab.qa/api/media-centre?_format=json",
+    //             data1,
+    //             {
+    //             }
+    //         );
 
-            const response = await axios.post(
-                "https://studio5drupaldev.applab.qa/api/media-centre?_format=json",
-                data1,
-                {
-                }
-            );
-
-            medianews(response.data);
-            setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
+    //         medianews(response.data);
+    //         setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
+    //     } catch (error) {
+    //         console.error("Error fetching data:", error);
+    //     }
+    // };
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage);
     };
@@ -126,16 +140,16 @@ function Media_Center() {
                                         <h3 id="filter-title">
                                             {t("filer")}
                                         </h3>
-                                        {filter && filter.map((item, index) => (
+                                        {filterData && filterData.map((item, index) => (
 
                                             <ul aria-label="aside navigation">
                                                 <li className="media-item en">
-                                                    <Link
-                                                        aria-label="News section contains 58 items"
-                                                        to={`/media_filter/${item.tid}`}
-                                                    >
-                                                        {item.filter}<span>{item.count}</span>
-                                                    </Link>
+                                                <button
+                            onClick={() => handleFilterChange(item.tid)}
+                            >
+                              {item.filter}
+                              <span>{item.count}</span>
+                            </button>
                                                 </li>
                                             </ul>
                                         )

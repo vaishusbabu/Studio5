@@ -3,9 +3,11 @@ import { urlEndPoints } from "../../urlEndPoints";
 import axios from 'axios'
 
 export const fetchMediaNewsData = createAsyncThunk('SliceFile/fetchMediaNewsData',
-    async () => {
+    async (tid) => {
         try {
-            const response = await axios.get(urlEndPoints.medianews);
+            const url = tid !== undefined ? `${urlEndPoints.filter}media-centre/${tid}?_format=json` : `${urlEndPoints.medianews}`;
+            
+            const response = await axios.get(url);
             return response.data;
         } catch (error) {
             console.error('Error Occured', error);
