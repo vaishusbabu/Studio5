@@ -39,31 +39,6 @@ function Media_Center() {
             console.log("news in media center", data);
           });
       }, []);
-    // useEffect(() => {
-    //     fetchData();
-    // }, [currentPage, medianews]);
-
-    // const fetchData = async () => {
-    //     try {
-    //         const data1 = {
-    //             lang: "en",
-    //             page: currentPage
-
-    //         };
-
-    //         const response = await axios.post(
-    //             "https://studio5drupaldev.applab.qa/api/media-centre?_format=json",
-    //             data1,
-    //             {
-    //             }
-    //         );
-
-    //         medianews(response.data);
-    //         setTotalPages(Math.ceil(response.data.pager.count / itemsPerPage));
-    //     } catch (error) {
-    //         console.error("Error fetching data:", error);
-    //     }
-    // };
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage);
     };

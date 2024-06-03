@@ -1,11 +1,11 @@
-import i18n from "./i18n";
+// import i18n from "./i18n";
 
 // let baseURL = "https://www.studio5.qa/drupal-app";
 let baseURL = "https://studio5drupaldev.applab.qa";
-const currentLanguage = i18n.language;
-if (currentLanguage === 'ar') {
-    baseURL += "/ar";
-}
+// const currentLanguage = i18n.language;
+// if (currentLanguage === 'ar') {
+//     baseURL += "/ar";
+// }
 
 export const urlEndPoints = {
     banner: `${baseURL}/api/banner?_format=json`,
