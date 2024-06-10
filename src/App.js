@@ -55,7 +55,7 @@ function App() {
   return (
     <div>
 
-      <div className={currentLanguage === 'en' ? '' : 'ab'}
+      <div className={currentLanguage === 'en' ? '' : 'ar'}
         style={{ direction: currentLanguage === 'en' ? 'ltr' : 'rtl', overflow: 'hidden' }}>
 
         {/* <div className="" style={{ direction: "ltr", overflow: "hidden" }}> */}

@@ -30,7 +30,7 @@ function Activity() {
     }, [currentPage, title, startDate, select]);
 
     const handlePageClick = (selectedItem) => {
-        // Call your fetchActivityData function with the selected page number
+
         dispatch(fetchActivityData({ currentPage: selectedItem.selected, title, startDate, select }));
     };
 
@@ -53,6 +53,7 @@ function Activity() {
         setCurrentPage(0);
         dispatch(fetchActivityData({ currentPage, title, startDate, select }));
     };
+
     const handleActivitySelect = (activityType) => {
         setSelectedActivity(activityType);
         setCurrentPage(0);

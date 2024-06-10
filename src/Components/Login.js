@@ -45,18 +45,14 @@ function Login() {
             newErrors.password = "Password is required.";
             isValid = false;
         }
-
         setErrors(newErrors);
         return isValid;
     };
-
     const ErrorList = ({ errors }) => {
         if (!submitted || Object.keys(errors).length === 0) {
             return null;
         }
     };
-
-
     return (
         <div id="main-content">
             <div className="page-title en"></div>
